@@ -116,9 +116,9 @@ def main():
   # Variable Setup
   csv_filename = "data/trico_catalog.csv"
 
-  courses = getCourses()[:1000]
-  errors = 0
+  courses = getCourses()
   t_start = time.time()
+  errors = 0
 
   for i, course in enumerate(courses):
     try:
