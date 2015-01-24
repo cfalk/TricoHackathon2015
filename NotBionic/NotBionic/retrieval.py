@@ -26,6 +26,7 @@ def filter_courses(search_dict, courses=None):
   if courses is None:
     courses = Course.objects.all()
 
+  """
   timeframe_search = {}
 
   time_fields = ["start", "end", "day"]
@@ -35,7 +36,7 @@ def filter_courses(search_dict, courses=None):
   if time_search:
     time_search["courses"] = courses
     courses = filter_timeframe(**timeframe_search)
-
+  """
 
   return courses.filter(**search_dict)
 
