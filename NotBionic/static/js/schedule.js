@@ -84,8 +84,9 @@ $(document).ready(function() {
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
 		    var counter = 0;	
+		    var last = false;
 		    while(temp_hour != end_hour || temp_minute != end_minute) {
-			$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
+			var block = $('#'+days_key[days[j]]+'-'+temp_hour+temp_minute);
 			if(temp_hour == 12 && temp_minute == '30') {
 			    temp_hour = 1;
 			}
@@ -98,6 +99,19 @@ $(document).ready(function() {
 			else {
 			    temp_minute = '30'
 			}
+			block.css('background-color','darkgrey');
+			if(counter == 0) {
+			    block.text(course.reg_id);
+			    block.css('border-bottom','none');
+			}
+			else if(!(temp_hour != end_hour || temp_minute != end_minute)){
+			    block.css('border-top','none');
+			}
+			else {
+			    block.css('border-bottom','none')
+			    block.css('border-top','none');
+			}
+			counter++;
 		    }
 		    //$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
 		    
