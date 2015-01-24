@@ -44,7 +44,7 @@ function createCard(courseData){
 						)
 						.append($('<div class="card_information">')
 							.append($('<div class="card_header">')
-								.append('<a class="various fancybox.ajax" href="/course/info.html"><h3 class="card_title">'+courseData.title+'</h3></a>')
+								.append('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '"><h3 class="card_title">'+courseData.title+'</h3></a>')
 							)
 							.append('<div class="card_description">'+courseData.description+'</div>')
 							.append('<div class="card_hours">'+courseData.days.join()+" at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
