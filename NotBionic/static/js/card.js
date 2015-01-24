@@ -38,27 +38,22 @@ function createCard(courseData){
 		</div>*/
 	var $cardsContainer = $(".cards_container");
 
-	$cardsContainer.append('<div class="card_containter">')
-						.append('<div class="card_icon">')
+	$cardsContainer.append($('<div class="card_containter">')
+						.append($('<div class="card_icon">')
 							.append('<img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" class="card_icon">')
-						.append('</div>')
-						.append('<div class="card_information">')
-							.append('<div class="card_header">')
+						)
+						.append($('<div class="card_information">')
+							.append($('<div class="card_header">')
 								.append('<a class="various fancybox.ajax" href="/course/info.html"><h3 class="card_title">'+data.title+'</h3></a>')
-							.append('</div>')
+							)
 							.append('<div class="card_description">'+data.description+'</div>')
 							.append('<div class="card_hours">'+data.days.join()+" at " + data.start_times[0]+' - '+data.end_times[0]+'</div>')
-							.append('<div class="card_stats">')
-								.append('<div class="card_coursenumber>')
+							.append($('<div class="card_stats">')
+								.append($('<div class="card_coursenumber>')
 									.append('<h4>'+data.department + ' ' + data.department_num + '</h4>')
-								.append('</div>')
-							.append('</div>')
-							.append('<div class="inactiveCardButton cardButtons add-course">
-								<button class="button button--add-course">Add Course to Shopping Cart</button>
-							</div>
-							<div class="inactiveCardButton cardButtons course-moreinfo">
-								<button class="button button--more-info">More info...</button>
-							</div>')
-						.append('</div>')
-					.append('</div>');
+								)
+							)
+							.append('<div class="inactiveCardButton cardButtons add-course"><button class="button button--add-course">Add Course to Shopping Cart</button></div><div class="inactiveCardButton cardButtons course-moreinfo"><button class="button button--more-info">More info...</button></div>')
+						)
+					);
 }
