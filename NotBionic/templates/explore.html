@@ -3,15 +3,22 @@
     <h1> Explore some Courses </h1>
     <div class=filter-bar style="display: table;"> 
 	<ul id=filters>
-	    <li data-filter="department" class="filter"> Department </li>
-	    <li data-filter="campus"class="filter"> Campus </li>
-	    <li data-filter="level"class="filter"> Level </li>
-	    <li data-filter="time"class="filter"> Time </li>    
+	{% for field in field_list %}
+	    <li data-filter="{{ field }}" class="filter"> {{ field }} </li>
+	{% endfor %}
 	</ul>
     </div>
-    <div id="department-filterOptions" class="disabledFilterOptions">
-	
-    </div>
+	{% for key, value in value_list.items %}
+	    <div id="{{ key }}-filterOptions" class="disabledFilterOptions">
+		<ul style="list-style-type: None;">
+		{% for each in value %}
+		<li><input type=checkbox>{{ each }}</li>
+		{% endfor %}
+		</ul>
+	    </div>
+	{% endfor %} 
+    <!--
+    <div id="department-filterOptions" class="disabledFilterOptions"></div>
     <div id="campus-filterOptions" class="disabledFilterOptions">
 	<input type=checkbox name=Haverford value="Haverford">Haverford
 	<input type=checkbox name="Bryn Mawr" value="Bryn Mawr">BMC
@@ -43,7 +50,7 @@
 	$( "#end-slider" ).slider();
     });
     </script>
-
+    -->
     {% include 'card.html' %}
     <div id="explore-results">
     <div id="loading-results">
