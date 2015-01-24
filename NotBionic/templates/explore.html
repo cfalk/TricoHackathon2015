@@ -1,19 +1,18 @@
 {% include 'head.html' %}
 <body>
     <h1> Explore some Courses </h1>
-    <div class=filter-bar> 
-	<div class="filter-bar__content" style="display: table;">
-		<ul id=filters>
-		    <li class="filter"> Department </li>
-		    <li class="filter"> Campus </li>
-		    <li class="filter"> Level </li>
-		    <li class="filter"> Time </li>    
-		</ul>
-	    </div>
-	</div>
-	<div class="filter-bar__drawer">
-	</div>
-	<div class="filter-bar__selected"></div>
-    </div
+    <div class=filter-bar style="display: table;"> 
+	<ul id=filters>
+	    <li data-filter="department" class="filter"> Department </li>
+	    <li data-filter="campus"class="filter"> Campus </li>
+	    <li data-filter="level"class="filter"> Level </li>
+	    <li data-filter="time"class="filter"> Time </li>    
+	</ul>
+    </div>
+    <div id="department-filterOptions" class="disabledFilterOptions"></div>
+    <div id="campus-filterOptions" class="disabledFilterOptions"></div>
+    <div id="level-filterOptions" class="disabledFilterOptions"></div>
+    <div id="time-filterOptions" class="disabledFilterOptions"> </div>
+    {% include 'card.html' %}
     
 </body>
