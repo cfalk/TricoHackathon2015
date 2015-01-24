@@ -80,7 +80,6 @@ def edit_course(request, operation="add"):
 
     reg_id = request.POST["reg_id"]
     location = request.POST["location"]
-    operation = request.POST["operation"]
 
     course = get_course_by_reg_id(reg_id)
 
@@ -98,7 +97,8 @@ def edit_course(request, operation="add"):
 
     return HttpResponse("Success!")
 
-  except:
+  except Exception as e:
+    print e
     return HttpResponse("Failed!")
 
 
