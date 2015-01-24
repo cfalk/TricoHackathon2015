@@ -14,3 +14,11 @@ background-color:green;
 .class-off {
 background-color:red;
 }
+
+.filter {
+display: inline;
+}
+
+#filters {
+list-style-type: None;
+}
