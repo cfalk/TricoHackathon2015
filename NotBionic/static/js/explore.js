@@ -23,23 +23,16 @@ $(document).ready(function(){
 	bindFilterOpen();
 	var pageNum = 1;
 
-	$(window).scroll(function(){
-		if($(window).scrollTop() == $(document).height() - $(window).height()){ //If statement copied from http://www.sitepoint.com/jquery-infinite-scrolling-demos/
-			//This means that we have scrolled to the bottom of the page
-			pageNum=pageNum+1;
-			$.get({
-				url:"/courses/"+(pageNum),
-				success:function(data){
+			$.get(
+				"/courses/"+(pageNum),
+				function(data){
+					console.log("OH HEY HEY");
 					if(data){
 						data.forEach(function(val,index){
 							createCard(val);
 						});
 					}
-				},
-				error:function(error){
-					alert(error);
 				}
-			})
-		}
-	});
+			
+	);
 });

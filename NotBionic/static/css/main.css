@@ -3,10 +3,19 @@ border: 1px solid black;
 border-collapse: collapse;
 }
 
-th, td {
-padding: 5px;
+h2 {
+text-align:center;
 }
 
+th, td {
+padding: 5px;
+width:100px;
+}
+
+#schedule {
+margin:auto;
+width:80%;
+}
 .class-on {
 background-color:green;
 }
