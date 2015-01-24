@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
 
 def explore(request):
 	return render(request, "explore.html")
@@ -26,5 +28,72 @@ def profile(request):
 	'four_2':['off','on','on','off','on','off','on'],
 	},
 	'user':{'name':'Brandon'}})
+
+
+def get_user_schedule(request):
+  # Sends a json object (below) with the `reg_id`s of this user's courses.
+  # FORMAT: {"schedule":["IDx", ...], "shopping_cart":["IDy", ...]}
+
+  from retrieval import get_expanded_user
+  import json
+
+  user = request.user
+
+  if user.is_authenticated():
+
+    expanded_user = get_expanded_user(user)
+    courses = expanded_user.get_courses()
+    response = json.dumps(courses)
+
+    return HttpResponse(response, content_type="application/json")
+
+  else:
+    return HttpResponseForbidden()
+
+
+
+
+@require_http_methods(["GET"])
+def get_course(request, reg_id=""):
+  # Sends json data for a single course matching a reg_id.
+
+  from retrieval import get_course_by_reg_id
+  import json
+
+  course = get_course_by_reg_id(reg_id)
+  data = course.to_dict() if course else []
+  response = json.dumps(data)
+
+  return HttpResponse(response, content_type="application/json")
+
+
+@require_http_methods(["POST"])
+def add_course(request):
+  # Adds a single course `reg_id` to either a user's "schedule" or
+  #  "shopping_cart" (set by `location`). Expects a POST with data of
+  #  the format: {"reg_id":"IDx", "location":"shopping_cart|schedule"}
+
+  from retrieval import get_course_by_reg_id, get_expanded_user
+
+  try:
+    if not request.user.is_authenticated():
+      raise Exception("User is not authenticated!")
+
+    reg_id = request.POST["reg_id"]
+    location = request.POST["location"]
+
+    course = get_course_by_reg_id(reg_id)
+
+    if not course:
+      raise Exception("Course not found!")
+
+    expanded = get_expanded_user(request.user)
+    expanded.add_course(reg_id, location)
+
+    return HttpResponse("Success!")
+
+  except:
+    return HttpResponse("Failed!")
+
 
 

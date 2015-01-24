@@ -12,5 +12,15 @@ urlpatterns = patterns('',
     url(r'^$', views.explore, name='home'),
     url(r'^explore/', views.explore, name='explore'),
     url(r'^profile/', views.profile, name='profile'),
+
+
+    # JSON-returning views:
+    url(r'^course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.get_course),
+    url(r'^user_courses/?$', views.get_user_schedule),
+
+    # Database-modifying views:
+    url(r'^add_course/?$', views.add_course),
+
+
     url(r'^admin/', include(admin.site.urls)),
 )

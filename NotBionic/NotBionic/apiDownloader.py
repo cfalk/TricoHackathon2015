@@ -1,6 +1,6 @@
 
 # Set to `True` to enable debugging options.
-DEBUG = False
+DEBUG = True
 
 
 def queryCourse(college, semester, reg):
@@ -123,7 +123,15 @@ def write_json_to_csv(json_list, filename):
           new_key = translate[key]
           obj[new_key] = obj[key]
 
-      vals = [unicode(obj.get(header, "")).strip() for header in headers]
+      vals = []
+      for header in headers:
+        val = obj.get(header, "")
+
+        if type(val) == list:
+          val = map(str, val)
+
+        vals.append(unicode(val))
+
       writer.writerow(vals)
 
 

@@ -39,10 +39,10 @@ def build_course(obj_dict):
 
 
 def construct_courses_from_CSV(filename):
-  from unicode_csv import UnicodeReader
+  import csv
 
   with open(filename) as f:
-    reader = UnicodeReader(f)
+    reader = csv.reader(f)
     headers = reader.next()
 
     if DEBUG:
