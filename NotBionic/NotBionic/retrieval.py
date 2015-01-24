@@ -26,6 +26,16 @@ def filter_courses(search_dict):
   return Course.objects.filter(**search_dict)
 
 
+def filter_timeframe(start="", end="", day=""):
+  from models import Course
+
+  courses = Course.objects.all()
+
+
+
+  return courses
+
+
 def get_expanded_user(user):
   # Returns the `Expanded_User` entry associated with a `user`
   #  or creates one if it does not yet exist.
@@ -43,6 +53,14 @@ def get_expanded_user(user):
 
 
 def get_course_value_set(field):
-  return ["test","test1","test"2]
+  # Returns a set of the distinct values in a Course `field`.
+
+  from models import Course
+
+  vals = Course.objects.values_list(field, flat=True).distinct()
+
+  return set(vals)
+
+
 
 
