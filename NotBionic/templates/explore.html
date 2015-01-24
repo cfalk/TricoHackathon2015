@@ -9,9 +9,19 @@
 	    <li data-filter="time"class="filter"> Time </li>    
 	</ul>
     </div>
-    <div id="department-filterOptions" class="disabledFilterOptions"></div>
-    <div id="campus-filterOptions" class="disabledFilterOptions"></div>
-    <div id="level-filterOptions" class="disabledFilterOptions"></div>
+    <div id="department-filterOptions" class="disabledFilterOptions">
+	
+    </div>
+    <div id="campus-filterOptions" class="disabledFilterOptions">
+	<input type=checkbox name=Haverford value="Haverford">Haverford
+	<input type=checkbox name="Bryn Mawr" value="Bryn Mawr">BMC
+	<input type=checkbox name="Swarthmore" value="Swarthmore">Swat
+    </div>
+    <div id="level-filterOptions" class="disabledFilterOptions">
+	<input type=checkbox name=100 value="100">100 Level
+	<input type=checkbox name=200 value="200">200 Level
+	<input type=checkbox name=300 value="300">300 Level
+    </div>
     <div id="time-filterOptions" class="disabledFilterOptions"> </div>
     {% include 'card.html' %}
     
