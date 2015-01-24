@@ -100,6 +100,7 @@ $(document).ready(function() {
 			    temp_minute = '30'
 			}
 			block.css('background-color','darkgrey');
+			block.css('cursor','pointer');
 			if(counter == 0) {
 			    block.text(course.reg_id);
 			    block.css('border-bottom','none');
@@ -111,6 +112,8 @@ $(document).ready(function() {
 			    block.css('border-bottom','none')
 			    block.css('border-top','none');
 			}
+			block.addClass(course.reg_id);
+			block.addClass("hasClass");
 			counter++;
 		    }
 		    //$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
@@ -118,6 +121,19 @@ $(document).ready(function() {
 		}
 	    }); 
 	}
+    });
+    $('#schedule').on('click', '.hasClass', function(){
+	var classes = $(this)[0].className;
+	var split = classes.split(" ");
+	var reg_id = split[0];
+	if (split[0] == 'hasClass'){
+	    reg_id = split[1];
+	}
+	$.get('/course/'+reg_id+'/', function( data ){
+	    var string = "<h1>"+data.title+"</h1>";
+	    string = string + "<p style='width:400px;'>"+data.description+"</p>";
+	    $.fancybox.open(string);
+	});
     });
 });
 
