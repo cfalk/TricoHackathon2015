@@ -3,7 +3,6 @@
 <body>
     {% if user.is_authenticated %}
     <h1>Welcome {{ user.username }}</h1>
-    <h2>Hellloooo All</h2>
     <form action="/logout/" method="post">
     {% csrf_token %}
     <input type="submit" value="Logout" />
@@ -18,7 +17,16 @@
     </form>
     {% endif %}
     <h2>Schedule</h2>
+    <div id='schedule'>
+
+    </div>
     <h2>Confirmed Classes</h2>
+    <div id='confirmed-classes'>
+
+    </div>
     <h2>Shopping Cart</h2>
+    <div id='shopping-cart'>
+
+    </div>
 </body>
 </html>
