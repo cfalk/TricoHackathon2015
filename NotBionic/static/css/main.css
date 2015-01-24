@@ -16,7 +16,8 @@ background-color:red;
 }
 
 .filter {
-display: inline;
+display: table-cell;
+width: 20%;
 }
 
 #filters {
