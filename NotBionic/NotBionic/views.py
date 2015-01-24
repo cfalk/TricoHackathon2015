@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
@@ -9,25 +8,38 @@ from django.contrib.auth import logout
 def explore(request):
     return render(request, "explore.html")
 
+
 def profile(request):
     return render(request,"profile.html")
 
+
 def logout_view(request):
+    # Kills the login-session of a user.
+
     logout(request)
     return HttpResponseRedirect("/explore/")
 
+
+
 def auth(request):
+    # Authenticates a user and redirects them to a specified page.
+
     username = request.POST['username']
     password = request.POST['password']
+    redirect = request.POST.get('next', "/profile/")
+
     user = authenticate(username=username, password=password)
+
     if user is not None:
         if user.is_active:
             login(request,user)
-            return HttpResponseRedirect("/profile/")
+            return HttpResponseRedirect(redirect)
         else:
             return HttpResponse("Couldn't find user")
     else:
 	return HttpResponse("Invalid login")
+
+
 
 def get_user_schedule(request):
   # Sends a json object (below) with the `reg_id`s of this user's courses.
@@ -51,7 +63,6 @@ def get_user_schedule(request):
 
 
 
-
 @require_http_methods(["GET"])
 def get_course(request, reg_id=""):
   # Sends json data for a single course matching a reg_id.
@@ -64,6 +75,7 @@ def get_course(request, reg_id=""):
   response = json.dumps(data)
 
   return HttpResponse(response, content_type="application/json")
+
 
 
 @require_http_methods(["POST"])
