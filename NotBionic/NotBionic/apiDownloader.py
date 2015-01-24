@@ -1,3 +1,8 @@
+
+# Set to `True` to enable debugging options.
+DEBUG = True
+
+
 def queryCourse(college, semester, reg):
   import subprocess
   import json
@@ -114,9 +119,12 @@ def main():
   import time
 
   # Variable Setup
-  csv_filename = "data/trico_catalog.csv"
+  csv_filename = "data/trico_catalog_test.csv"
 
   courses = getCourses()
+  if DEBUG:
+    courses = courses[:100]
+
   t_start = time.time()
   errors = 0
 
