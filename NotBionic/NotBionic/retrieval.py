@@ -43,6 +43,6 @@ def get_expanded_user(user):
 
 
 def get_course_value_set(field):
-  return ["test","test1","test"2]
+  return ["test","test1","test2"]
 
 

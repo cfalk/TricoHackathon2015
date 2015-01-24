@@ -144,15 +144,20 @@ def edit_course(request, operation="add"):
 
 
 @require_http_methods(["GET"])
-def possible_values(request):
+def get_possible_values(request):
 
-  from retrieval import get_value_set
+  from retrieval import get_course_value_set
+  import json
 
-  field = request.GET["field"]
+  if "field" in request.GET:
+    field = request.GET["field"]
 
-  # Get a sorted list of all unique values for this field.
-  data = list(get_course_value_set(field))
-  data.sort()
+    # Get a sorted list of all unique values for this field.
+    data = list(get_course_value_set(field))
+    data.sort()
+
+  else:
+    data = []
 
   response = json.dumps(data)
 
