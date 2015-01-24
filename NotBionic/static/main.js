@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
 	//Click binds
 	function bindFilterOpen(){
 		$(".filter").on("click", function(){
