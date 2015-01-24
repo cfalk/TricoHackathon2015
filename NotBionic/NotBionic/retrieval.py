@@ -32,12 +32,8 @@ def filter_courses(search_dict, courses=None):
   time_search = {f:search_dict[f] for f in time_fields if f in search_dict}
   search_dict = {f:val for f, val in search.items() if f in f not in time_fields}
 
-  for field in timeframe_fields:
-    timeframe_search[field] = search_dict[field]
-    del
-
-  if timeframe_search:
-    timeframe_search["courses"] = courses
+  if time_search:
+    time_search["courses"] = courses
     courses = filter_timeframe(**timeframe_search)
 
 
