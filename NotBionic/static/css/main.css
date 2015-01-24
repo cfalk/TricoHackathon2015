@@ -30,6 +30,8 @@ display: None;
 
 .activeFilterOptions {
 display: block;
+background-color: gray;
+height: 20%;
 }
 
 /*Following is inspired by http://silverstar-media.com/scaling-menu-tiles-with-simple-html-css/ */
