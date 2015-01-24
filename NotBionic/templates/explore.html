@@ -1,5 +1,7 @@
 {% include 'head.html' %}
 <body>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
     <h1> Explore some Courses </h1>
     <div class=filter-bar style="display: table;"> 
 	<ul id=filters>
@@ -25,6 +27,8 @@
     <div id="time-filterOptions" class="disabledFilterOptions"> </div>
     {% include 'card.html' %}
     <div id="explore-results">
+        <div class="cards_container">
+        </div>
     <div id="loading-results">
     	<center>Currently loading more results </center>
     </div>
