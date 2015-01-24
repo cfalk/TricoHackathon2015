@@ -19,22 +19,25 @@ $(document).ready(function() {
 		}
 		else {
 		    schedule.append('<td>'+time_counter.toString()+':30</td>');
-		    if (time_counter == 12) {
-			time_counter = 1;
-		    }
-		    else {
-			time_counter++;
-		    }
 		}
 	    }
 	    else {
 		if(i%2 == 0){
 		    schedule.append('<td id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>');
 		}
+		else if(time_counter-1==0){
+		    schedule.append('<td id="'+days[j-1].toString()+'-1230"></td>');
+		}
 		else {
 		    // need to subtract 1 from time counter because it is incremented prematurely above
 		    schedule.append('<td id="'+days[j-1].toString()+'-'+(time_counter-1).toString()+'30"></td>');
 		}
+	    }
+	    if (time_counter == 12 && i%2 != 0 && j==0) {
+		time_counter = 1;
+	    }   
+	    else if (i%2 != 0 && j==0) {
+		time_counter++;
 	    }
 	}
 	schedule.append('</tr>');
@@ -71,7 +74,9 @@ $(document).ready(function() {
 		else {
 		    end_hour = parseInt(end_time.substring(0,2));
 		}
-		var min = parseInt(start_time.charAt(3));
+		var min = parseInt(end_time.charAt(3));
+		console.log("course:",course)
+		console.log("min",min)
 		if(min < 3) {
 		    end_minute = "00";
 		}
@@ -79,11 +84,17 @@ $(document).ready(function() {
 		    end_minute = '30';
 		}
 		for(var j=0;j<days.length;j++) {
+		    console.log("here!!")
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
+		    var counter = 0;	
 		    while(temp_hour != end_hour || temp_minute != end_minute) {
+		    console.log("temp_hour:",temp_hour)
+		    console.log("end_hour:",end_hour)
+		    console.log("temp_minute:",temp_minute)
+		    console.log("end_minute:",end_minute)
 			$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
-			if(temp_hour == 12) {
+			if(temp_hour == 12 && temp_minute == '30') {
 			    temp_hour = 1;
 			}
 			else if (temp_minute == '30') {
@@ -96,7 +107,7 @@ $(document).ready(function() {
 			    temp_minute = '30'
 			}
 		    }
-		    $('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
+		    //$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
 		    
 		}
 	    }); 
