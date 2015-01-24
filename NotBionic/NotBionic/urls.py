@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', views.explore, name='home'),
     url(r'^explore/$', views.explore, name='explore'),
     url(r'^profile/$', views.profile, name='profile'),
-    
+
     # Authentication view
     url(r'^auth/$', views.auth, name='auth'),
     url(r'^logout/$', views.logout_view, name='logout'),
@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # JSON-returning views:
     url(r'^course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.get_course),
     url(r'^user_courses/?$', views.get_user_schedule),
+    url(r'^courses/(?P<page>[1-9][0-9]*)?/?$', views.get_courses),
 
     # Database-modifying views:
     url(r'^add_course/?$', views.edit_course, {"operation":"add"}),
