@@ -57,7 +57,7 @@ def get_user_schedule(request):
 
   else:
 
-    courses = []
+    courses = {"schedule":[], "shopping_cart":[]}
 
   response = json.dumps(courses)
 
