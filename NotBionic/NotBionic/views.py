@@ -78,6 +78,34 @@ def get_course(request, reg_id=""):
 
 
 
+@require_http_methods(["GET"])
+def get_courses(request, page=1):
+  # Returns a JSON object of courses that belong to a given `page`
+  #  of courses. Also allows filtering of data.
+
+  import json
+  from retrieval import pagify_courses, filter_courses
+
+  search_dict = {str(key):str(val) for key,val in request.GET.items()}
+
+  # Clean and integerize the `page`.
+  if not page:
+    page = 1
+  else:
+    page = int(page)
+
+  # Apply any available filters and pagify the courses.
+  courses = filter_courses(search_dict)
+  courses = pagify_courses(courses, page=page)
+
+  # Construct the JSON response from the courses.
+  data = [course.to_dict() for course in courses]
+  response = json.dumps(data)
+
+  return HttpResponse(response, content_type="application/json")
+
+
+
 @require_http_methods(["POST"])
 def edit_course(request, operation="add"):
   # Adds/removes a single course `reg_id` to either a user's "schedule"
@@ -112,6 +140,7 @@ def edit_course(request, operation="add"):
   except Exception as e:
     print e
     return HttpResponse("Failed!")
+
 
 
 

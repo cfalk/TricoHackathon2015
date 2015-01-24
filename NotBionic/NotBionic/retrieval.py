@@ -1,4 +1,15 @@
 
+def pagify_courses(courses, page=1):
+  # Returns a list of courses for a given `page`.
+
+  per_page = 15 # The max number of courses to show per `page`
+
+  start = (page-1)*per_page
+  end = page*per_page
+
+  return courses[start:end]
+
+
 def get_course_by_reg_id(reg_id):
   # Returns one course that case-insensitively matches a `reg_id`
   #  or returns `none` if no course is found.
