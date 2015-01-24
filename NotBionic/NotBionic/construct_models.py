@@ -1,7 +1,26 @@
+
+# Set to `True` to enable debugging options.
+DEBUG = True
+
+
 def build_course(obj_dict):
   from NotBionic.models import Course
 
   course = Course()
+
+  fields = [
+              "start_times", "end_times", "semester",
+              "description", "reg_id", "division",
+              "instructor", "days", "title", "college",
+              "seminar", "course_num",
+              "distribution", "description", "location",
+              "department", "course_cap", "department_num",
+            ]
+
+
+  for field in fields:
+    setattr(course, field, obj_dict[field])
+
   course.save()
 
 
@@ -11,12 +30,20 @@ def construct_courses_from_CSV(filename):
   with open(filename) as f:
     reader = UnicodeReader(f)
     headers = reader.next()
-    i = 0 #TODO debug
+
+    if DEBUG:
+      iteration = 0
+
     for row in reader:
       obj_dict = {key:val for key, val in zip(headers, row)}
       build_course(obj_dict)
-      i+=1
-      print i
+
+      if DEBUG:
+        iteration+=1
+        print iteration
+        if iteration==50: break
+
+
 
 
 if __name__=="__main__":

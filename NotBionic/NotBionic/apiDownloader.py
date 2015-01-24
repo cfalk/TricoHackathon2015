@@ -1,6 +1,6 @@
 
 # Set to `True` to enable debugging options.
-DEBUG = True
+DEBUG = False
 
 
 def queryCourse(college, semester, reg):
@@ -43,7 +43,8 @@ def parse_info(raw_info):
     regex = re.compile("([a-zA-z ]+: [a-zA-Z0-9]+)")
     for match in regex.finditer(misc_info[0]):
       key, val = match.group().split(":")
-      info[key.strip()] = val.strip()
+      key = key.strip().replace(" ","_").lower()
+      info[key] = val.strip()
 
     # Get the course's division from `misc_info` if it's available.
     if ";" in misc_info[0]:
@@ -54,9 +55,9 @@ def parse_info(raw_info):
     # Get the course's description
     if "|" in misc_info[1]:
       misc_parts = misc_info[1].split("|")
-      info["description"] = misc_parts[1]
+      info["description"] = misc_parts[1].strip()
     else:
-      info["description"] = misc_info[1]
+      info["description"] = misc_info[1].strip()
 
   return info
 
@@ -65,11 +66,12 @@ def getCourses():
   import json
 
   files = ["bryn_mawr.json","haverford.json","swarthmore.json"]
+  root_dir = "NotBionic/data/"
 
   courses = []
 
   for filename in files:
-    with open("data/{}".format(filename)) as f:
+    with open("{}/{}".format(root_dir, filename)) as f:
       contents = f.read()
       course_list = json.loads(contents)["response"]
       courses.extend(course_list)
@@ -81,17 +83,27 @@ def write_json_to_csv(json_list, filename):
 
   from unicode_csv import UnicodeWriter
 
-  merged = {
-    "Class Nbr":"class_num",
-    "CRN":"class_num",
-    "DIST":"dist",
-    "Div":"div",
-    "Lim":"lim"
+  translate = {
+    "class_nbr":"course_num",
+    "crn":"course_num",
+    "num":"course_num",
+    "number":"department_num",
+    "dist":"distribution",
+    "div":"division",
+    "lim":"course_cap",
+    "graded_sem":"seminar",
+    "graded_seminar":"seminar",
+    "double_graded_seminar":"seminar",
+    "dept_name":"department",
   }
+
+  scrap = {"req", "sign", "note", "prerequisite", "prereq"}
 
   # Get all the available headers.
   header_set = {header for obj in json_list for header in obj.keys()}
-  headers = [h for h in header_set if h not in merged] + merged.values()
+  headers = [h for h in header_set if not (h in translate or h in scrap)]
+  headers.extend(translate.values())
+
   headers = map(unicode, headers)
   headers = list(set(headers))
   headers.sort()
@@ -106,12 +118,12 @@ def write_json_to_csv(json_list, filename):
     writer.writerow(cleaned_headers)
 
     for obj in json_list:
-      for key in merged.keys():
+      for key in translate.keys():
         if key in obj:
-          new_key = merged[key]
+          new_key = translate[key]
           obj[new_key] = obj[key]
 
-      vals = [unicode(obj.get(header, "")) for header in headers]
+      vals = [unicode(obj.get(header, "")).strip() for header in headers]
       writer.writerow(vals)
 
 
@@ -119,10 +131,11 @@ def main():
   import time
 
   # Variable Setup
-  csv_filename = "data/trico_catalog_test.csv"
-
+  csv_filename = "NotBionic/data/trico_catalog.csv"
   courses = getCourses()
+
   if DEBUG:
+    csv_filename = "NotBionic/data/trico_catalog_test.csv"
     courses = courses[:100]
 
   t_start = time.time()
@@ -147,4 +160,14 @@ def main():
 
 
 if __name__=="__main__":
+
+  # Set the PATH so that the Django settings may be used.
+  import os, sys
+  project = "NotBionic"
+  full_path = os.path.dirname(os.path.realpath(__file__))+"/"
+  django_path = full_path[:full_path.rfind("/{}/".format(project))]
+  if django_path not in sys.path:
+    sys.path = [django_path] + sys.path
+    os.environ['DJANGO_SETTINGS_MODULE'] = '{}.settings'.format(project)
+
   main()
