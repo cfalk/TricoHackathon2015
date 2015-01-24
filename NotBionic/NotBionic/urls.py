@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^add_course/?$', views.edit_course, {"operation":"add"}),
     url(r'^remove_course/?$', views.edit_course, {"operation":"remove"}),
 
+    # Pre-rendered Course Info
+    url(r'^render_course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.render_course),
 
     url(r'^admin/', include(admin.site.urls)),
 )

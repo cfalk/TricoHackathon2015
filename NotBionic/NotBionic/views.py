@@ -142,6 +142,9 @@ def edit_course(request, operation="add"):
     return HttpResponse("Failed!")
 
 
-
-
-
+@require_http_methods(["GET"])
+def render_course(request, reg_id=""):
+  # Sends an html page containing course info
+  from retrieval import get_course_by_reg_id
+  course = get_course_by_reg_id(reg_id)
+  return render(request, "course_info.html", {"course":course})
