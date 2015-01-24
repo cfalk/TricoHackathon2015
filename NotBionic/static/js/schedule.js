@@ -28,18 +28,77 @@ $(document).ready(function() {
 		}
 	    }
 	    else {
-	    schedule.append('<td class='+days[j-1].toString()+'></td>');
+		if(i%2 == 0){
+		    schedule.append('<td id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>');
+		}
+		else {
+		    // need to subtract 1 from time counter because it is incremented prematurely above
+		    schedule.append('<td id="'+days[j-1].toString()+'-'+(time_counter-1).toString()+'30"></td>');
+		}
 	    }
 	}
 	schedule.append('</tr>');
     }
+    // need this to change the given day information into the same form as the one used for the class labeling
+    var days_key = {'M':'Monday','T':'Tuesday','W':'Wednesday','Th':'Thursday','F':'Friday'};
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
 	    $.get( "/course/"+data.schedule[i]+"/", function( course ) {
+		console.log(course)
 		var start_time = course.start_times[0];
 		var end_time = course.end_times[0];
 		var days = course.days;
-		schedule.append('here: ' + course);
+		var start_hour = 0;
+		var start_minute = 0;
+		var end_hour = 0;
+		var end_minute = 0;
+		if(start_time.charAt(0) == "0") {
+		    start_hour = parseInt(start_time.charAt(1));
+		}
+		else {
+		    start_hour = parseInt(start_time.substring(0,2));
+		}
+		var min = parseInt(start_time.charAt(3));
+		if(min < 3) {
+		    start_minute = "00";
+		}
+		else{
+		    start_minute = '30';
+		}
+		if(end_time.charAt(0) == "0") {
+		    end_hour = parseInt(end_time.charAt(1));
+		}
+		else {
+		    end_hour = parseInt(end_time.substring(0,2));
+		}
+		var min = parseInt(start_time.charAt(3));
+		if(min < 3) {
+		    end_minute = "00";
+		}
+		else{
+		    end_minute = '30';
+		}
+		for(var j=0;j<days.length;j++) {
+		    var temp_hour = start_hour;
+		    var temp_minute = start_minute;
+		    while(temp_hour != end_hour || temp_minute != end_minute) {
+			$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
+			if(temp_hour == 12) {
+			    temp_hour = 1;
+			}
+			else if (temp_minute == '30') {
+			    temp_hour++;
+			}
+			if(temp_minute == '30'){
+			    temp_minute = '00';
+			}
+			else {
+			    temp_minute = '30'
+			}
+		    }
+		    $('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
+		    
+		}
 	    }); 
 	}
     });
