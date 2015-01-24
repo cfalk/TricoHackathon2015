@@ -6,7 +6,7 @@ class Expanded_User(models.Model):
     potential_courses = models.CharField(max_length=200)
     school = models.CharField(max_length=20)
     user = models.ForeignKey('User')
-    previous_courses = model.CharField(max_length=200)
+    previous_courses = models.CharField(max_length=200)
     fulfilled_requirements = models.CharField(max_length=200)
 
 class Course(models.Model):
