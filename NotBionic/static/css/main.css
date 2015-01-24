@@ -76,7 +76,7 @@ width: 40%;
     hight:70px;
 }
 .card_course_num{
-    text-align:right;
+    text-align: right;
     margin: 5px;
     font-size: 14px
 }
@@ -88,6 +88,7 @@ width: 40%;
 .card_title{
     text-align: center;
     font-weight: bold;
+    height:30px;
 }
 
 .big_card_container {
