@@ -1,4 +1,4 @@
-def getCourse(college, semester, reg):
+def queryCourse(college, semester, reg):
   import subprocess
   import json
 
@@ -44,29 +44,70 @@ def parse_info(raw_info):
     info["division"] = ""
 
   # Get the course's description
-  print misc_info[1].split("|")
+  misc_parts = misc_info[1].split("|")
+  info["description"] = misc_parts[1]
 
-
-  #print raw_info
-  #print info
   return info
 
 
+def getCourses():
+  import json
+
+  files = ["bryn_mawr.json","haverford.json","swarthmore.json"]
+
+  courses = []
+
+  for filename in files:
+    with open("data/{}".format(filename)) as f:
+      contents = f.read()
+      course_list = json.loads(contents)["response"]
+      courses.extend(course_list)
+
+  print "LOADED {} COURSES".format(len(courses))
+  return courses[:10]
+
+
+def write_json_to_csv(json_list, filename):
+  import csv
+
+  # Get all the available headers.
+  header_set = {header for obj in json_list for header in obj.keys()}
+  headers = sorted(list(header_set))
+
+  cleaned_headers = [h.replace(" ","_").lower() for h in headers]
+
+  with open(filename, "w") as f:
+
+    # Prepare the csv.
+    writer = csv.writer(f)
+    writer.writerow(cleaned_headers)
+
+    for obj in json_list:
+      writer.writerow([obj.get(header,"") for header in headers])
+
+
 def main():
-  courses = range(10)
+  # Variable Setup
+  csv_filename = "data/trico_catalog.csv"
+
+  courses = getCourses()
   errors = 0
 
   for course in courses:
     try:
-      info = getCourse("haverford","fall_2014","ANTHH103A001")
+      info = queryCourse(course["college"], course["semester"], course["reg_id"])
       info = parse_info(info)
+      course.update(info)
 
     except Exception as e:
       print e
       errors += 1
 
+  write_json_to_csv(courses, csv_filename)
+
   success_rate = 100.0*(len(courses)-errors)/errors if errors else 100.0
   print "Finished! ({}% success)".format(success_rate)
+  print "CSV written to '{}'".format(csv_filename)
 
 
 if __name__=="__main__":
