@@ -44,7 +44,8 @@ def parse_info(raw_info):
     info["division"] = ""
 
   # Get the course's description
-  print misc_info[1].split("|")
+  misc_parts = misc_info[1].split("|")
+  print misc_parts[1]
 
 
   #print raw_info
