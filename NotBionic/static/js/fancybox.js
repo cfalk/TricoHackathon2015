@@ -9,7 +9,7 @@ $(document).ready(function() {
 		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none',
-		helpers: {
+	helpers: {
    		 overlay: {
       locked: false
     }

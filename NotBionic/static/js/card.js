@@ -36,17 +36,21 @@ function createCard(courseData){
 						</div>
 			</div>
 		</div>*/
+	var $course_id = 5;
 	var $cardsContainer = $(".cards_container");
 
-	$cardsContainer.append($('<div class="card_container">')
+	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
+							.append($('<div class="card_container">')
+							.append($('<div class="card_header">')
+						.append($('<div class="card_course_id">')
+								.append('<h4>' + $course_id + '</h4>'))
 						.append($('<div class="card_icon">')
 							.append('<img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" class="card_icon">')
-						)
+						))
 						.append($('<div class="card_information">')
-							.append($('<div class="card_header">')
-								.append('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '"><h3 class="card_title">'+courseData.title+'</h3></a>')
+							.append($('<div class="card_title">')
+								.append('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '><h3>'+courseData.title+'</h3></a>')
 							)
-							.append('<div class="card_description">'+courseData.description+'</div>')
 							.append('<div class="card_hours">'+courseData.days.join()+" at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
 							.append($('<div class="card_stats">')
 								.append($('<div class="card_coursenumber>')
@@ -55,5 +59,5 @@ function createCard(courseData){
 							)
 							.append('<div class="inactiveCardButton cardButtons add-course"><button class="button button--add-course">Add Course to Shopping Cart</button></div><div class="inactiveCardButton cardButtons course-moreinfo"><button class="button button--more-info">More info...</button></div>')
 						)
-					);
+					));
 }
