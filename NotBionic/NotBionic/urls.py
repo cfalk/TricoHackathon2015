@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^user_courses/?$', views.get_user_schedule),
     url(r'^courses/(?P<page>[1-9][0-9]*)?/?$', views.get_courses),
     url(r'^possible_values/?$', views.get_possible_values),
+    url(r'^possible_fields/?$', views.get_possible_fields),
 
     # Database-modifying views:
     url(r'^add_course/?$', views.edit_course, {"operation":"add"}),

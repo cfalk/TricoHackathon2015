@@ -145,6 +145,8 @@ def edit_course(request, operation="add"):
 
 @require_http_methods(["GET"])
 def get_possible_values(request):
+  # Returns an ordered list of all unique values of a Course `field`
+  #  as a JSON object.
 
   from retrieval import get_course_value_set
   import json
@@ -158,6 +160,21 @@ def get_possible_values(request):
 
   else:
     data = []
+
+  response = json.dumps(data)
+
+  return HttpResponse(response, content_type="application/json")
+
+
+@require_http_methods(["GET"])
+def get_possible_fields(request):
+  #
+
+  from models import Course
+  import json
+
+  data = Course._meta.get_all_field_names()
+  data.remove(u"id")
 
   response = json.dumps(data)
 

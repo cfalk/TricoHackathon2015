@@ -53,12 +53,7 @@ function createCard(courseData){
 									.append('<h4>'+data.department + ' ' + data.department_num + '</h4>')
 								.append('</div>')
 							.append('</div>')
-							.append('<div class="inactiveCardButton cardButtons add-course">
-								<button class="button button--add-course">Add Course to Shopping Cart</button>
-							</div>
-							<div class="inactiveCardButton cardButtons course-moreinfo">
-								<button class="button button--more-info">More info...</button>
-							</div>')
+							.append('<div class="inactiveCardButton cardButtons add-course"><button class="button button--add-course">Add Course to Shopping Cart</button></div><div class="inactiveCardButton cardButtons course-moreinfo"><button class="button button--more-info">More info...</button></div>')
 						.append('</div>')
 					.append('</div>');
 }
