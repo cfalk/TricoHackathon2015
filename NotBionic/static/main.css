@@ -6,3 +6,11 @@ border-collapse: collapse;
 th, td {
 padding: 5px;
 }
+
+.class-on {
+background-color:green;
+}
+
+.class-off {
+background-color:red;
+}
