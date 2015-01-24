@@ -22,7 +22,28 @@
 	<input type=checkbox name=200 value="200">200 Level
 	<input type=checkbox name=300 value="300">300 Level
     </div>
-    <div id="time-filterOptions" class="disabledFilterOptions"> </div>
+    <div id="time-filterOptions" class="disabledFilterOptions">
+	<h3> Days </h3>
+	<ul id=day-list" style="list-style-type: None;">
+	    <li class=day-filter><input type=checkbox value=monday>Monday</li>
+	    <li class=day-filter><input type=checkbox value=tuesday>Tuesday</li>
+	    <li class=day-filter><input type=checkbox value=wednesday>Wednesday</li>
+	    <li class=day-filter><input type=checkbox value=thursday>Thursday</li>
+	    <li class=day-filter><input type=checkbox value=friday>Friday</li>
+	</ul>
+	</br>
+	    <h3> Start Time </h3>
+	    <div id="start-slider" label="Start Time"></div>
+	    <h3> End Time </h3>
+	    <div id="end-slider"></div>
+    </div>
+    <script>
+    $(function() {
+	$( "#start-slider" ).slider();
+	$( "#end-slider" ).slider();
+    });
+    </script>
+
     {% include 'card.html' %}
     <div id="explore-results">
     <div id="loading-results">
