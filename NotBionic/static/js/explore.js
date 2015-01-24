@@ -27,13 +27,12 @@ $(document).ready(function(){
 			$.get(
 				"/courses/"+(pageNum),
 				function(data){
-					console.log("OH HEY HEY");
 					if(data){
 						data.forEach(function(val,index){
 							createCard(val);
 						});
 					}
 				}
-			
+
 	);
 });
