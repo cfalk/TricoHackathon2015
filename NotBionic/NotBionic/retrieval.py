@@ -43,6 +43,14 @@ def get_expanded_user(user):
 
 
 def get_course_value_set(field):
-  return ["test","test1","test2"]
+  # Returns a set of the distinct values in a Course `field`.
+
+  from models import Course
+
+  vals = Course.objects.values_list(field, flat=True).distinct()
+
+  return set(vals)
+
+
 
 
