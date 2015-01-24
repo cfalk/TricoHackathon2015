@@ -22,7 +22,8 @@ urlpatterns = patterns('',
     url(r'^user_courses/?$', views.get_user_schedule),
 
     # Database-modifying views:
-    url(r'^add_course/?$', views.add_course),
+    url(r'^add_course/?$', views.edit_course, {"operation":"add"}),
+    url(r'^remove_course/?$', views.edit_course, {"operation":"remove"}),
 
 
     url(r'^admin/', include(admin.site.urls)),

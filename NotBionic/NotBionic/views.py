@@ -67,9 +67,9 @@ def get_course(request, reg_id=""):
 
 
 @require_http_methods(["POST"])
-def add_course(request):
-  # Adds a single course `reg_id` to either a user's "schedule" or
-  #  "shopping_cart" (set by `location`). Expects a POST with data of
+def edit_course(request, operation="add"):
+  # Adds/removes a single course `reg_id` to either a user's "schedule"
+  #  or "shopping_cart" (set by `location`). Expects a POST with data of
   #  the format: {"reg_id":"IDx", "location":"shopping_cart|schedule"}
 
   from retrieval import get_course_by_reg_id, get_expanded_user
@@ -80,6 +80,7 @@ def add_course(request):
 
     reg_id = request.POST["reg_id"]
     location = request.POST["location"]
+    operation = request.POST["operation"]
 
     course = get_course_by_reg_id(reg_id)
 
@@ -87,12 +88,19 @@ def add_course(request):
       raise Exception("Course not found!")
 
     expanded = get_expanded_user(request.user)
-    expanded.add_course(reg_id, location)
+
+    if operation == "add":
+      expanded.add_course(reg_id, location)
+    elif operation == "remove":
+      expanded.remove_course(reg_id, location)
+    else:
+      raise Exception("Invalid operation specified!")
 
     return HttpResponse("Success!")
 
   except:
     return HttpResponse("Failed!")
+
 
 
 

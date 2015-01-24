@@ -1,7 +1,8 @@
 
-
-
 def get_course_by_reg_id(reg_id):
+  # Returns one course that case-insensitively matches a `reg_id`
+  #  or returns `none` if no course is found.
+
   return filter_courses({"reg_id__iexact":reg_id}).first()
 
 
@@ -10,10 +11,8 @@ def filter_courses(search_dict):
   #  specified key-values in `search_dict`
 
   from models import Course
+
   return Course.objects.filter(**search_dict)
-
-
-
 
 
 def get_expanded_user(user):
