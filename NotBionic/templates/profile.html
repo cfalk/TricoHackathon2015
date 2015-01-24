@@ -6,7 +6,22 @@
 </head>
 {% include 'menu.html' %}
 <body>
-    <h1>Welcome {{ user.name }}</h1>
+    {% if user.is_authenticated %}
+    <h1>Welcome {{ user.username }}</h1>
+    <h2>Hellloooo All</h2>
+    <form action="/logout/" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Logout" />
+    </form>
+    {% else %}
+    <h1>Welcome</h1>
+    <form action="/auth/" method="post">
+    {% csrf_token %}
+    <input type='text' name='username'/>
+    <input type='password' name='password' />
+    <input type="submit" value="Submit" />
+    </form>
+    {% endif %}
     <h2>Schedule</h2>
     <h2>Confirmed Classes</h2>
     <h2>Shopping Cart</h2>

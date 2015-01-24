@@ -1,34 +1,33 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import redirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 
 def explore(request):
-	return render(request, "explore.html")
+    return render(request, "explore.html")
 
 def profile(request):
-	return render(request,"profile.html",{'classes':{
-	'eight':['off','on','on','off','on','off','on'],
-	'eight_2':['off','on','on','off','on','off','on'],
-	'nine':['off','on','on','off','on','off','on'],
-	'nine_2':['off','on','on','off','on','off','on'],
-	'ten':['off','on','on','off','on','off','on'],
-	'ten_2':['off','on','on','off','on','off','on'],
-	'eleven':['off','on','on','off','on','off','on'],
-	'eleven_2':['off','on','on','off','on','off','on'],
-	'twelve':['off','on','on','off','on','off','on'],
-	'twelve_2':['off','on','on','off','on','off','on'],
-	'one':['off','on','on','off','on','off','on'],
-	'one_2':['off','on','on','off','on','off','on'],
-	'two':['off','on','on','off','on','off','on'],
-	'two_2':['off','on','on','off','on','off','on'],
-	'three':['off','on','on','off','on','off','on'],
-	'three_2':['off','on','on','off','on','off','on'],
-	'four':['off','on','on','off','on','off','on'],
-	'four_2':['off','on','on','off','on','off','on'],
-	},
-	'user':{'name':'Brandon'}})
+    return render(request,"profile.html")
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/explore/")
+
+def auth(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request,user)
+            return HttpResponseRedirect("/profile/")
+        else:
+            return HttpResponse("Couldn't find user")
+    else:
+	return HttpResponse("Invalid login")
 
 def get_user_schedule(request):
   # Sends a json object (below) with the `reg_id`s of this user's courses.
