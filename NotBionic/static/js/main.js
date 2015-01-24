@@ -10,7 +10,7 @@ $( document ).ready(function() {
 				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
 			}
 			else{
-				var $currentActive = $("activeFilterOptions");
+				var $currentActive = $(".activeFilterOptions");
 				if ($currentActive){
 					$currentActive.toggleClass("activeFilterOptions");
 					$currentActive.toggleClass("disabledFilterOptions");

@@ -24,6 +24,14 @@ width: 20%;
 list-style-type: None;
 }
 
+.disabledFilterOptions {
+display: None;
+}
+
+.activeFilterOptions {
+display: block;
+}
+
 /*Following is inspired by http://silverstar-media.com/scaling-menu-tiles-with-simple-html-css/ */
 .cards_container {
     max-width: 620px;
