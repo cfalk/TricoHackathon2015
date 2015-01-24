@@ -30,7 +30,11 @@ $(document).ready(function(){
 			$.get({
 				url:"/courses/"+(pageNum),
 				success:function(data){
-
+					if(data){
+						data.forEach(function(val,index){
+							createCard(val);
+						});
+					}
 				},
 				error:function(error){
 					alert(error);
