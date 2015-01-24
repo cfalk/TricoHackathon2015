@@ -1,11 +1,52 @@
-{% include 'head.html' %}
+<html>
+<head>
+    <title>Profile</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css">
+</head>
 {% include 'menu.html' %}
 <body>
-	<h1>Welcome {{ user.name }}</h1>
-	<h2>Schedule</h2>
-	<table>
-	<tr>
-		<td></td>
-		<td>
+    <h1>Welcome {{ user.name }}</h1>
+    <h2>Schedule</h2>
+    <table>
+    <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    <tr>
+	<td class='hour'>8:00am</td>
+	{% for each in classes.eight %}
+	<td class='class-{{ each }}'></td>
+	{% endfor %}
+    </tr>
+    <tr>
+	<td class='hour'>9:00am</td>
+	{% for each in classes.nine %}
+	<td class='class-{{ each }}'></td>
+	{% endfor %}
+    </tr>
+    <tr>
+	<td class='hour'>10:00am</td>
+	{% for each in classes.ten %}
+	<td class='class-{{ each }}'></td>
+	{% endfor %}
+    </tr>
+    <tr>
+	<td class='hour'>11:00am</td>
+	{% for each in classes.eleven %}
+	<td class='class-{{ each }}'></td>
+	{% endfor %}
+    </tr>
+    <tr>
+	<td class='hour'>12:00pm</td>
+	{% for each in classes.twelve %}
+	<td class='class-{{ each }}'></td>
+	{% endfor %}
+    </tr>
+    </table>
 </body>
 </html>
