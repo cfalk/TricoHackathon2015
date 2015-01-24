@@ -148,41 +148,7 @@ td, th {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-@font-face {
-    font-family: OpenSansLight;
-    font-weight: normal;
-    font-style: normal;
-    src: url("../fonts/open-sans/OpenSans-Light.eot");
-    src: url("../fonts/open-sans/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/open-sans/OpenSans-Light.woff") format("woff"), url("../fonts/open-sans/OpenSans-Light.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-Light.svg#OpenSansLight") format("svg");
-}
-@font-face {
-    font-family: OpenSansRegular;
-    font-weight: normal;
-    font-style: normal;
-    src: url("../fonts/open-sans/OpenSans-Regular.eot");
-    src: url("../fonts/open-sans/OpenSans-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/open-sans/OpenSans-Regular.woff") format("woff"), url("../fonts/open-sans/OpenSans-Regular.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-Regular.svg#OpenSansRegular") format("svg");
-}
-@font-face {
-    font-family: OpenSansSemiBold;
-    font-weight: normal;
-    font-style: normal;
-    src: url("../fonts/open-sans/OpenSans-Semibold.eot");
-    src: url("../fonts/open-sans/OpenSans-Semibold.eot?#iefix") format("embedded-opentype"), url("../fonts/open-sans/OpenSans-Semibold.woff") format("woff"), url("../fonts/open-sans/OpenSans-Semibold.ttf") format("truetype"), url("../fonts/open-sans/OpenSans-Semibold.svg#OpenSansSemiBold") format("svg");
-}
-@font-face {
-    font-family: NanumPen;
-    font-weight: normal;
-    font-style: normal;
-    src: url("../fonts/nanum/nanumpen.eot");
-    src: url("../fonts/nanum/nanumpen.eot?#iefix") format("embedded-opentype"), url("../fonts/nanum/nanumpen.woff") format("woff"), url("../fonts/nanum/nanumpen.ttf") format("truetype"), url("../fonts/nanum/nanumpen.svg#NanumPen") format("svg");
-}
-@font-face {
-    font-family: YGIcons;
-    font-weight: normal;
-    font-style: normal;
-    src: url("../fonts/icons/icons.eot");
-    src: url("../fonts/icons/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons/icons.woff") format("woff"), url("../fonts/icons/icons.ttf") format("truetype"), url("../fonts/icons/icons.svg#YGIcons") format("svg");
-}
+
 .yg-c-orange {
     color: #ea5033;
 }
