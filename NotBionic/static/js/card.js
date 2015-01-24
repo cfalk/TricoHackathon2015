@@ -50,13 +50,9 @@ function createCard(courseData){
 							.append($('<div class="card_title">')
 								.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">').append($('<h3>').html(courseData.title)))
 							)
-							.append('<div class="card_hours">'+courseData.days.join()+" at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
-							.append($('<div class="card_stats">')
-								.append($('<div class="card_coursenumber>')
-									.append('<h4>'+courseData.department + ' ' + courseData.department_num + '</h4>')
-								)
-							)
-							.append('<div class="inactiveCardButton cardButtons add-course"><button class="button button--add-course">Add Course to Shopping Cart</button></div><div class="inactiveCardButton cardButtons course-moreinfo"><button class="button button--more-info">More info...</button></div>')
-						)
+							.append('<div class="card_instructor">' + courseData.instructor + '</div>')
+							.append('<div class="card_hours">'+courseData.days.join("")+" at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
+							
+							)						
 					));
 }
