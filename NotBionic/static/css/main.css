@@ -22,3 +22,20 @@ display: inline;
 #filters {
 list-style-type: None;
 }
+
+/*Following is inspired by http://silverstar-media.com/scaling-menu-tiles-with-simple-html-css/ */
+.cards_wrapper {
+    max-width: 620px;
+    height: auto;
+}
+.card_container {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+}
+.card_container:hover {
+    background: #9CC;
+    z-index: 100;
+    transform: scale(1.0,1.01);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
+}

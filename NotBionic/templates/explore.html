@@ -1,6 +1,7 @@
 {% include 'head.html' %}
 <body>
     <h1> Explore some Courses </h1>
+<<<<<<< Updated upstream
     <div class=filter-bar style="display: table;"> 
 	<ul id=filters>
 	    <li data-filter="department" class="filter"> Department </li>
@@ -13,5 +14,22 @@
     <div id="campus-filteroptions" class="disabledFilterOptions"></div>
     <div id="level-filteroptions" class="disabledFilterOptions"></div>
     <div id="time-filteroptions" class="disabledFilterOptions"> </div>
+=======
+    <div class=filter-bar> 
+	<div class="filter-bar__content" style="display: table;">
+		<ul id=filters>
+		    <li class="filter"> Department </li>
+		    <li class="filter"> Campus </li>
+		    <li class="filter"> Level </li>
+		    <li class="filter"> Time </li>    
+		</ul>
+	    </div>
+	</div>
+	<div class="filter-bar__drawer">
+	</div>
+	<div class="filter-bar__selected"></div>
+    </div>
+    {% include 'card.html' %}
+>>>>>>> Stashed changes
     
 </body>
