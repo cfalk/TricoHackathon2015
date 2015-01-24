@@ -64,6 +64,7 @@ width: 40%;
     width: 250px;
     height: 250px;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
+    overflow: hidden;
 
 }
 .card_container:hover {
@@ -73,21 +74,34 @@ width: 40%;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
 }
 .card_header{
-    hight:70px;
+    height:100px;
 }
-.card_course_num{
-    text-align:right;
-    margin: 5px;
-    font-size: 14px
+.card_course_id{
+    text-align: right;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-right: 5px;
 }
 .card_icon{
 	width:50px;
 	height:50px;
     margin: auto;
 } 
+.card_information{
+    height: 150px;
+    width: 250px;
+    padding: 10px;
+}
 .card_title{
     text-align: center;
     font-weight: bold;
+}
+.card_hours{
+    text-align: center;
+
+}
+.card_instructor{
+    text-align: center;
 }
 
 .big_card_header{
