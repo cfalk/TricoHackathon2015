@@ -166,6 +166,21 @@ def get_possible_values(request):
   return HttpResponse(response, content_type="application/json")
 
 
+@require_http_methods(["GET"])
+def get_possible_fields(request):
+  #
+
+  from models import Course
+  import json
+
+  data = Course._meta.get_all_field_names()
+  data.remove(u"id")
+
+  response = json.dumps(data)
+
+  return HttpResponse(response, content_type="application/json")
+
+
 
 @require_http_methods(["GET"])
 def render_course(request, reg_id=""):
