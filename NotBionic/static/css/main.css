@@ -45,11 +45,10 @@ height: 20%;
 
 /*Following is inspired by http://silverstar-media.com/scaling-menu-tiles-with-simple-html-css/ */
 .cards_container {
-    max-width: 620px;
-    height: auto;
 }
 .card_container {
-	margin: 100px;
+    float: left;
+	margin: 20px;
     display: inline-block;
     position: relative;
     width: 250px;
@@ -63,13 +62,23 @@ height: 20%;
     transform: scale(1.0,1.00);
     box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
 }
+.card_header{
+    hight:70px;
+}
+.card_course_num{
+    text-align:right;
+    margin: 5px;
+    font-size: 14px
+}
 .card_icon{
-	width:30px;
-	height:30px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
+	width:50px;
+	height:50px;
+    margin: auto;
 } 
+.card_title{
+    text-align: center;
+    font-weight: bold;
+}
 
 .big_card_container {
     margin: 50px;
@@ -87,3 +96,21 @@ height: 20%;
     top: 5px;
     right: 5px;
 } 
+
+.main{
+margin-left:110px;
+}
+
+#menu {
+position:fixed;
+height:100%;
+z-index:100;
+background-color:white;
+width:100px;
+}
+
+.list-item {
+padding-top:20px;
+margin:10px;
+font-weight:bold;
+}

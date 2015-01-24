@@ -1,7 +1,10 @@
 {% include 'head.html' %}
 <body>
+{% include 'menu.html' %}
+    <div class=main>
     <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
+     <script src="{{ STATIC_URL }}js/fancybox.js"></script>
     <h1> Explore some Courses </h1>
     <div class=filter-bar style="display: table;"> 
 	<ul id=filters>
@@ -52,13 +55,14 @@
 	$( "#end-slider" ).slider();
     });
     </script>
+<<<<<<< HEAD
     -->
     {% include 'card.html' %}
+=======
+>>>>>>> b7f9624b48cd56d251d3a7f7f20953f08f17fb59
     <div id="explore-results">
         <div class="cards_container">
         </div>
-    <div id="loading-results">
-    	<center>Currently loading more results </center>
     </div>
     </div>
 </body>

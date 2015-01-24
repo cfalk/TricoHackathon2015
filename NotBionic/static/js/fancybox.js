@@ -8,6 +8,15 @@ $(document).ready(function() {
 		autoSize	: false,
 		closeClick	: false,
 		openEffect	: 'none',
-		closeEffect	: 'none'
+		closeEffect	: 'none',
+	helpers: {
+   		 overlay: {
+      locked: false
+    }
+  }
+
 	});
+
 });
+
+

@@ -17,11 +17,9 @@ def build_course(obj_dict):
               "department", "course_cap", "department_num",
             ]
 
-  special_types = {
-                    "course_cap":int,
-                    "course_num":int,
-                  }
-
+  # If a field requires a non-string type, specify it with a key-val
+  #  in the format field-constructor (eg, {"length":int} ).
+  special_types = dict()
 
   for field in fields:
 
@@ -29,7 +27,7 @@ def build_course(obj_dict):
 
     if val:
 
-      # Allow special types (eg: `int`) for specified fields.
+      # Allow special types for specified fields.
       if field in special_types:
         val = special_types[field](val)
 
@@ -39,24 +37,34 @@ def build_course(obj_dict):
 
 
 def construct_courses_from_CSV(filename):
-  import csv
+  import csv, random
 
   with open(filename) as f:
     reader = csv.reader(f)
     headers = reader.next()
 
-    if DEBUG:
-      iteration = 0
+    data = [row for row in reader]
+    errors = 0
 
-    for row in reader:
-      obj_dict = {key:val for key, val in zip(headers, row)}
-      build_course(obj_dict)
+    if DEBUG:
+      debug_limit = 2000
+      iteration = 0
+      random.shuffle(data)
+
+
+    for row in data:
+      try:
+
+        obj_dict = {key:val for key, val in zip(headers, row)}
+        build_course(obj_dict)
+
+      except:
+        errors += 1
 
       if DEBUG:
         iteration+=1
-        print iteration
-        if iteration==50: break
-
+        if (iteration%25==0): print iteration
+        if iteration==debug_limit: break
 
 
 
