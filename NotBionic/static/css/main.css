@@ -41,6 +41,7 @@ display: None;
 display: block;
 background-color: gray;
 height: auto;
+min-height: 100px;
 }
 
 #time-sliders {
@@ -104,22 +105,42 @@ width: 40%;
     text-align: center;
 }
 
+.big_card_header{
+    text-align: center;
+    font-weight: bold;
+}
+
+.big_card_title{
+font-weight:bold;
+}
+
 .big_card_container {
     margin: 50px;
     display: inline-block;
     position: relative;
-    width: 700px;
-    height: 300px;
     box-shadow: 0 0px 0px 0 rgba(0,0,0,.2);
 }
 
 .big_card_icon{
-    width:100%;
-    height:100%;
-    position: absolute;
-    top: 5px;
-    right: 5px;
+float:left;
+margin:20px;
 } 
+
+.big_card_key_info {
+position:absolute;
+top:5px;
+right:5px;
+}
+
+.cardButtons {
+text-align:center;
+}
+
+.syllabus {
+margin:10px;
+font-style:italic;
+padding-top:30px;
+}
 
 .main{
 margin-left:110px;
