@@ -15,9 +15,9 @@ class Expanded_User(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=255, null=True)
     reg_id = models.CharField(max_length=100)
-    course_num = models.CharField(max_length=100)
     department_num = models.CharField(max_length=100)
     course_cap = models.IntegerField(null=True)
+    course_num = models.IntegerField(null=True)
 
     description = models.TextField(null=True)
 
@@ -36,14 +36,13 @@ class Course(models.Model):
     end_times = models.TextField(default="[]")
 
 
-  def get_start_times(self):
-    return json.loads(self.start_times)
+    def get_start_times(self):
+        return json.loads(self.start_times)
 
-  def get_end_times(self):
-    return json.loads(self.end_times)
+    def get_end_times(self):
+        return json.loads(self.end_times)
 
-  def get_days(self):
-    return json.loads(self.days)
-
+    def get_days(self):
+        return json.loads(self.days)
 
 

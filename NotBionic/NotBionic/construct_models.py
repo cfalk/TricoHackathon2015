@@ -17,9 +17,23 @@ def build_course(obj_dict):
               "department", "course_cap", "department_num",
             ]
 
+  special_types = {
+                    "course_cap":int,
+                    "course_num":int,
+                  }
+
 
   for field in fields:
-    setattr(course, field, obj_dict[field])
+
+    val = obj_dict[field]
+
+    if val:
+
+      # Allow special types (eg: `int`) for specified fields.
+      if field in special_types:
+        val = special_types[field](val)
+
+      setattr(course, field, val)
 
   course.save()
 
