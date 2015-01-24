@@ -7,8 +7,8 @@
                 <div class="big_card_information">    
                     <div class="big_card_header">
                         <h3 class="big_card_title"> {{course.title}} </h3>
-                        <div class="card_days"> {{course.days}} </div>
-                        <div class="card_days">{{ course.start_times|slice:"0" }}-{% for each in course.end_times %}{{each}}{% endfor %}</div>
+                        <div class="card_days"> {{course.clean_days}} </div>
+                        <div class="card_days">{{ course.clean_start_times }}-{{ course.clean_end_times }}</div>
                     </div>
                     <div class="big_card_key_info">
                         <h4 class="big_card_course_num"> {{course.course_num}} </h4>
