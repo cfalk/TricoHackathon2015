@@ -26,6 +26,16 @@ def filter_courses(search_dict):
   return Course.objects.filter(**search_dict)
 
 
+def filter_timeframe(start="", end="", day=""):
+  from models import Course
+
+  courses = Course.objects.all()
+
+
+
+  return courses
+
+
 def get_expanded_user(user):
   # Returns the `Expanded_User` entry associated with a `user`
   #  or creates one if it does not yet exist.
