@@ -1,9 +1,4 @@
-<html>
-<head>
-    <title>Profile</title>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}main.css">
-    <script type="text/javascript" rel="javascript" href="{{ STATIC_URL }}schedule.js"></script>
-</head>
+{% include "head.html" %}
 {% include 'menu.html' %}
 <body>
     {% if user.is_authenticated %}
