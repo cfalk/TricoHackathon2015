@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	//Click binds
 	function bindFilterOpen(){
-		$(".filter").on("click", function(){
+		$(".filter").off("click").on("click", function(){
+			console.log("init");
 			var $this = $(this); //Used to speed to up calls to this $(this)
 			var dataDiv = $this.data("filter");
 			var $correspondingFilterOptionsDiv = $("#"+dataDiv+"-filterOptions"); //Similarly use to speed up calls

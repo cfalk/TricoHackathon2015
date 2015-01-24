@@ -6,7 +6,14 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 def explore(request):
-    return render(request, "explore.html")
+    from models import Course
+    from retrieval import get_course_value_set
+
+    fields = Course._meta.get_all_field_names()
+    fields.remove(u"id")
+    
+    field_map = {field:list(get_course_value_set(field)) for field in fields}
+    return render(request, "explore.html", {"field_list":fields, "value_list":field_map})
 
 
 def profile(request):

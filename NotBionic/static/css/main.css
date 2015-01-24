@@ -26,7 +26,7 @@ background-color:red;
 
 .filter {
 display: table-cell;
-width: 20%;
+width: 7%;
 }
 
 #filters {
@@ -40,7 +40,17 @@ display: None;
 .activeFilterOptions {
 display: block;
 background-color: gray;
-height: 20%;
+height: auto;
+}
+
+#time-sliders {
+float: right;
+}
+#day-list {
+width: 40%;
+}
+.day-filter {
+width: 40%;
 }
 
 /*Following is inspired by http://silverstar-media.com/scaling-menu-tiles-with-simple-html-css/ */

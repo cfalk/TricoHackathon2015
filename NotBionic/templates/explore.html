@@ -8,12 +8,20 @@
     <h1> Explore some Courses </h1>
     <div class=filter-bar style="display: table;"> 
 	<ul id=filters>
-	{% for field in field_list %}
-	    <li data-filter="{{ field }}" class="filter"> {{ field }} </li>
-	{% endfor %}
+	    <li data-filter="semester" class="filter"> Semester </li>
+	    <li data-filter="campus" class="filter"> Campus </li>
+	    <li data-filter="department" class="filter"> Department </li>
+	    <li data-filter="day" class="filter"> Day </li>
+	    <li data-filter="instructor" class="filter"> Instructor </li>
+	    <li data-filter="level" class="filter"> Level </li>
+	    <li data-filter="time" class="filter"> Time </li>
+	    <li data-filter="everything" class="filter"> Everything </li>
+	    
 	</ul>
     </div>
+    <!--
 	{% for key, value in value_list.items %}
+	{% if key == "days" or key == "department" or key == "college" or key == "semester" %}
 	    <div id="{{ key }}-filterOptions" class="disabledFilterOptions">
 		<ul style="list-style-type: None;">
 		{% for each in value %}
@@ -21,29 +29,74 @@
 		{% endfor %}
 		</ul>
 	    </div>
+	{% endif %}
 	{% endfor %} 
-    <!--
-    <div id="department-filterOptions" class="disabledFilterOptions"></div>
+    -->
+    <div id="semester-filterOptions" class="disabledFilterOptions">
+	<label for="fall">
+	    <input type=checkbox id=fall name=fall value=fall>Fall
+	</label>
+	<label for="spring">
+	    <input type=checkbox id=spring name=spring value=spring>Spring
+	</label>
+    </div>
+    <div id="department-filterOptions" class="disabledFilterOptions">
+	<ul>
+	{% for key, value in value_list.items %}
+	{% if key == "department" %}
+	{% for each in value %}
+	    <label for="{{ each }}">	
+		<li><input type=checkbox id="{{ each }}">{{ each }}</li>
+	    </label>
+	{% endfor %}
+	{% endif %}
+	{% endfor %}
+	</ul>
+    </div>
     <div id="campus-filterOptions" class="disabledFilterOptions">
-	<input type=checkbox name=Haverford value="Haverford">Haverford
-	<input type=checkbox name="Bryn Mawr" value="Bryn Mawr">BMC
-	<input type=checkbox name="Swarthmore" value="Swarthmore">Swat
+        <label for="Haverford">
+	    <input type=checkbox id=Haverford name="Haverford" value="Haverford">Haverford
+	</label>
+	<label for="Bryn Mawr">
+	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="Bryn Mawr">BMC
+	</label>
+	<label for="Swarthmore">
+	<input type=checkbox id="Swarthmore" name=Swarthmore value="Swarthmore">Swat
+	</label>
     </div>
+
     <div id="level-filterOptions" class="disabledFilterOptions">
-	<input type=checkbox name=100 value="100">100 Level
-	<input type=checkbox name=200 value="200">200 Level
-	<input type=checkbox name=300 value="300">300 Level
+	<label for="100">
+	    <input type=checkbox name=100 id=100 value="100">100 Level
+	</label>
+	<label for="200">
+	    <input type=checkbox name=200 id=200 value="200">200 Level
+	</label>
+	<label for="300">
+	    <input type=checkbox name=300 id=300 value="300">300 Level
+	</label>
     </div>
-    <div id="time-filterOptions" class="disabledFilterOptions">
+    <div id="day-filterOptions" class="disabledFilterOptions">
 	<h3> Days </h3>
 	<ul id="day-list" style="list-style-type: None;">
-	    <li class=day-filter><input type=checkbox value=monday>Monday</li>
-	    <li class=day-filter><input type=checkbox value=tuesday>Tuesday</li>
-	    <li class=day-filter><input type=checkbox value=wednesday>Wednesday</li>
-	    <li class=day-filter><input type=checkbox value=thursday>Thursday</li>
-	    <li class=day-filter><input type=checkbox value=friday>Friday</li>
+	    <label for=monday>
+		<li class=day-filter><input type=checkbox value=monday>Monday</li>
+	    </label>
+	    <label for=tuesday>
+		<li class=day-filter><input type=checkbox value=tuesday>Tuesday</li>
+	    </label>
+	    <label for=wednesday>
+		<li class=day-filter><input type=checkbox value=wednesday>Wednesday</li>
+	    </label>
+	    <label for=thursday>
+		<li class=day-filter><input type=checkbox value=thursday>Thursday</li>
+	    </label>
+	    <label>
+		<li class=day-filter><input type=checkbox value=friday>Friday</li>
+	    </label>
 	</ul>
-	</br>
+    </div>
+    <div id="time-filterOptions" class="disabledFilterOptions">
 	    <h3> Start Time </h3>
 	    <div id="start-slider" label="Start Time"></div>
 	    <h3> End Time </h3>
@@ -55,11 +108,6 @@
 	$( "#end-slider" ).slider();
     });
     </script>
-<<<<<<< HEAD
-    -->
-    {% include 'card.html' %}
-=======
->>>>>>> b7f9624b48cd56d251d3a7f7f20953f08f17fb59
     <div id="explore-results">
         <div class="cards_container">
         </div>
