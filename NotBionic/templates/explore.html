@@ -1,5 +1,7 @@
 {% include 'head.html' %}
 <body>
+{% include 'menu.html' %}
+    <div class=main>
     <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
     <h1> Explore some Courses </h1>
@@ -52,6 +54,7 @@
         </div>
     <div id="loading-results">
     	<center>Currently loading more results </center>
+    </div>
     </div>
     </div>
 </body>

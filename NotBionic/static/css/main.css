@@ -87,3 +87,21 @@ height: 20%;
     top: 5px;
     right: 5px;
 } 
+
+.main{
+margin-left:110px;
+}
+
+#menu {
+position:fixed;
+height:100%;
+z-index:100;
+background-color:white;
+width:100px;
+}
+
+.list-item {
+padding-top:20px;
+margin:10px;
+font-weight:bold;
+}
