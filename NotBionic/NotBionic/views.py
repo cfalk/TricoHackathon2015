@@ -168,13 +168,15 @@ def get_possible_values(request):
 
 @require_http_methods(["GET"])
 def get_possible_fields(request):
-  #
+  # Returns a sorted list of all available Course fields as a
+  #  JSON object.
 
   from models import Course
   import json
 
   data = Course._meta.get_all_field_names()
   data.remove(u"id")
+  data.sort()
 
   response = json.dumps(data)
 

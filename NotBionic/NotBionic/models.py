@@ -58,6 +58,7 @@ class Course(models.Model):
     seminar = models.CharField(max_length=100, default="")
     college = models.CharField(max_length=100, default="")
     location = models.CharField(max_length=255, default="")
+    instructor = models.CharField(max_length=100, default="")
 
     department = models.CharField(max_length=100, default="")
 

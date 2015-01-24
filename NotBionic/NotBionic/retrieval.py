@@ -17,19 +17,41 @@ def get_course_by_reg_id(reg_id):
   return filter_courses({"reg_id__iexact":reg_id}).first()
 
 
-def filter_courses(search_dict):
+def filter_courses(search_dict, courses=None):
   # Returns all Course (or `none`) objects that match all
   #  specified key-values in `search_dict`
 
   from models import Course
 
-  return Course.objects.filter(**search_dict)
+  if courses is None:
+    courses = Course.objects.all()
+
+  timeframe_search = {}
+
+  time_fields = ["start", "end", "day"]
+  time_search = {f:search_dict[f] for f in time_fields if f in search_dict}
+  search_dict = {f:val for f, val in search.items() if f in f not in time_fields}
+
+  for field in timeframe_fields:
+    timeframe_search[field] = search_dict[field]
+    del
+
+  if timeframe_search:
+    timeframe_search["courses"] = courses
+    courses = filter_timeframe(**timeframe_search)
 
 
-def filter_timeframe(start="", end="", day=""):
+  return courses.filter(**search_dict)
+
+
+def filter_timeframe(timeframe_dict, courses=None):
+  # Returns the courses that are within a certain timeframe.
+
   from models import Course
 
-  courses = Course.objects.all()
+  if courses is None:
+    courses = Course.objects.all()
+
 
 
 
