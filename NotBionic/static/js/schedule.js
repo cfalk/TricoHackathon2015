@@ -47,7 +47,6 @@ $(document).ready(function() {
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
 	    $.get( "/course/"+data.schedule[i]+"/", function( course ) {
-		console.log(course)
 		var start_time = course.start_times[0];
 		var end_time = course.end_times[0];
 		var days = course.days;
@@ -75,8 +74,6 @@ $(document).ready(function() {
 		    end_hour = parseInt(end_time.substring(0,2));
 		}
 		var min = parseInt(end_time.charAt(3));
-		console.log("course:",course)
-		console.log("min",min)
 		if(min < 3) {
 		    end_minute = "00";
 		}
@@ -84,15 +81,10 @@ $(document).ready(function() {
 		    end_minute = '30';
 		}
 		for(var j=0;j<days.length;j++) {
-		    console.log("here!!")
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
 		    var counter = 0;	
 		    while(temp_hour != end_hour || temp_minute != end_minute) {
-		    console.log("temp_hour:",temp_hour)
-		    console.log("end_hour:",end_hour)
-		    console.log("temp_minute:",temp_minute)
-		    console.log("end_minute:",end_minute)
 			$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
 			if(temp_hour == 12 && temp_minute == '30') {
 			    temp_hour = 1;
