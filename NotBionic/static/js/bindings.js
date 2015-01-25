@@ -30,6 +30,10 @@ $(document).on("click",".button-card", function() {
     setTimeout(function() { //TODO: DELETE WHEN MYSQL
       removeCourse(reg_id, "shopping_cart");
     },50);//TODO: DELETE WHEN MYSQL
+    console.log('explore container:',$('#explore-results')[0]);
+    if ($('#explore-results')[0]===undefined) {
+	location.reload();
+    }
     $(this).toggleClass("trash",false)
 	   .toggleClass("shop",true);
     var img = $(this).children()[0];
