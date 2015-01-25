@@ -44,8 +44,12 @@ $(document).ready(function() {
     }
     // need this to change the given day information into the same form as the one used for the class labeling
     var days_key = {'M':'Monday','T':'Tuesday','W':'Wednesday','Th':'Thursday','F':'Friday'};
+    var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
+	  setTimeout(function(data, i) { 
+		console.log("i_top: ",i)
+		console.log("class: ",data.schedule[i])
 	    $.get( "/course/"+data.schedule[i]+"/", function( course ) {
 		var start_time = course.start_times[0];
 		var end_time = course.end_times[0];
@@ -110,7 +114,9 @@ $(document).ready(function() {
 			else {
 			    temp_minute = '30'
 			}
-			block.css('background-color','darkgrey');
+			console.log("i:",i)
+			console.log(colors[i])
+			block.css('background-color',colors[i]);
 			block.css('cursor','pointer');
 			if(counter == 0) {
 			    block.text(course.reg_id);
@@ -131,6 +137,7 @@ $(document).ready(function() {
 
 		}
 	    });
+	  },50);
 	}
     });
     $('#schedule').on('click', '.hasClass', function(){

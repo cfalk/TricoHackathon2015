@@ -20,6 +20,8 @@ var iconDict = {
   "PSYC"  :  "psyc.png"
   };
 
+var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
+var color_counter = 0;
 
 function shoppingCartButton(reg_id) {
   return "<div reg_id='"+reg_id+"' class='button button-card shop'>" +
@@ -48,10 +50,16 @@ function createCard(courseData, container, button){
   if (button===undefined) {
     button = shoppingCartButton(courseData.reg_id);
   }
+  
+  var color = "";
+  if (container == '#confirmed') {
+    color = colors[color_counter];
+    color_counter++;
+  }
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
-             "<div class='card_container'>" +
+             "<div class='card_container' style='background-color:"+color+"'>" +
 
              button +
 
