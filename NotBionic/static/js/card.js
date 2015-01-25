@@ -21,13 +21,31 @@ var iconDict = {
   };
 
 var colorDict = {};
-var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
-var color_counter = 0;
+var colors = [
+  "#8dd3c7",
+  "#ffffb3",
+  "#bebada",
+  "#fb8072",
+  "#80b1d3",
+  "#fdb462",
+  "#b3de69",
+  "#fccde5",
+  "#d9d9d9",
+  "#bc80bd",
+  "#ccebc5",
+  "#ffed6f"
+]
+
+var colorCounter = 0;
 
 function getColor(reg_id) {
   var color = colorDict[reg_id];
   if (color===undefined) {
-    color = colors[color_counter++];
+
+    if (colorCounter>=colors.length) colorCounter = 0;
+
+    // Assign colors to each reg_id.
+    color = colors[colorCounter++];
     colorDict[reg_id] = color;
   }
   return color;
@@ -62,7 +80,7 @@ function createCard(courseData, container, buttons){
   } else if (!buttons instanceof Array) {
     buttons = [buttons];
   }
-  
+
   var color = "";
   if (container == '#confirmed') {
     color = colors[color_counter];
