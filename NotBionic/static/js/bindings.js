@@ -1,11 +1,10 @@
-
 $(document).on("click", ".button-add-course", function(event) {
   var reg_id = $(this).attr("reg_id");
   addCourse(reg_id, "shopping_cart");
 
   $(this).toggleClass("button-add-course")
          .toggleClass("button-remove-course")
-         .html("&#10003;")
+         .html(rejectIcon);
 
   event.cancelBubble = true;
   event.stopImmediatePropagation();
@@ -20,7 +19,7 @@ $(document).on("click", ".button-remove-course", function(event) {
 
   $(this).toggleClass("button-remove-course")
          .toggleClass("button-add-course")
-         .html("Add Course to Shopping Cart")
+         .html(confirmIcon);
 
   event.cancelBubble = true;
   event.stopImmediatePropagation();
@@ -29,3 +28,11 @@ $(document).on("click", ".button-remove-course", function(event) {
 });
 
 
+$(document).on("click", ".activeFilterOptions label", function() {
+  $(this).toggleClass("activated");
+
+  event.cancelBubble = true;
+  event.stopImmediatePropagation();
+  event.stopPropagation();
+  return false;
+});

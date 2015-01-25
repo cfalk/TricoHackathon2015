@@ -1,5 +1,6 @@
 {% include 'head.html' %}
 <body>
+    <script src="{{ STATIC_URL }}js/explore.js"></script>
 {% include 'menu.html' %}
     <div class=main>
     <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
@@ -33,10 +34,10 @@
 	{% endfor %} 
     -->
     <div id="semester-filterOptions" class="disabledFilterOptions">
-	<label for="fall">
+	<label for="fall" class=checkbox>
 	    <input type=checkbox id=fall name=fall value=fall>Fall
 	</label>
-	<label for="spring">
+	<label for="spring" class=checkbox>
 	    <input type=checkbox id=spring name=spring value=spring>Spring
 	</label>
     </div>
@@ -55,46 +56,47 @@
 	<label for="department"> Department
 	    <input id="department" class="autocomplete-department">
 	</label>
+	<button type=button class=filter-text>Add Filter</button>
     </div>
     <div id="campus-filterOptions" class="disabledFilterOptions">
-        <label for="Haverford">
+        <label for="Haverford" class=checkbox>
 	    <input type=checkbox id=Haverford name="Haverford" value="Haverford">Haverford
 	</label>
-	<label for="Bryn Mawr">
+	<label for="Bryn Mawr"class=checkbox>
 	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="Bryn Mawr">BMC
 	</label>
-	<label for="Swarthmore">
+	<label for="Swarthmore"class=checkbox>
 	<input type=checkbox id="Swarthmore" name=Swarthmore value="Swarthmore">Swat
 	</label>
     </div>
 
     <div id="level-filterOptions" class="disabledFilterOptions">
-	<label for="100">
+	<label for="100"class=checkbox>
 	    <input type=checkbox name=100 id=100 value="100">100 Level
 	</label>
-	<label for="200">
+	<label for="200"class=checkbox>
 	    <input type=checkbox name=200 id=200 value="200">200 Level
 	</label>
-	<label for="300">
+	<label for="300"class=checkbox>
 	    <input type=checkbox name=300 id=300 value="300">300 Level
 	</label>
     </div>
     <div id="day-filterOptions" class="disabledFilterOptions">
 	<h3> Days </h3>
 	<ul id="day-list" style="list-style-type: None;">
-	    <label for=monday>
+	    <label for=monday class=checkbox>
 		<li class=day-filter><input type=checkbox value=monday>Monday</li>
 	    </label>
-	    <label for=tuesday>
+	    <label for=tuesday class=checkbox>
 		<li class=day-filter><input type=checkbox value=tuesday>Tuesday</li>
 	    </label>
-	    <label for=wednesday>
+	    <label for=wednesday class=checkbox>
 		<li class=day-filter><input type=checkbox value=wednesday>Wednesday</li>
 	    </label>
-	    <label for=thursday>
+	    <label for=thursday class=checkbox>
 		<li class=day-filter><input type=checkbox value=thursday>Thursday</li>
 	    </label>
-	    <label>
+	    <label for=firday class=checkbox>
 		<li class=day-filter><input type=checkbox value=friday>Friday</li>
 	    </label>
 	</ul>
@@ -103,11 +105,29 @@
 	<label for="instructor"> Instructor
 	    <input id="instructor" class="autocomplete-instructor">
 	</label>
+	<button type=button class=filter-text>Add Filter</button>
     </div>
     <div id="time-filterOptions" class="disabledFilterOptions">
-	    <h3> Start Time </h3>
+	    <h3> Start</h3>
+	    <div>
+	    <label for="start-before"class=checkbox>
+		<input type=checkbox id="start-before" value=start-before>Start Before
+	    </label>
+	    <label for="start-after"class=checkbox>
+		<input type=checkbox id="start-after" value=start-after>Start After
+	    </label>
+	    </div>
 	    <div id="start-slider" label="Start Time"></div>
-	    <h3> End Time </h3>
+
+	    <h3> End</h3>
+	    <div>
+	    <label for="end-before"class=checkbox>
+		<input type=checkbox id="end-before" value=end-before>End Before
+	    </label>
+	    <label for="end-after"class=checkbox>
+		<input type=checkbox id="end-after" value=end-after>End After
+	    </label>
+	    </div>
 	    <div id="end-slider"></div>
     </div>
     <script>

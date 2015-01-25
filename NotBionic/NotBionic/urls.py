@@ -4,6 +4,8 @@ from django.contrib import admin
 admin.autodiscover()
 from NotBionic import views
 
+reg_id = "(?P<reg_id>[a-zA-Z0-9 ]+)"
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'NotBionic.views.home', name='home'),
@@ -18,9 +20,9 @@ urlpatterns = patterns('',
     url(r'^logout/?$', views.logout_view, name='logout'),
 
     # JSON-returning views:
-    url(r'^course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.get_course),
+    url(r'^course/'+reg_id+'/?$', views.get_course),
     url(r'^user_courses/?$', views.get_user_schedule),
-    url(r'^courses/(?P<page>[1-9][0-9]*)?/?$', views.get_courses),
+    url(r'^courses/(?P<page>[1-9][0-9 ]*)?/?$', views.get_courses),
     url(r'^possible_values/?$', views.get_possible_values),
     url(r'^possible_fields/?$', views.get_possible_fields),
 
@@ -29,7 +31,7 @@ urlpatterns = patterns('',
     url(r'^remove_course/?$', views.edit_course, {"operation":"remove"}),
 
     # Pre-rendered Course Info
-    url(r'^render_course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.render_course),
+    url(r'^render_course/'+reg_id+'/?$', views.render_course),
 
     url(r'^admin/', include(admin.site.urls)),
 )
