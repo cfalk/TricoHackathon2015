@@ -1,26 +1,16 @@
-$(document).on("ready", function() {
 
-
+// Define global variables to keep track of the filters.
 var currentQueries = [];
 var page = 1;
 var canLoadMore = true;
 
-// When we get near the bottom, load more cards.
-$(window).scroll(function() {
-  if (canLoadMore) {
-    var triggerMargin = $(document).height() - 200;
-    var scrollLocal = $(window).scrollTop() + $(window).height() ;
-    if(scrollLocal > triggerMargin) {
-      loadMoreCards();
-    }
-  }
-});
 
-
+// Resest the filters so that a search may begin anew.
 function resetFilters() {
   currentQueries = [];
   page = 1;
   canLoadMore = true;
+  $(".cards_container").empty();
 }
 
 
@@ -42,7 +32,37 @@ function loadMoreCards() {
   }
 }
 
-// Load the initial cards.
-loadMoreCards();
+
+function openFilter(name) {
+  $(".activeFilterOptions").removeClass("activeFilterOptions")
+                           .addClass("disabledFilterOptions");
+  $("#"+name+"-filterOptions").removeClass("disabledFilterOptions")
+                              .addClass("activeFilterOptions");
+}
+
+
+$(document).on("ready", function() {
+
+  // When we get near the bottom, load more cards.
+  $(window).scroll(function() {
+    if (canLoadMore) {
+      var triggerMargin = $(document).height() - 200;
+      var scrollLocal = $(window).scrollTop() + $(window).height() ;
+      if(scrollLocal > triggerMargin) {
+        loadMoreCards();
+      }
+    }
+  });
+
+
+$(document).on("click", ".filter", function() {
+  var name = $(this).data("filter");
+  openFilter(name);
+});
+
+
+  // Load the initial cards.
+  loadMoreCards();
 
 });
+
