@@ -37,14 +37,14 @@ function createCard(courseData){
 			</div>
 		</div>*/
 	var $iconDict = {
-		"CHEM" = ;
-		"CMCS" = ;
-		"ECON" = ;
-		"MATH" = ;
-		"POLS" = ;
-		"PLSC" = ;
-		"PH" = ;
- 	}
+		"CHEM" : 5,
+		"CMCS" : 5,
+		"ECON" : 5,
+		"MATH" : 5,
+		"POLS" : 5,
+		"PLSC" : 5,
+		"PH" : 5,
+ 	};
 	var $cardsContainer = $(".cards_container");
 
 	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
