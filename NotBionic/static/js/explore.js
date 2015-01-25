@@ -1,66 +1,48 @@
-$(document).ready(function(){
-	//Click binds
-	function bindFilterOpen(){
-		$(".filter").off("click").on("click", function(){
-			console.log("init");
-			var $this = $(this); //Used to speed to up calls to this $(this)
-			var dataDiv = $this.data("filter");
-			var $correspondingFilterOptionsDiv = $("#"+dataDiv+"-filterOptions"); //Similarly use to speed up calls
-			if ($correspondingFilterOptionsDiv.hasClass("activeFilterOptions")){
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-			else{
-				var $currentActive = $(".activeFilterOptions");
-				if ($currentActive){
-					$currentActive.toggleClass("activeFilterOptions");
-					$currentActive.toggleClass("disabledFilterOptions");
-				}
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-		});
-	}
-	var global_filters = [];
-	console.log(global_filters)
-	$("input").on("click", function() {
-	    if ($(this).is(":checked")) {
-		global_filters.push(this.value);
-	     } else {
-		var index = global_filters.indexOf(this.name);
-		if (index) {
-		    global_filters.splice(index, 1);
-		}
-	    }
-	    console.log(global_filters);
-	});
-	
-	$(".filter-text").on("click", function() {
-	    if (!($("input").is(":empty"))) {
-		global_filters.push(this.value);
-	    } else {
-		var index = global_filters.indexOf(this.value);
-		if (index) {
-		    global_filters.splice(index, 1);
-		}
-	    }
-	    console.log(global_filters);
-	});
+$(document).on("ready", function() {
 
-	bindFilterOpen();
-	var pageNum = 1;
 
-			$.get(
-				"/courses/"+(pageNum),
-				function(data){
-					if(data){
-						data.forEach(function(val,index){
-							createCard(val);
-						});
-					}
-				}
+var currentQueries = [];
+var page = 1;
+var canLoadMore = true;
 
-	);
+// When we get near the bottom, load more cards.
+$(window).scroll(function() {
+  if (canLoadMore) {
+    var triggerMargin = $(document).height() - 200;
+    var scrollLocal = $(window).scrollTop() + $(window).height() ;
+    if(scrollLocal > triggerMargin) {
+      loadMoreCards();
+    }
+  }
+});
 
+
+function resetFilters() {
+  currentQueries = [];
+  page = 1;
+  canLoadMore = true;
+}
+
+
+function loadMoreCards() {
+  if (canLoadMore) {
+    page += 1
+    var url = "/courses/"+page
+
+    $.get(url, {"queries":currentQueries}, function(response) {
+      if (response.length) {
+        for (var i=0; i<response.length; i++) {
+          var card = response[i];
+          createCard(card);
+        }
+      } else {
+        canLoadMore = false;
+      }
+    });
+  }
+}
+
+// Load the initial cards.
+loadMoreCards();
 
 });
