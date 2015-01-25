@@ -103,7 +103,7 @@ width: 40%;
 	width:50px;
 	height:50px;
     margin: auto;
-} 
+}
 .card_information{
     height: 150px;
     width: 250px;
@@ -140,7 +140,7 @@ font-weight:bold;
 .big_card_icon{
 float:left;
 margin:20px;
-} 
+}
 
 .big_card_key_info {
 position:absolute;
@@ -174,4 +174,36 @@ width:100px;
 padding-top:20px;
 margin:10px;
 font-weight:bold;
+}
+
+.activeFilterOptions label,
+.filter {
+ cursor:pointer;
+ opacity:0.7;
+}
+
+.activeFilterOptions label:hover,
+.filter:hover {
+ opacity:0.9;
+}
+
+input {
+ vertical-align:middle;
+}
+
+input[type="checkbox"] {
+ display:none;
+}
+
+.activeFilterOptions label.checkbox {
+ padding:0.5em;
+ background-color:rgba(0,0,0,0.05);
+}
+
+.activeFilterOptions label.checkbox.activated {
+ background-color:#ea5033;
+}
+
+.filter-text {
+ vertical-align:middle;
 }
