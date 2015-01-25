@@ -29,7 +29,7 @@ function createCard(courseData){
 		/*https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf5j_ww5WJANwiCSUCrOJ2lwANzwLJjjHVozwA7L9tUBU0OK-y*/
 		"CITY"  :  "city.jpg",
 		/*https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSFnRg737Rk-M5i2LULB1AsKnXKbuWoNHWvx_4axdd0EA5SYj-t*/
-		"RELG"  :   "relg.png",
+		"RELG"  :   "relg.jpg",
 		/*https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRYees8NmA0JzRNvKbWtroiurLrMSXGlZVlyrUNFWxnh7C_1JVWLg*/
 		"PSYC"  :  "psyc.png"
 		/*https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTn9j3uJRUMV-Y1wjNqCfGiNqdisrgNag_3stxMXE0lJ14v65qb*/
