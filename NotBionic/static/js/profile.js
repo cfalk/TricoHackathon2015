@@ -16,7 +16,7 @@ function createCard(courseData, container){
 		"PHIL" : "phil.png",
 		"PHYS" : "phys.png",
 		"ENGR" : "engr.png",
-		/*https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRo7rT08EadJKMlMYnDHzyC6w3uZl8v_pdQJQ9hUu4Q4Qo9c6WM47y46AA*/ 
+		/*https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRo7rT08EadJKMlMYnDHzyC6w3uZl8v_pdQJQ9hUu4Q4Qo9c6WM47y46AA*/
 		"ARCH" : "arch.jpg",
 		/*https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS9qI_8jIToLsP8GKYZAInJ9bBAzBw5NEWjWxJbDcaTRtqZfqCPRQ*/
 		"ARTW" : "artw.jpg",
@@ -36,9 +36,9 @@ function createCard(courseData, container){
  	};
 
  	/*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
-	var cartIcon = "shopping-cart.png"; 
+	var cartIcon = "shopping-cart.png";
 
-	$cardsContainer.append($('<a class="various fancybox.ajax" id="'+courseData.reg_id+'_top" href="/render_course/' + courseData.reg_id + '">')
+	$cardsContainer.append($('<a class="fancyboxClass fancybox.ajax" id="'+courseData.reg_id+'_top" href="/render_course/' + courseData.reg_id + '">')
 		    .append($('<div class="card_container">')
 			.append($('<div class="card_header">')
 			    .append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">'+confirmIcon+'</button>'))
@@ -50,12 +50,12 @@ function createCard(courseData, container){
 			))
 			.append($('<div class="card_information">')
 				.append($('<div class="card_title">')
-					.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
+					.append($('<a class="fancyboxClass fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
 						.append($('<h3>').html(courseData.title)))
 				)
 				.append('<div class="card_instructor">' + courseData.instructor + '</div>')
 				.append('<div class="card_hours">'+courseData.days.join("") + " at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
-				
+
 				)
 		));
 }
