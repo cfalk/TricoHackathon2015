@@ -90,7 +90,7 @@
 	position: absolute;
 	bottom: 30px;
 	left: 50%;
-	opacity: 1;
+	opacity: 1.0;
 }
 
 
@@ -126,6 +126,8 @@
 
 .more_info {
 	display: none;
+	margin-top: 150px;
+	margin-bottom: 100px;
 }
 
 .big-card-button:hover {
@@ -171,9 +173,14 @@
  font-size:1.2em;
  font-weight:bold;
  text-align: center;
- margin-top: 40px;
+ margin-top: 50px;
+ margin-right: 40px;
 }
-
+.big_card_description{
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-left: 250px;
+}
 .big_card_instructor {
  padding:0.5em;
  text-align: center;
@@ -182,7 +189,7 @@
 
 .big_card_icon {
 margin-top: 30px;	
- margin-left: 30px;
+margin-left: 30px;
  float: left;
  height:10em;
  padding:1em;
