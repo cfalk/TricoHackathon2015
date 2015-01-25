@@ -6,16 +6,22 @@ NOTE: `setTimeout`s have been applied below because SQLITE3
       Essentially, it is awful at concurrency.
 
 */
-
+$(document).on("click",".button-card", function() {
   var reg_id = $(this).attr("reg_id");
+  console.log("here!")
   if ($(this).hasClass("shop")) {
     addCourse(reg_id, "shopping_cart");
+    $(this).toggleClass("shop",false)
+	   .toggleClass("trash",true);
+    var img = $(this).children()[0];
+    $(img).attr("src","/static/images/trash.png");
 
   } else if ($(this).hasClass("approve")) {
     addCourse(reg_id, "schedule");
 
     setTimeout(function() { //TODO: DELETE WHEN MYSQL
       removeCourse(reg_id, "shopping_cart");
+      location.reload();
     },50);//TODO: DELETE WHEN MYSQL
 
   } else if ($(this).hasClass("trash")) {
@@ -24,7 +30,10 @@ NOTE: `setTimeout`s have been applied below because SQLITE3
     setTimeout(function() { //TODO: DELETE WHEN MYSQL
       removeCourse(reg_id, "shopping_cart");
     },50);//TODO: DELETE WHEN MYSQL
-
+    $(this).toggleClass("trash",false)
+	   .toggleClass("shop",true);
+    var img = $(this).children()[0];
+    $(img).attr("src","/static/images/shopping-cart.png");
   }
 
   return false;
