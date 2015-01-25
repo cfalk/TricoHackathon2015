@@ -13,9 +13,24 @@ $(document).on("click", ".button-shop-course", function(event) {
 });
 
 
+$(document).on("click", ".button-add-course", function(event) {
+  var reg_id = $(this).attr("reg_id");
+  addCourse(reg_id, "schedule");
+  removeCourse(reg_id, "shopping_cart");
+  $("#"+reg_id+"_top")[0].remove()
+  $.get("/course/"+reg_id+"/", function(data) {
+    createCard(data,".profile_schedule_cards_container");
+  });
+  event.cancelBubble = true;
+  event.stopImmediatePropagation();
+  event.stopPropagation();
+  return false;
+});
+
 $(document).on("click", ".button-remove-course", function(event) {
   var reg_id = $(this).attr("reg_id");
   removeCourse(reg_id, "shopping_cart");
+  removeCourse(reg_id, "schedule");
   $("#"+reg_id+"_top")[0].remove()
   console.log($("#"+reg_id+"_top"))
   $(this).toggleClass("button-remove-course")
