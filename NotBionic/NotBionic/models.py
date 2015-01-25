@@ -55,6 +55,7 @@ class Course(models.Model):
     department_num = models.CharField(max_length=100, default="")
     course_cap = models.CharField(max_length=100, default="")
     course_num = models.CharField(max_length=100, default="")
+    level = models.CharField(max_length=100, default="")
 
     description = models.TextField(default="")
 
@@ -76,10 +77,18 @@ class Course(models.Model):
     earliest_time = models.IntegerField(null=True)
     latest_time = models.IntegerField(null=True)
 
+    def clean_college(self):
+        return " ".join(self.college.split("_")).title()
+
+    def clean_semester(self):
+        return " ".join(self.semester.split("_")).title()
 
     def clean_days(self):
-        return self._load_json_field("days")
-
+        days=self._load_json_field("days")
+        final = ""
+        for i in days:
+          final = final + i
+        return final
 
     def clean_start_times(self):
         times = self._load_json_field("start_times")

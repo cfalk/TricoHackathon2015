@@ -14,6 +14,10 @@
     <div id=page-title> explore. </div>
     <div class=filter-bar style="display: table;">
 	<ul id=filters>
+            <li id="suggestionButton" title='Suggest me courses.'>
+              <img src="{{STATIC_URL}}images/suggestion.png" />
+            </li>
+
 	    <li data-filter="semester" class="filter"> Semester </li>
 	    <li data-filter="college" class="filter"> Campus </li>
 	    <li data-filter="department" class="filter"> Department </li>
@@ -42,7 +46,7 @@
 	    <input type=text id="department" class="autocomplete-department">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id="department-filter-container"class=filter-container></div>
     </div>
 
     <!-- College -->
@@ -60,33 +64,39 @@
 
     <!-- Level -->
     <div id="level-filterOptions" class="disabledFilterOptions">
-	<label for="100"class=checkbox>
+	<label for="100"class="checkbox activated">
+	    <input type=checkbox name=000 id=000 value="000">000s
+	</label>
+	<label for="100"class="checkbox activated">
 	    <input type=checkbox name=100 id=100 value="100">100s
 	</label>
-	<label for="200"class=checkbox>
+	<label for="200"class="checkbox activated">
 	    <input type=checkbox name=200 id=200 value="200">200s
 	</label>
-	<label for="300"class=checkbox>
+	<label for="300"class="checkbox activated">
 	    <input type=checkbox name=300 id=300 value="300">300s
+	</label>
+	<label for="100"class="checkbox activated">
+	    <input type=checkbox name=400 id=400 value="400">400s
 	</label>
     </div>
 
     <!-- Days -->
     <div id="day-filterOptions" class="disabledFilterOptions">
 	<ul id="day-list" style="list-style-type: None;">
-	    <label for=monday class=checkbox>
+	    <label for=monday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=M>Mon</li>
 	    </label>
-	    <label for=tuesday class=checkbox>
+	    <label for=tuesday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=Tu>Tue</li>
 	    </label>
-	    <label for=wednesday class=checkbox>
+	    <label for=wednesday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=W>Wed</li>
 	    </label>
-	    <label for=thursday class=checkbox>
+	    <label for=thursday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=Th>Thu</li>
 	    </label>
-	    <label for=firday class=checkbox>
+	    <label for=firday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=F>Fri</li>
 	    </label>
 	</ul>
@@ -98,12 +108,11 @@
 	    <input type=text  id="instructor" class="autocomplete-instructor">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id=instructor-filter-container class=filter-container></div>
     </div>
 
     <!-- Time -->
     <div id="time-filterOptions" class="disabledFilterOptions">
-	    <div>
 	    <label for="start-before"class=checkbox>
 		<input type=checkbox id="start-before" value=start-before>
                 start before
@@ -112,10 +121,8 @@
 		<input type=checkbox id="start-after" value=start-after>
                 start after
 	    </label>
-	    </div>
 	    <div id="start-slider" label="Start Time"></div>
 
-	    <div>
 	    <label for="end-before"class=checkbox>
 		<input type=checkbox id="end-before" value=end-before>
                 end before
@@ -124,25 +131,58 @@
 		<input type=checkbox id="end-after" value=end-after>
                 end after
 	    </label>
-	    </div>
 	    <div id="end-slider"></div>
 
             <script>
+	    $(function() {
+	    $("#start-slider").slider({
+		range: false,
+		min: 0,
+		max: 1440,
+		step: 15,
+		value: [600],
+		slide: function (e, ui) {
+		    var hours1 = Math.floor(ui.values[0] / 60);
+		    var minutes1 = ui.values[0] - (hours1 * 60);
+
+		    if (hours1.length == 1) hours1 = '0' + hours1;
+		    if (minutes1.length == 1) minutes1 = '0' + minutes1;
+		    if (minutes1 == 0) minutes1 = '00';
+		    if (hours1 >= 12) {
+			if (hours1 == 12) {
+			    hours1 = hours1;
+			    minutes1 = minutes1 + " PM";
+			}else {
+			    hours1 = hours1 - 12;
+			    minutes1 = minutes1 + " PM";
+			}
+		}else {
+		    hours1 = hours1;
+		    minutes1 = minutes1 + " AM";
+		}
+		if (hours1 == 0) {
+		    hours1 = 12;
+		    minutes1 = minutes1;
+		}
+	      }
+	      });
+	      });
               // Apply jQuery's slider functionality to the time inputs.
-              $(function() {
+              /*$(function() {
                   $( "#start-slider" ).slider();
                   $( "#end-slider" ).slider();
-              });
+              });*/
             </script>
 
     </div>
 
+    <!-- "Everything" -->
     <div id="everything-filterOptions" class="disabledFilterOptions">
 	<label for="everything">
 	    <input type=text  id="everything" class="autocomplete-everything">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id=everything-filter-container class=filter-container></div>
     </div>
 
     <div id="explore-results">
@@ -150,6 +190,7 @@
     </div>
 
     </div>
+
 
 </body>
 

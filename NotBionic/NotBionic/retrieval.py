@@ -30,8 +30,11 @@ def filter_courses(query, courses=None):
   if courses is None:
     courses = Course.objects.all()
 
+  print query
+
+
   # Separately parse the time-related searches from the query.
-  time_fields = ["starts", "ends", "days"]
+  time_fields = ["starts", "ends", "day"]
   time_query = {f:query[f] for f in time_fields if f in query}
   query = {f:val for f, val in query.items() if f not in time_fields}
 
@@ -67,28 +70,38 @@ def filter_timeframe(query, courses=None):
   if courses is None:
     courses = Course.objects.all()
 
-  if "days" in query:
+
+  # Variable Setup: field names to be used by the query.
+  day_field = "day"
+  start_field = "starts"
+  end_field = "ends"
+
+
+  if day_field in query:
     # Calculate the days that are to be removed.
     all_days = ["M","Tu","W","Th","F"]
-    allowed_days = set(json.loads(query["days"]))
+    allowed_days = set(query[day_field])
     bad_days = [day for day in all_days if day not in allowed_days]
 
-    # Construct a Q-sequence that will apply the filter.
-    day_query = [~Q(days__icontains=day) for day in bad_days]
-    prepared_query = reduce(operator.and_, day_query)
+    # If no `bad_days` were specified, don't bother filtering.
+    if bad_days:
 
-    # Remove any courses that contained any "bad" days.
-    courses = courses.filter(prepared_query)
+      # Construct a Q-sequence that will apply the filter.
+      day_query = [~Q(days__icontains=day) for day in bad_days]
+      prepared_query = reduce(operator.and_, day_query)
+
+      # Remove any courses that contained any "bad" days.
+      courses = courses.filter(prepared_query)
 
 
-  if "starts" in query:
-    # Expects input in the form: {"starts":"direction_04:00PM"} where
+  if start_field in query:
+    # Expects input in the form: {start_field:"direction_04:00PM"} where
     #  direction may be "before", "after", or "at".
-    if "_" in query["starts"]:
-      direction, time_str = query["starts"].split("_")
+    if "_" in query[start_field]:
+      direction, time_str = query[start_field].split("_")
     else:
       direction = "at"
-      time_str = query["starts"]
+      time_str = query[start_field]
 
     time = datetime.datetime.strptime(time_str.strip(),"%I:%M%p")
     seconds = 60*(time.hour*60+time.minute)
@@ -105,14 +118,14 @@ def filter_timeframe(query, courses=None):
     prepared_query = {"earliest_time{}".format(suffix):seconds}
     courses = courses.filter(**prepared_query)
 
-  if "ends" in query:
-    # Expects input in the form: {"ends":"direction_04:00PM"} where
+  if end_field in query:
+    # Expects input in the form: {end_field:"direction_04:00PM"} where
     #  direction may be "before", "after", or "at".
-    if "_" in query["ends"]:
-      direction, time_str = query["ends"].split("_")
+    if "_" in query[end_field]:
+      direction, time_str = query[end_field].split("_")
     else:
       direction = "at"
-      time_str = query["ends"]
+      time_str = query[end_field]
 
     time = datetime.datetime.strptime(time_str.strip(),"%I:%M%p")
     seconds = 60*(time.hour*60+time.minute)
@@ -128,7 +141,6 @@ def filter_timeframe(query, courses=None):
 
     prepared_query = {"latest_time{}".format(suffix):seconds}
     courses = courses.filter(**prepared_query)
-
 
   return courses
 

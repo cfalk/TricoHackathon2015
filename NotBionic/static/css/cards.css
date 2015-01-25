@@ -70,7 +70,6 @@
  padding:0.5em;
 }
 
-
 .card_icon {
  width:100%;
  height:6em;
@@ -80,9 +79,18 @@
 }
 
 .big-card-arrow-button {
-	bottom:0em;
-	margin-left:auto;
-	margin-right:auto;
+	/*text-align: center;*/
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	opacity: 0.8;
+}
+.big-card-arrow-button:hover {
+	/*text-align: center;*/
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	opacity: 1.0;
 }
 
 
@@ -104,13 +112,31 @@
 
 /*Big card formatting*/
 .big-card-button {
- position:absolute;
+ position: absolute;
  top:0em;
  left:0em;
  height:2em;
  width:2em;
- display:inline-block;
- opacity:0.6;
+}
+
+.fancy-box-image img {
+	width: 64px;
+	height: 64px;
+}
+
+.more_info {
+	display: none;
+	margin-top: 200px;
+	margin-bottom: 300px;
+}
+
+.more_info h4 {
+	font-size: .75em;
+}
+
+
+.big_card_student_list{
+	margin-top: 30px;
 }
 
 .big-card-button:hover {
@@ -124,40 +150,45 @@
 }
 
 
-.big_card_container .top_right { position:absolute;
+.big_card_container .top_right { 
+ position: absolute;
  top:0em;
  right:0em;
  margin:1em;
- font-size:0.85em;
+ font-size:1.3em;
+ opacity: 0.9;
 }
  
- .big_card_container .bottom_right { position:absolute;
+ .big_card_container .bottom_right { 
+ position: absolute;
  bottom:0em;
  right:0em;
  margin:1em;
- font-size:0.85em;
- opacity:0.5;
+ font-size:1.3em;
+ opacity: 0.9
 }
 
- .big_card_container .bottom_left { position:absolute;
+ .big_card_container .bottom_left { 
+ position: absolute;
  bottom:0em;
  left:0em;
  margin:1em;
- font-size:0.85em;
- opacity:0.5;
+ font-size:1.3em;
+ opacity: 0.9
 }
 
 
 .big_card_title {
  font-size:1.2em;
  font-weight:bold;
- text-align: center
+ text-align: center;
+ margin-top: 50px;
+ margin-right: 40px;
 }
-.big_card_time {
- margin:1em;
- font-size:0.8em;
- opacity:0.7;
-
+.big_card_description{
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-left: 250px;
 }
 .big_card_instructor {
  padding:0.5em;
@@ -166,15 +197,17 @@
 
 
 .big_card_icon {
- width:100%;
+margin-top: 30px;	
+margin-left: 30px;
+ float: left;
  height:10em;
- box-sizing:border-box;
  padding:1em;
  opacity:0.8;
 }
 
-.big_card_syllabus {
+.syllabus {
 font-style: italic;
+color: blue;
 }
 
 

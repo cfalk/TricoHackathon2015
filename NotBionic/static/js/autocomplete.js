@@ -14,11 +14,11 @@ $.get(queryUrl, {"field":"department"}, function(response) {
   });
 });
 
-var queryUrl = "/possible_values/";
+/*var queryUrl = "/possible_values/";
 $.get(queryUrl, {"field":"description"}, function(response) {
   $(".autocomplete-everything").autocomplete({
     source:response
   });
 });
-
+*/
 });

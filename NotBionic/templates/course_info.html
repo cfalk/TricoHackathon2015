@@ -4,7 +4,7 @@
 <body>
     <div class='big_card_container'>
         <div class='main_card'>
-            <div class='big-card-button'></div>
+            <div class='big-card-button fancy-box-image'></div>
             <div class="top_right">
                 <div class='big_card_course_id'>
                            {{cleaned_reg_id}}
@@ -22,19 +22,20 @@
             <div class='big_card_title'>
                 {{course.title}}
             </div>
-             <div class="big_card_description">
-                {{course.description}}
-            </div>
 
             <div class='big_card_instructor'>
                 {{course.instructor}}
             </div>
+             <div class="big_card_description">
+                {{course.description}}
+            </div>
+
             <div class='bottom_right'>
                  <div class="big_card_location">
                     {{course.location}}
                 </div>
                  <div class="big_card_college">
-                    {{course.college}}
+                    {{course.clean_college}}
                 </div>
             </div>
             <div class="bottom_left">
@@ -42,25 +43,33 @@
                     {{course.clean_days}} @ {{course.clean_start_times.0}} to {{course.clean_end_times.0}} 
                 </div>
                  <div class='big_card_semester'>
-                        {{course.semester}}
+                        {{course.clean_semester}}
                 </div>
             </div>
-            <div class="big-card-arrow-button"></div>
+            <div class="big-card-arrow-button fancy-box-image"></div>
         </div>
+        
     <div class="more_info">
         <div class="big_card_syllabus">
-             <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
+            Syllabus: <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf" target="_blank"> {{course.title}} Syllabus </a>
         </div>
-        <li class="big_card_student_list">
-            <ul> Me </ul>
-        </li>
+        <div class="big_card_student_list">
+        <h2> Current Tri-Co students who have enrolled in this course in past semester:</h2>
+        <ul>
+            <li style="list-style-type:circle; margin-left:20px"> Gabriel Rybeck </li>
+            <li style="list-style-type:circle; margin-left:20px"> Brandon Smith </li>
+            <li style="list-style-type:circle; margin-left:20px"> Jason Feinberg </li>
+            <li style="list-style-type:circle; margin-left:20px"> Blair Rush </li>
+            <li style="list-style-type:circle; margin-left:20px"> Casey Falk </li>
+        </ul>
+        <h4> These students have agreed that their course enrollment can be shared to other Tri-Co students for the purpose of bettering student's understanding of the course offering.</h4>
+       </div>
     </div>   
     </div> 
     <script src="{{ STATIC_URL }}js/course_info.js"></script>        
     <script>
       prepareCardImage();
       $(".big-card-button").append(shoppingCartButton("{{course.reg_id}}"));
-      $(".big-card-button").append(trashButton("{{course.reg_id}}"));
       $(".big-card-arrow-button").append(arrowButton());
     </script>
 </body>
