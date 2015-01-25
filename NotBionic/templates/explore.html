@@ -1,9 +1,14 @@
-{% include 'head.html' %}
+{ %include 'head.html' %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
+<script src="{{ STATIC_URL }}js/fancybox.js"></script>
+
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/explore.css">
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/cards.css">
+
 
 <body>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
-    <script src="{{ STATIC_URL }}js/fancybox.js"></script>
 
     {% include 'menu.html' %}
 
@@ -24,107 +29,126 @@
 	</ul>
     </div>
 
+    <!-- Semester -->
     <div id="semester-filterOptions" class="disabledFilterOptions">
 	<label for="fall" class=checkbox>
-	    <input type=checkbox id=fall name=fall value=fall>Fall
+	    <input type=checkbox id=fall name=fall value=fall>Fall 2014
 	</label>
 	<label for="spring" class=checkbox>
-	    <input type=checkbox id=spring name=spring value=spring>Spring
+	    <input type=checkbox id=spring name=spring value=spring>Spring 2015
 	</label>
     </div>
-    <div id="department-filterOptions" class="disabledFilterOptions">
 
-	<label for="department"> Department
-	    <input id="department" class="autocomplete-department">
+    <!-- Department -->
+    <div id="department-filterOptions" class="disabledFilterOptions">
+	<label for="department">
+	    <input type=text id="department" class="autocomplete-department">
 	</label>
-	<button type=button class=filter-text>Add Filter</button>
+	<button type=button class=filter-text>+</button>
     </div>
+
+    <!-- Campus -->
     <div id="campus-filterOptions" class="disabledFilterOptions">
         <label for="Haverford" class=checkbox>
 	    <input type=checkbox id=Haverford name="Haverford" value="Haverford">Haverford
 	</label>
 	<label for="Bryn Mawr"class=checkbox>
-	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="Bryn Mawr">BMC
+	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="Bryn Mawr">Bryn Mawr
 	</label>
 	<label for="Swarthmore"class=checkbox>
-	<input type=checkbox id="Swarthmore" name=Swarthmore value="Swarthmore">Swat
+	<input type=checkbox id="Swarthmore" name=Swarthmore value="Swarthmore">Swarthmore
 	</label>
     </div>
 
+    <!-- Level -->
     <div id="level-filterOptions" class="disabledFilterOptions">
 	<label for="100"class=checkbox>
-	    <input type=checkbox name=100 id=100 value="100">100 Level
+	    <input type=checkbox name=100 id=100 value="100">100s
 	</label>
 	<label for="200"class=checkbox>
-	    <input type=checkbox name=200 id=200 value="200">200 Level
+	    <input type=checkbox name=200 id=200 value="200">200s
 	</label>
 	<label for="300"class=checkbox>
-	    <input type=checkbox name=300 id=300 value="300">300 Level
+	    <input type=checkbox name=300 id=300 value="300">300s
 	</label>
     </div>
+
+    <!-- Days -->
     <div id="day-filterOptions" class="disabledFilterOptions">
-	<h3> Days </h3>
 	<ul id="day-list" style="list-style-type: None;">
 	    <label for=monday class=checkbox>
-		<li class=day-filter><input type=checkbox value=monday>Monday</li>
+		<li class=day-filter><input type=checkbox value=monday>Mon</li>
 	    </label>
 	    <label for=tuesday class=checkbox>
-		<li class=day-filter><input type=checkbox value=tuesday>Tuesday</li>
+		<li class=day-filter><input type=checkbox value=tuesday>Tue</li>
 	    </label>
 	    <label for=wednesday class=checkbox>
-		<li class=day-filter><input type=checkbox value=wednesday>Wednesday</li>
+		<li class=day-filter><input type=checkbox value=wednesday>Wed</li>
 	    </label>
 	    <label for=thursday class=checkbox>
-		<li class=day-filter><input type=checkbox value=thursday>Thursday</li>
+		<li class=day-filter><input type=checkbox value=thursday>Thu</li>
 	    </label>
 	    <label for=firday class=checkbox>
-		<li class=day-filter><input type=checkbox value=friday>Friday</li>
+		<li class=day-filter><input type=checkbox value=friday>Fri</li>
 	    </label>
 	</ul>
     </div>
+
+    <!-- Instructor -->
     <div id="instructor-filterOptions" class="disabledFilterOptions">
-	<label for="instructor"> Instructor
-	    <input id="instructor" class="autocomplete-instructor">
+	<label for="instructor">
+	    <input type=text  id="instructor" class="autocomplete-instructor">
 	</label>
-	<button type=button class=filter-text>Add Filter</button>
+	<button type=button class=filter-text>+</button>
     </div>
+
+    <!-- Time -->
     <div id="time-filterOptions" class="disabledFilterOptions">
-	    <h3> Start</h3>
 	    <div>
 	    <label for="start-before"class=checkbox>
-		<input type=checkbox id="start-before" value=start-before>Start Before
+		<input type=checkbox id="start-before" value=start-before>
+                start before
 	    </label>
 	    <label for="start-after"class=checkbox>
-		<input type=checkbox id="start-after" value=start-after>Start After
+		<input type=checkbox id="start-after" value=start-after>
+                start after
 	    </label>
 	    </div>
 	    <div id="start-slider" label="Start Time"></div>
 
-	    <h3> End</h3>
 	    <div>
 	    <label for="end-before"class=checkbox>
-		<input type=checkbox id="end-before" value=end-before>End Before
+		<input type=checkbox id="end-before" value=end-before>
+                end before
 	    </label>
 	    <label for="end-after"class=checkbox>
-		<input type=checkbox id="end-after" value=end-after>End After
+		<input type=checkbox id="end-after" value=end-after>
+                end after
 	    </label>
 	    </div>
 	    <div id="end-slider"></div>
+
+            <script>
+              // Apply jQuery's slider functionality to the time inputs.
+              $(function() {
+                  $( "#start-slider" ).slider();
+                  $( "#end-slider" ).slider();
+              });
+            </script>
+
     </div>
-    <script>
-    $(function() {
-	$( "#start-slider" ).slider();
-	$( "#end-slider" ).slider();
-    });
-    </script>
+
     <div id="everything-filterOptions" class="disabledFilterOptions">
-	<label for="everything"> Everything
-	    <input id="everything" class="autocomplete-everything"
+	<label for="everything">
+	    <input type=text  id="everything" class="autocomplete-everything">
 	</label>
     </div>
+
     <div id="explore-results">
-        <div class="cards_container">
-        </div>
+        <div class="cards_container"></div>
     </div>
+
     </div>
+
 </body>
+

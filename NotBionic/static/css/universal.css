@@ -26,6 +26,40 @@ ul, li {
 }
 
 
+/* Pseudo-checkbox CSS */
+input[type="checkbox"] {
+ display:none;
+}
+label.checkbox {
+ cursor:pointer;
+ padding:0.5em;
+ display:inline-block;
+ position:relative;
+ font-size:1.25em;
+ opacity:0.5em;
+ background-color:rgba(0,0,0,0.05);
+}
+label.checkbox.activated {
+ background-color:rgba(234,80,51,0.8);
+}
+label.checkbox.activated:before {
+ content:"\2713";
+ position:absolute;
+ bottom:-0.2em;
+ right:0em;
+ color:white;
+}
+
+
+input[type="text"] {
+ outline:none;
+ border:0px;
+ padding:0.5em 1em;
+ font-size:1.25em;
+ border-bottom:3px solid rgba(250,250,250,0.75);
+ background-color:rgba(0,0,0,0.05);
+}
+
 
 @media (max-width: 400px) {
   #content-container {
@@ -35,4 +69,9 @@ ul, li {
   #page-title {
     display:none;
   }
+
+  label.checkbox {
+   padding:0.5em 0.2em;
+  }
+
 }
