@@ -1,0 +1,40 @@
+
+#filters {
+ text-align:justify;
+}
+
+.disabledFilterOptions {
+ display:none;
+}
+
+
+.filter {
+ padding:0.25em;
+ display:inline-block;
+ cursor:pointer;
+}
+.filter {
+ opacity:0.5;
+}
+.filter.active {
+ opacity:0.9;
+}
+
+.day-filter {
+ width:3em;
+ text-align:center;
+}
+
+.activeFilterOptions {
+ background-color:rgba(0,0,0,0.01);
+ padding:0.25em 1em;
+ box-sizing:border-box;
+}
+
+
+@media (max-width:400px) {
+ .activeFilterOptions {
+  padding:0.25em 0em;
+  text-align:center;
+ }
+}

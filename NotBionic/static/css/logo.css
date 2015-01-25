@@ -1,0 +1,13 @@
+#logo {
+ font-size:1.25em;
+ padding:0em 0.25em 1em;
+ opacity:0.8;
+ cursor:default;
+}
+#logo div {
+ height:1em;
+}
+#logo .shade {
+ opacity:0.6;
+}
+

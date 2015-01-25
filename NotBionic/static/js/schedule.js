@@ -35,7 +35,7 @@ $(document).ready(function() {
 	    }
 	    if (time_counter == 12 && i%2 != 0 && j==0) {
 		time_counter = 1;
-	    }   
+	    }
 	    else if (i%2 != 0 && j==0) {
 		time_counter++;
 	    }
@@ -94,7 +94,7 @@ $(document).ready(function() {
 		for(var j=0;j<days.length;j++) {
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
-		    var counter = 0;	
+		    var counter = 0;
 		    var last = false;
 		    while((temp_hour != end_hour || temp_minute != end_minute) && !(error)) {
 			var block = $('#'+days_key[days[j]]+'-'+temp_hour+temp_minute);
@@ -128,9 +128,9 @@ $(document).ready(function() {
 			counter++;
 		    }
 		    //$('#'+days_key[days[j]]+'-'+temp_hour+temp_minute).css('background-color','black');
-		    
+
 		}
-	    }); 
+	    });
 	}
     });
     $('#schedule').on('click', '.hasClass', function(){

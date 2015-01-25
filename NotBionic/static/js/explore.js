@@ -1,66 +1,108 @@
-$(document).ready(function(){
-	//Click binds
-	function bindFilterOpen(){
-		$(".filter").off("click").on("click", function(){
-			console.log("init");
-			var $this = $(this); //Used to speed to up calls to this $(this)
-			var dataDiv = $this.data("filter");
-			var $correspondingFilterOptionsDiv = $("#"+dataDiv+"-filterOptions"); //Similarly use to speed up calls
-			if ($correspondingFilterOptionsDiv.hasClass("activeFilterOptions")){
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-			else{
-				var $currentActive = $(".activeFilterOptions");
-				if ($currentActive){
-					$currentActive.toggleClass("activeFilterOptions");
-					$currentActive.toggleClass("disabledFilterOptions");
-				}
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-		});
-	}
-	var global_filters = [];
-	console.log(global_filters)
-	$("input").on("click", function() {
-	    if ($(this).is(":checked")) {
-		global_filters.push(this.value);
-	     } else {
-		var index = global_filters.indexOf(this.name);
-		if (index) {
-		    global_filters.splice(index, 1);
-		}
-	    }
-	    console.log(global_filters);
-	});
-	
-	$(".filter-text").on("click", function() {
-	    if (!($("input").is(":empty"))) {
-		global_filters.push(this.value);
-	    } else {
-		var index = global_filters.indexOf(this.value);
-		if (index) {
-		    global_filters.splice(index, 1);
-		}
-	    }
-	    console.log(global_filters);
-	});
 
-	bindFilterOpen();
-	var pageNum = 1;
+// Define global variables to keep track of the filters.
+var currentQueries = {};
+var page = 1;
+var canLoadMore = true;
 
-			$.get(
-				"/courses/"+(pageNum),
-				function(data){
-					if(data){
-						data.forEach(function(val,index){
-							createCard(val);
-						});
-					}
-				}
 
-	);
+// Resest the filters so that a search may begin anew.
+function resetFilters() {
+  currentQueries = {};
+  clearCards();
+}
+
+
+function clearCards() {
+  page = 0;
+  canLoadMore = true;
+  $(".cards_container").empty();
+}
+
+
+function loadMoreCards() {
+  if (canLoadMore) {
+    page += 1
+    var url = "/courses/"+page
+
+    $.get(url, currentQueries, function(response) {
+      if (response.length) {
+        for (var i=0; i<response.length; i++) {
+          var card = response[i];
+          createCard(card, ".cards_container");
+        }
+      } else {
+        canLoadMore = false;
+      }
+    });
+  }
+}
+
+
+function applyFilter(field, val) {
+  if (((typeof val) !== undefined) && (val.length!==0)) {
+    currentQueries[field] = val;
+  } else {
+    delete currentQueries[field];
+  }
+
+  clearCards();
+  loadMoreCards();
+  console.log(currentQueries);
+}
+
+
+function openFilter(name) {
+  // Open the specified filter and close any others that are open.
+  $(".activeFilterOptions").removeClass("activeFilterOptions")
+                           .addClass("disabledFilterOptions");
+  $("#"+name+"-filterOptions").removeClass("disabledFilterOptions")
+                              .addClass("activeFilterOptions");
+}
+
+
+$(document).on("ready", function() {
+
+  // Load the initial cards.
+  loadMoreCards();
+
+  // When we get near the bottom, load more cards.
+  $(window).scroll(function() {
+    if (canLoadMore) {
+      var triggerMargin = $(document).height() - 200;
+      var scrollLocal = $(window).scrollTop() + $(window).height() ;
+      if(scrollLocal > triggerMargin) {
+        loadMoreCards();
+      }
+    }
+  });
+
+
+  $(document).on("click", ".filter", function() {
+    var name = $(this).data("filter");
+    openFilter(name);
+  });
+
+
+
+
+  $(document).on("click", ".checkbox", function() {
+    var newList = [];
+    $(".activeFilterOptions").find(".checkbox.activated input").each(function() {
+      newList.push($(this).attr("value"));
+    });
+    var field = $(this).parent().attr("id").split("-")[0];
+    applyFilter(field, newList);
+  });
+
+  $(document).on("click", ".filter-text", function() {
+    var $input = $(this).siblings("label").children();
+    var text = $input.val();
+    if (text) {
+      var field = $input.attr("id");
+      applyFilter(field, text);
+    }
+  })
 
 
 });
+

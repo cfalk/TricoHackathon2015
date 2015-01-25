@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(".various").fancybox({
+	$(".fancyboxClass").fancybox({
 		maxWidth	: 800,
 		maxHeight	: 600,
 		fitToView	: false,

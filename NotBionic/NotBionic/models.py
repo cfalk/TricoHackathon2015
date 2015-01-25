@@ -21,6 +21,8 @@ class Expanded_User(models.Model):
       if location not in {"schedule", "shopping_cart"}:
         raise Exception("`location` must be 'schedule' or 'shopping_cart'!")
 
+      print "LOCATION: {} (ADD)".format(location)
+
       current = json.loads( getattr(self, location) )
       if reg_id not in current:
         current.append(reg_id)
@@ -33,6 +35,7 @@ class Expanded_User(models.Model):
       # Removes the course with a given `reg_id` from the user's
       #  "schedule" or"
 
+      print "LOCATION: {} (REMOVE)".format(location)
       if location not in {"schedule", "shopping_cart"}:
         raise Exception("`location` must be 'schedule' or 'shopping_cart'!")
 
@@ -74,22 +77,49 @@ class Course(models.Model):
     start_times = models.TextField(default="[]")
     end_times = models.TextField(default="[]")
 
+    earliest_time = models.IntegerField(null=True)
+    latest_time = models.IntegerField(null=True)
+
 
     def clean_days(self):
         return self._load_json_field("days")
 
 
     def clean_start_times(self):
-        return self._load_json_field("start_times")
+        times = self._load_json_field("start_times")
+        return [self._load_time(time) for time in times]
 
 
     def clean_end_times(self):
-        return self._load_json_field("end_times")
+        times = self._load_json_field("end_times")
+        return [self._load_time(time) for time in times]
 
 
     def _load_json_field(self, field):
         raw = getattr(self, field)
         return json.loads(raw)
+
+
+    def _load_time(self, seconds):
+        # Convert a number of seconds into the corresponding time-of-day
+        #  which is then returned as a string.
+
+        minutes = int((seconds/60.0)%60)
+        hours = int((seconds/60.0)/60)
+        period = "am"
+
+        if hours>=12:
+          period = "pm"
+          if hours>12:
+            hours -= 12
+        elif hours==0:
+          hours = 12
+
+        if minutes<10:
+          minutes = "0{}".format(minutes)
+
+        return "{}:{}{}".format(hours, minutes, period)
+
 
 
     def to_dict(self):
@@ -108,6 +138,10 @@ class Course(models.Model):
             pass
 
           val_dict[field] = val
+
+        # Make the times human-readable.
+        val_dict["start_times"] = self.clean_start_times()
+        val_dict["end_times"] = self.clean_end_times()
 
         return val_dict
 
