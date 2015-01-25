@@ -142,4 +142,17 @@ class Course(models.Model):
         return val_dict
 
 
+    def to_non_unicode_dict(self):
+      # Returns a dict but without using unicode encodings.
+
+      def _fix_type(val):
+        if type(val)==list:
+          return val
+        else:
+          return str(val)
+
+      raw_dict = self.to_dict()
+      non_unicode = {f:_fix_type(v) for f,v in raw_dict.items()}
+      return non_unicode
+
 
