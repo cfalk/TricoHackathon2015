@@ -21,6 +21,8 @@ class Expanded_User(models.Model):
       if location not in {"schedule", "shopping_cart"}:
         raise Exception("`location` must be 'schedule' or 'shopping_cart'!")
 
+      print "LOCATION: {} (ADD)".format(location)
+
       current = json.loads( getattr(self, location) )
       if reg_id not in current:
         current.append(reg_id)
@@ -33,6 +35,7 @@ class Expanded_User(models.Model):
       # Removes the course with a given `reg_id` from the user's
       #  "schedule" or"
 
+      print "LOCATION: {} (REMOVE)".format(location)
       if location not in {"schedule", "shopping_cart"}:
         raise Exception("`location` must be 'schedule' or 'shopping_cart'!")
 

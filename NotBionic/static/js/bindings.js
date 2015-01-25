@@ -1,53 +1,34 @@
-$(document).on("click", ".button-shop-course", function(event) {
+
+/*
+
+NOTE: `setTimeout`s have been applied below because SQLITE3
+      is too slow to keep up with JavaScript's queries.
+      Essentially, it is awful at concurrency.
+
+*/
+
+
+$(document).on("click", ".button-card", function(event) {
   var reg_id = $(this).attr("reg_id");
-  addCourse(reg_id, "shopping_cart");
 
-  $(this).toggleClass("button-add-course")
-         .toggleClass("button-remove-course")
-         .html(rejectIcon);
+  if ($(this).hasClass("shop")) {
+    addCourse(reg_id, "shopping_cart");
 
-  event.cancelBubble = true;
-  event.stopImmediatePropagation();
-  event.stopPropagation();
-  return false;
-});
+  } else if ($(this).hasClass("approve")) {
+    addCourse(reg_id, "schedule");
 
+    setTimeout(function() { //TODO: DELETE WHEN MYSQL
+      removeCourse(reg_id, "shopping_cart");
+    },50);//TODO: DELETE WHEN MYSQL
 
-$(document).on("click", ".button-add-course", function(event) {
-  var reg_id = $(this).attr("reg_id");
-  addCourse(reg_id, "schedule");
-  removeCourse(reg_id, "shopping_cart");
-  $("#"+reg_id+"_top")[0].remove()
-  $.get("/course/"+reg_id+"/", function(data) {
-    createCard(data,".profile_schedule_cards_container");
-  });
-  event.cancelBubble = true;
-  event.stopImmediatePropagation();
-  event.stopPropagation();
-  return false;
-});
+  } else if ($(this).hasClass("trash")) {
+    removeCourse(reg_id, "schedule");
 
-$(document).on("click", ".button-remove-course", function(event) {
-  var reg_id = $(this).attr("reg_id");
-  removeCourse(reg_id, "shopping_cart");
-  removeCourse(reg_id, "schedule");
-  $("#"+reg_id+"_top")[0].remove()
-  console.log($("#"+reg_id+"_top"))
-  $(this).toggleClass("button-remove-course")
-         .toggleClass("button-add-course")
-         .html(confirmIcon);
-  event.cancelBubble = true;
-  event.stopImmediatePropagation();
-  event.stopPropagation();
-  return false;
-});
+    setTimeout(function() { //TODO: DELETE WHEN MYSQL
+      removeCourse(reg_id, "shopping_cart");
+    },50);//TODO: DELETE WHEN MYSQL
 
+  }
 
-$(document).on("click", ".activeFilterOptions label", function() {
-  $(this).toggleClass("activated");
-
-  event.cancelBubble = true;
-  event.stopImmediatePropagation();
-  event.stopPropagation();
   return false;
 });

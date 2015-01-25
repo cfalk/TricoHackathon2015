@@ -28,8 +28,8 @@
   box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.15);
 }
 
-/* Shopping Cart Icon */
-.card_container .button-shop-course {
+/* Small Card Formatting */
+.card_container .button-card {
  position:absolute;
  top:0em;
  left:0em;
@@ -39,7 +39,7 @@
  opacity:0.6;
 }
 
-.card_container .button-shop-course:hover {
+.card_container .button-card:hover {
  opacity:0.8;
  background-color:rgba(100,100,100,0.05);
 }

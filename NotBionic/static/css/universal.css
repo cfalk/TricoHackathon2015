@@ -26,6 +26,12 @@ ul, li {
  padding: 0em 0.5em;
 }
 
+#shopping-cart,
+#confirmed {
+ position:relative;
+ overflow:hidden;
+ min-height: 100%;
+}
 
 /* Pseudo-checkbox CSS */
 input[type="checkbox"] {
@@ -63,6 +69,16 @@ input[type="text"] {
 }
 
 
+.fullHeader {
+ text-align:left;
+ font-size:1.5em;
+ font-weight:bold;
+ padding: 0.5em; 1em;
+ margin-top:1em;
+ background-color:rgba(0,0,0,0.05);
+}
+
+
 @media (max-width: 400px) {
   #content-container {
     margin: 6em 0em 0em 0em;
@@ -74,6 +90,10 @@ input[type="text"] {
 
   label.checkbox {
    padding:0.5em 0.2em;
+  }
+
+  .fullHeader {
+    text-align:center;
   }
 
 }

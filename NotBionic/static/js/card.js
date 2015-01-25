@@ -20,20 +20,40 @@ var iconDict = {
   "PSYC"  :  "psyc.png"
   };
 
-function createCard(courseData, container){
+
+function shoppingCartButton(reg_id) {
+  return "<div reg_id='"+reg_id+"' class='button button-card shop'>" +
+            "<img src='/static/images/shopping-cart.png'>" +
+          "</div>";
+}
+
+function thumbsUpButton(reg_id) {
+  return "<div reg_id='"+reg_id+"' class='button button-card approve'>" +
+            "<img src='/static/images/thumbs.png'>" +
+          "</div>";
+}
+
+function trashButton(reg_id) {
+  return "<div reg_id='"+reg_id+"' class='button button-card trash'>" +
+            "<img src='/static/images/trash.png'>" +
+          "</div>";
+}
+
+
+function createCard(courseData, container, button){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];
+
+  if (button===undefined) {
+    button = shoppingCartButton(courseData.reg_id);
+  }
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
              "<div class='card_container'>" +
 
-             "<div reg_id='"+courseData.reg_id+"' " +
-                   "class='button button-shop-course'>" +
-                "<img src='/static/images/shopping-cart.png' " +
-                "class='card_shopping_cart'>" +
-             "</div>" +
+             button +
 
              "<div class='card_course_id'>" +
                courseData.reg_id.substring(0, courseData.reg_id.length-3) +

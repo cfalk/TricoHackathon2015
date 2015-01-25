@@ -53,8 +53,6 @@ def filter_courses(query, courses=None):
     else:
       courses = courses.filter(**{field:val})
 
-  print courses.count()
-
   return courses
 
 

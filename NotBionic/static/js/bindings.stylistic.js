@@ -7,3 +7,12 @@ $(document).on("click", ".filter", function() {
     $(this).addClass("active");
   }
 });
+
+$(document).on("click", ".activeFilterOptions label", function() {
+  $(this).toggleClass("activated");
+
+  event.cancelBubble = true;
+  event.stopImmediatePropagation();
+  event.stopPropagation();
+  return false;
+});
