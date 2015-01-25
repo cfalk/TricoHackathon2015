@@ -1,8 +1,8 @@
 //File with the logic to create a card.
 
-var iconDict = {
+iconDict = {
   "CHEM" : "chem.png",
-  "CMCS" : "cmsc.png",
+  "CMSC" : "cmsc.png",
   "ECON" : "econ.png",
   "ENGL" : "engl.png",
   "MATH" : "math.png",
@@ -20,6 +20,36 @@ var iconDict = {
   "PSYC"  :  "psyc.png"
   };
 
+var colorDict = {};
+var colors = [
+  "#8dd3c7",
+  "#ffffb3",
+  "#bebada",
+  "#fb8072",
+  "#80b1d3",
+  "#fdb462",
+  "#b3de69",
+  "#fccde5",
+  "#d9d9d9",
+  "#bc80bd",
+  "#ccebc5",
+  "#ffed6f"
+]
+
+var colorCounter = 0;
+
+function getColor(reg_id) {
+  var color = colorDict[reg_id];
+  if (color===undefined) {
+
+    if (colorCounter>=colors.length) colorCounter = 0;
+
+    // Assign colors to each reg_id.
+    color = colors[colorCounter++];
+    colorDict[reg_id] = color;
+  }
+  return color;
+}
 
 function shoppingCartButton(reg_id) {
   return "<div reg_id='"+reg_id+"' class='button button-card shop'>" +
@@ -40,40 +70,48 @@ function trashButton(reg_id) {
 }
 
 
-function createCard(courseData, container, button){
+function createCard(courseData, container, buttons){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];
 
-  if (button===undefined) {
-    button = shoppingCartButton(courseData.reg_id);
+  if (buttons===undefined) {
+    buttons = [shoppingCartButton(courseData.reg_id)];
+  } else if (!buttons instanceof Array) {
+    buttons = [buttons];
+  }
+
+  var color = "";
+  if (container == '#confirmed') {
+    color = getColor(courseData.reg_id);
   }
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
-             "<div class='card_container'>" +
+             "<div class='card_container' style='background-color:"+color+"'>";
 
-             button +
+  for (var i=0; i<buttons.length; i++) {
+    card += buttons[i];
+  }
 
-             "<div class='card_course_id'>" +
-               courseData.reg_id.substring(0, courseData.reg_id.length-3) +
-             "</div>" +
+  card += "<div class='card_course_id'>" +
+            courseData.reg_id.substring(0, courseData.reg_id.length-3) +
+          "</div>" +
 
-             "<div class='card_icon'>" +
-              "<img src='/static/images/" + icon + "'>" +
-             "</div>" +
+          "<div class='card_icon'>" +
+          "<img src='/static/images/" + icon + "'>" +
+          "</div>" +
 
-             "<div class='card_title'>"+
-               courseData.title +
-             "</div>" +
+          "<div class='card_title'>"+
+            courseData.title +
+          "</div>" +
 
-             "<div class='card_instructor'>" +
-               courseData.instructor +
-             "</div>"+
-             "<div class='card_time'>"+
-               times(courseData) +
-             "</div>";
-
+          "<div class='card_instructor'>" +
+            courseData.instructor +
+          "</div>"+
+          "<div class='card_time'>"+
+            times(courseData) +
+          "</div>" ;
 
   $(container).append(card);
 }

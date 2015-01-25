@@ -1,32 +1,52 @@
-{% include 'head.html' %}
-<body>
-     <div class="big_card_container">
-                <div class="big_card_icon">
-                    <img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" class="card_icon">
-                </div>
-                <div class="big_card_information">
-                    <div class="big_card_header">
-                        <h3 class="big_card_title"> {{course.title}} </h3>
-                        <div class="card_days"> {{course.clean_days}} </div>
-                        <div class="card_days">{{ course.clean_start_times }}-{{ course.clean_end_times }}</div>
-                    </div>
-                    <div class="big_card_key_info">
-                        <h4 class="big_card_course_num"> {{course.course_num}} </h4>
-                        <h4 class="big_card_semester"> {{course.semester}} </h4>
-                    </div>
-                        <div class="big_card_instructor"> </div>
-                        <div class="card_description"> {{course.description}} </div>
 
-                        <div class="card_stats">
-                        <div class="inactiveCardButton cardButtons add-course">
-                            <button reg_id="{{ course.reg_id }}"
-                                    class="button button-add-course">
-                                Add Course to Shopping Cart
-                            </button>
-                        </div>
-                    </div>
-		    <h3>Syllabus</h3>
-                    <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
-        </div>
+{% include 'head.html' %}
+
+<body>
+    <div class='big_card_container'>
+    <div class='big_card_course_id'>
+               {{cleaned_reg_id}}
     </div>
+
+    <div class='big_card_icon'>
+        <img src=""></img>
+    </div>
+
+    <div class='big_card_title'>
+        {{course.title}}
+    </div>
+
+    <div class='big_card_instructor'>
+        {{course.instructor}}
+    </div>
+    <div class='big_card_time'>
+    </div>
+    <div class='big_card_semester'>
+        {{course.semester}}
+    </div>
+    <div class="big_card_description">
+        {{course.description}}
+    </div>
+    <div class="big_card_location">
+        {{course.location}}
+    </div>
+    <div class="big_card_college">
+        {{course.college}}
+    </div>
+    <div class="big_card_college">
+        {{course.course_cap}}
+    </div>
+    <div class="big_card_college">
+        {{course.distribution}}
+    </div>
+    <div class="big_card_syllabus">
+         <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
+    </div>
+    <button class="button">
+        <!--from href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>-->
+        <img src="{{ STATIC_URL }}images/down-button.png">
+    </button>   
+    </div>    
+    <script src="{{ STATIC_URL }}js/course_info.js"></script>        
 </body>
+
+

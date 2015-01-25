@@ -221,7 +221,14 @@ def render_course(request, reg_id=""):
   # Sends an html page containing course info.
   from retrieval import get_course_by_reg_id
   course = get_course_by_reg_id(reg_id)
-  return render(request, "course_info.html", {"course":course})
+  course_reg_id = course.reg_id
+  department_num = course_reg_id[:len(course_reg_id)-3]
+  department = department_num[0:4]
+  cleaned_reg_id = department_num
+  return render(request, "course_info.html", {
+                                              "course":course,
+                                              "cleaned_reg_id": cleaned_reg_id,
+                                             })
 
 
 
