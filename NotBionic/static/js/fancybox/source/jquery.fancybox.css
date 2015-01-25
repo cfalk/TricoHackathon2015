@@ -165,12 +165,12 @@
 /* Overlay helper */
 
 .fancybox-lock {
-    overflow: hidden !important;
+    overflow: visible !important;
     width: auto;
 }
 
 .fancybox-lock body {
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
 .fancybox-lock-test {

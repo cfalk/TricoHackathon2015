@@ -1,6 +1,7 @@
 {% include "head.html" %}
-{% include 'menu.html' %}
 <body>
+    {% include 'menu.html' %}
+    <div class='main'>
     {% if user.is_authenticated %}
     <h1>Welcome {{ user.username }}</h1>
     <form action="/logout/" method="post">
@@ -27,6 +28,7 @@
     <h2>Shopping Cart</h2>
     <div id='shopping-cart'>
 
+    </div>
     </div>
 </body>
 </html>
