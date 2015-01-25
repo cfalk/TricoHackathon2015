@@ -108,7 +108,16 @@ def get_courses(request, page=1):
   import json
   from retrieval import pagify_courses, filter_courses
 
-  search_dict = {str(key):str(val) for key,val in request.GET.items()}
+  request.GET.items()
+
+  # Collect querylists if necessary.
+  queries = {}
+  for key, val in request.GET.items():
+    if "[]" in key:
+      key = key.replace("[]","")
+      val = request.GET.getlist(key+"[]")
+    queries[key] = val
+
 
   # Clean and integerize the `page`.
   if not page:
@@ -117,7 +126,8 @@ def get_courses(request, page=1):
     page = int(page)
 
   # Apply any available filters and pagify the courses.
-  courses = filter_courses(search_dict)
+  courses = filter_courses(queries)
+  print "PAGE:{}".format(page)
   courses = pagify_courses(courses, page=page)
 
   # Construct the JSON response from the courses.

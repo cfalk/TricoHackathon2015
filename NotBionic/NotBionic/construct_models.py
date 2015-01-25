@@ -1,6 +1,6 @@
 
 # Set to `True` to enable debugging options.
-DEBUG = False
+DEBUG = True
 
 
 def build_course(obj_dict):
@@ -101,7 +101,7 @@ def construct_courses_from_CSV(filename):
     iteration = 0
 
     if DEBUG:
-      debug_limit = 25
+      debug_limit = 2000
       random.shuffle(data)
 
 

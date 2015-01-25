@@ -23,7 +23,9 @@ def filter_courses(query, courses=None):
   # Returns all Course (or `none`) objects that match all
   #  specified key-values in `query`
 
+  from django.db.models import Q
   from models import Course
+  import operator
 
   if courses is None:
     courses = Course.objects.all()
@@ -31,12 +33,29 @@ def filter_courses(query, courses=None):
   # Separately parse the time-related searches from the query.
   time_fields = ["starts", "ends", "days"]
   time_query = {f:query[f] for f in time_fields if f in query}
-  query = {f:val for f, val in query.items() if f in f not in time_fields}
+  query = {f:val for f, val in query.items() if f not in time_fields}
 
   if time_query:
     courses = filter_timeframe(time_query, courses=courses)
 
-  return courses.filter(**query)
+  # Allow `val` lists to perform `or` operations on a `field` and
+  #  allow `val` single values to perform `and` operations.
+  for field, val in query.items():
+    # If not set, default search to be caseless and containment-based.
+    if "__" not in field:
+      field += "__icontains"
+
+    if type(val)==list:
+      Q_list = [Q(**{field:sub_val}) for sub_val in val]
+      prepared_query = reduce(operator.or_, Q_list)
+      courses = courses.filter(prepared_query)
+
+    else:
+      courses = courses.filter(**{field:val})
+
+  print courses.count()
+
+  return courses
 
 
 

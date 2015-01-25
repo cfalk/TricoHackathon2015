@@ -18,7 +18,7 @@
     <div class=filter-bar style="display: table;">
 	<ul id=filters>
 	    <li data-filter="semester" class="filter"> Semester </li>
-	    <li data-filter="campus" class="filter"> Campus </li>
+	    <li data-filter="college" class="filter"> Campus </li>
 	    <li data-filter="department" class="filter"> Department </li>
 	    <li data-filter="day" class="filter"> Day </li>
 	    <li data-filter="instructor" class="filter"> Instructor </li>
@@ -32,10 +32,10 @@
     <!-- Semester -->
     <div id="semester-filterOptions" class="disabledFilterOptions">
 	<label for="fall" class=checkbox>
-	    <input type=checkbox id=fall name=fall value=fall>Fall 2014
+	    <input type=checkbox id=fall name=fall value=fall_2014>Fall 2014
 	</label>
 	<label for="spring" class=checkbox>
-	    <input type=checkbox id=spring name=spring value=spring>Spring 2015
+	    <input type=checkbox id=spring name=spring value=spring_2015>Spring 2015
 	</label>
     </div>
 
@@ -47,16 +47,16 @@
 	<button type=button class=filter-text>+</button>
     </div>
 
-    <!-- Campus -->
-    <div id="campus-filterOptions" class="disabledFilterOptions">
+    <!-- College -->
+    <div id="college-filterOptions" class="disabledFilterOptions">
         <label for="Haverford" class=checkbox>
-	    <input type=checkbox id=Haverford name="Haverford" value="Haverford">Haverford
+	    <input type=checkbox id=Haverford name="Haverford" value="haverford">Haverford
 	</label>
 	<label for="Bryn Mawr"class=checkbox>
-	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="Bryn Mawr">Bryn Mawr
+	    <input type=checkbox id="Bryn Mawr" name="Bryn Mawr" value="bryn_mawr">Bryn Mawr
 	</label>
 	<label for="Swarthmore"class=checkbox>
-	<input type=checkbox id="Swarthmore" name=Swarthmore value="Swarthmore">Swarthmore
+	<input type=checkbox id="Swarthmore" name=Swarthmore value="swarthmore">Swarthmore
 	</label>
     </div>
 
@@ -77,19 +77,19 @@
     <div id="day-filterOptions" class="disabledFilterOptions">
 	<ul id="day-list" style="list-style-type: None;">
 	    <label for=monday class=checkbox>
-		<li class=day-filter><input type=checkbox value=monday>Mon</li>
+		<li class=day-filter><input type=checkbox value=M>Mon</li>
 	    </label>
 	    <label for=tuesday class=checkbox>
-		<li class=day-filter><input type=checkbox value=tuesday>Tue</li>
+		<li class=day-filter><input type=checkbox value=Tu>Tue</li>
 	    </label>
 	    <label for=wednesday class=checkbox>
-		<li class=day-filter><input type=checkbox value=wednesday>Wed</li>
+		<li class=day-filter><input type=checkbox value=W>Wed</li>
 	    </label>
 	    <label for=thursday class=checkbox>
-		<li class=day-filter><input type=checkbox value=thursday>Thu</li>
+		<li class=day-filter><input type=checkbox value=Th>Thu</li>
 	    </label>
 	    <label for=firday class=checkbox>
-		<li class=day-filter><input type=checkbox value=friday>Fri</li>
+		<li class=day-filter><input type=checkbox value=F>Fri</li>
 	    </label>
 	</ul>
     </div>
