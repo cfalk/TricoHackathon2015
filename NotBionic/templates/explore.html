@@ -61,6 +61,9 @@
     <!-- Level -->
     <div id="level-filterOptions" class="disabledFilterOptions">
 	<label for="100"class="checkbox activated">
+	    <input type=checkbox name=000 id=000 value="000">000s
+	</label>
+	<label for="100"class="checkbox activated">
 	    <input type=checkbox name=100 id=100 value="100">100s
 	</label>
 	<label for="200"class="checkbox activated">
@@ -68,6 +71,9 @@
 	</label>
 	<label for="300"class="checkbox activated">
 	    <input type=checkbox name=300 id=300 value="300">300s
+	</label>
+	<label for="100"class="checkbox activated">
+	    <input type=checkbox name=400 id=400 value="400">400s
 	</label>
     </div>
 
@@ -124,11 +130,44 @@
 	    <div id="end-slider"></div>
 
             <script>
+	    $(function() {
+	    $("#start-slider").slider({
+		range: false,
+		min: 0,
+		max: 1440,
+		step: 15,
+		value: [600],
+		slide: function (e, ui) {
+		    var hours1 = Math.floor(ui.values[0] / 60);
+		    var minutes1 = ui.values[0] - (hours1 * 60);
+
+		    if (hours1.length == 1) hours1 = '0' + hours1;
+		    if (minutes1.length == 1) minutes1 = '0' + minutes1;
+		    if (minutes1 == 0) minutes1 = '00';
+		    if (hours1 >= 12) {
+			if (hours1 == 12) {
+			    hours1 = hours1;
+			    minutes1 = minutes1 + " PM";
+			}else {
+			    hours1 = hours1 - 12;
+			    minutes1 = minutes1 + " PM";
+			}
+		}else {
+		    hours1 = hours1;
+		    minutes1 = minutes1 + " AM";
+		}
+		if (hours1 == 0) {
+		    hours1 = 12;
+		    minutes1 = minutes1;
+		}
+	      }
+	      });
+	      });
               // Apply jQuery's slider functionality to the time inputs.
-              $(function() {
+              /*$(function() {
                   $( "#start-slider" ).slider();
                   $( "#end-slider" ).slider();
-              });
+              });*/
             </script>
 
     </div>

@@ -55,6 +55,7 @@ class Course(models.Model):
     department_num = models.CharField(max_length=100, default="")
     course_cap = models.CharField(max_length=100, default="")
     course_num = models.CharField(max_length=100, default="")
+    level = models.CharField(max_length=100, default="")
 
     description = models.TextField(default="")
 

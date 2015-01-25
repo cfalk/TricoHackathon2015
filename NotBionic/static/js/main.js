@@ -1,6 +1,9 @@
 $( document ).ready(function() {
-	//Click binds
 
+        // Apply jQuery UI's tooltips.
+        $(document).tooltip();
+
+        // Apply fancybox wherever specified.
 	$(".fancyboxClass").fancybox({
 		maxWidth	: 800,
 		maxHeight	: 600,
