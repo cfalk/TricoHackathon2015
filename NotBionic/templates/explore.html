@@ -41,7 +41,7 @@
 	</label>
     </div>
     <div id="department-filterOptions" class="disabledFilterOptions">
-	<ul>
+	<!--<ul>
 	{% for key, value in value_list.items %}
 	{% if key == "department" %}
 	{% for each in value %}
@@ -51,7 +51,10 @@
 	{% endfor %}
 	{% endif %}
 	{% endfor %}
-	</ul>
+	</ul>-->
+	<label for="department"> Department
+	    <input id="department" class="autocomplete-department">
+	</label>
     </div>
     <div id="campus-filterOptions" class="disabledFilterOptions">
         <label for="Haverford">
@@ -96,6 +99,11 @@
 	    </label>
 	</ul>
     </div>
+    <div id="instructor-filterOptions" class="disabledFilterOptions">
+	<label for="instructor"> Instructor
+	    <input id="instructor" class="autocomplete-instructor">
+	</label>
+    </div>
     <div id="time-filterOptions" class="disabledFilterOptions">
 	    <h3> Start Time </h3>
 	    <div id="start-slider" label="Start Time"></div>
@@ -108,6 +116,11 @@
 	$( "#end-slider" ).slider();
     });
     </script>
+    <div id="everything-filterOptions" class="disabledFilterOptions">
+	<label for="everything"> Everything
+	    <input id="everything" class="autocomplete-everything"
+	</label>
+    </div>
     <div id="explore-results">
         <div class="cards_container">
         </div>
