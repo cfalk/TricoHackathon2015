@@ -1,5 +1,9 @@
 $(document).ready(function() {
     var schedule = $('#schedule');
+
+    // Don't show the table if the user isn't logged in.
+    if ($("#login-user").length) { return false; }
+
     // Create the header information for the table
     schedule.append('<table>');
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -62,12 +66,7 @@ $(document).ready(function() {
     });
 
     $('#schedule').on('click', '.occupiedSlot', function(){
-	var classes = $(this)[0].className;
-	var split = classes.split(" ");
-	var reg_id = split[0];
-	if (split[0] == 'occupiedSlot'){
-	    reg_id = split[1];
-	}
+        var reg_id = $(this).attr("reg_id");
 	$.get('/course/'+reg_id+'/', function( data ){
 	    var string = "<h1>"+data.title+"</h1>";
 	    string = string + "<p style='width:400px;'>"+data.description+"</p>";
@@ -101,7 +100,7 @@ function drawClass(course) {
     else{
 	start_minute = '30';
     }
-    try{ 
+    try{
 	if(end_time.charAt(0) == "0") {
 	    end_hour = parseInt(end_time.charAt(1));
 	}
@@ -158,7 +157,7 @@ function drawClass(course) {
 		block.css('border-top','none');
 	    }
 	    block.attr("reg_id",course.reg_id);
-	    block.addClass("hasClass");
+	    block.addClass("occupiedSlot");
 	    counter++;
 	}
     }
