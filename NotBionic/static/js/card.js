@@ -1,8 +1,8 @@
 //File with the logic to create a card.
 
-var iconDict = {
+iconDict = {
   "CHEM" : "chem.png",
-  "CMCS" : "cmsc.png",
+  "CMSC" : "cmsc.png",
   "ECON" : "econ.png",
   "ENGL" : "engl.png",
   "MATH" : "math.png",
@@ -83,8 +83,7 @@ function createCard(courseData, container, buttons){
 
   var color = "";
   if (container == '#confirmed') {
-    color = colors[color_counter];
-    color_counter++;
+    color = getColor(courseData.reg_id);
   }
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
