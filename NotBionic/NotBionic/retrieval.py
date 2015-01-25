@@ -17,40 +17,40 @@ def get_course_by_reg_id(reg_id):
   return filter_courses({"reg_id__iexact":reg_id}).first()
 
 
-def filter_courses(search_dict, courses=None):
+def filter_courses(query, courses=None):
   # Returns all Course (or `none`) objects that match all
-  #  specified key-values in `search_dict`
+  #  specified key-values in `query`
 
   from models import Course
 
   if courses is None:
     courses = Course.objects.all()
 
-  """
-  timeframe_search = {}
+  # Separately parse the time-related searches from the query.
+  time_fields = ["start", "end", "days"]
+  time_query = {f:query[f] for f in time_fields if f in query}
+  query = {f:val for f, val in query.items() if f in f not in time_fields}
 
-  time_fields = ["start", "end", "day"]
-  time_search = {f:search_dict[f] for f in time_fields if f in search_dict}
-  search_dict = {f:val for f, val in search.items() if f in f not in time_fields}
+  if time_query:
+    courses = filter_timeframe(time_query, courses=courses)
 
-  if time_search:
-    time_search["courses"] = courses
-    courses = filter_timeframe(**timeframe_search)
-  """
-
-  return courses.filter(**search_dict)
+  return courses.filter(**query)
 
 
-def filter_timeframe(timeframe_dict, courses=None):
+def filter_timeframe(query, courses=None):
   # Returns the courses that are within a certain timeframe.
 
   from models import Course
+  import json
 
   if courses is None:
     courses = Course.objects.all()
 
-
-
+  if "days" in query:
+    days = query["days"].replace("\"","'")
+    print days
+    print courses.first().days
+    courses = courses.filter(days__icontains=days)
 
   return courses
 

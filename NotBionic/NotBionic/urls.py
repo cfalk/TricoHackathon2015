@@ -10,12 +10,12 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', views.explore, name='home'),
-    url(r'^explore/$', views.explore, name='explore'),
-    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^explore/?$', views.explore, name='explore'),
+    url(r'^profile/?$', views.profile, name='profile'),
 
     # Authentication view
-    url(r'^auth/$', views.auth, name='auth'),
-    url(r'^logout/$', views.logout_view, name='logout'),
+    url(r'^auth/?$', views.auth, name='auth'),
+    url(r'^logout/?$', views.logout_view, name='logout'),
 
     # JSON-returning views:
     url(r'^course/(?P<reg_id>[a-zA-Z0-9]+)/?$', views.get_course),

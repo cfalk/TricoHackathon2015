@@ -49,8 +49,8 @@ class Course(models.Model):
     title = models.CharField(max_length=255, null=True)
     reg_id = models.CharField(max_length=100, default="")
     department_num = models.CharField(max_length=100, default="")
-    course_cap = models.IntegerField(null=True)
-    course_num = models.IntegerField(null=True)
+    course_cap = models.CharField(max_length=100, default="")
+    course_num = models.CharField(max_length=100, default="")
 
     description = models.TextField(default="")
 

@@ -35,9 +35,9 @@ def auth(request):
             login(request,user)
             return HttpResponseRedirect(redirect)
         else:
-            return HttpResponse("Couldn't find user")
+            return HttpResponse("Invalid Login!")
     else:
-	return HttpResponse("Invalid login")
+        return HttpResponse("Invalid Login!")
 
 
 
@@ -54,12 +54,15 @@ def get_user_schedule(request):
 
     expanded_user = get_expanded_user(user)
     courses = expanded_user.get_courses()
-    response = json.dumps(courses)
-
-    return HttpResponse(response, content_type="application/json")
 
   else:
-    return HttpResponseForbidden()
+
+    courses = []
+
+  response = json.dumps(courses)
+
+  return HttpResponse(response, content_type="application/json")
+
 
 
 
