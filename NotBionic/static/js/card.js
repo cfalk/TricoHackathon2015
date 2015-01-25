@@ -67,8 +67,27 @@ function createCard(courseData){
 									.append($('<h3>').html(courseData.title)))
 							)
 							.append('<div class="card_instructor">' + courseData.instructor + '</div>')
-							.append('<div class="card_hours">'+courseData.days.join("") + " at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
+							.append('<div class="card_hours">'+times(courseData)+'</div>')
 							
 							)
 					));
+}
+
+function times(courseData){
+	var returnString = "";
+	if (courseData){
+		if(courseData.days){
+			returnString = courseData.days.join("");
+			if(courseData.start_times){
+				returnString = returnString+" at " +courseData.start_times[0];
+				if (courseData.end_times){
+					returnString = returnString + " to " + courseData.end_times[0];
+				}
+			}
+			else{
+				returnString = " at time TBD";
+			}
+		}
+	}
+	return returnString;
 }
