@@ -70,9 +70,17 @@ class Course(models.Model):
     end_times = models.TextField(default="[]")
 
 
+    def clean_days(self):
+      return json.loads(self.days)
+    def clean_start_times(self):
+      return json.loads(self.start_times)
+    def clean_end_times(self):
+      return json.loads(self.end_times)
+
+
     def _load_json_field(self, field):
       raw = getattr(self, field)
-      return json.loads(raw.replace("'","\""))
+      return json.loads(raw)
 
 
     def to_dict(self):
@@ -83,7 +91,7 @@ class Course(models.Model):
 
           # Return the json-ready value if possible.
           try:
-            val = json.loads(val.replace("'","\""))
+            val = json.loads(val)
           except:
             pass
 

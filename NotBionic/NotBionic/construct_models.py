@@ -37,6 +37,17 @@ def build_course(obj_dict):
 
 
 def construct_courses_from_CSV(filename):
+
+  def clean_row(headers, row):
+    list_fields = {"days","end_times","start_times"}
+
+    for i, tup in enumerate(zip(headers, row)):
+      headers = tup[0]
+      val = tup[1]
+      if headers in list_fields:
+        row[i] = val.replace("'","\"")
+
+
   import csv, random
 
   with open(filename) as f:
@@ -47,7 +58,7 @@ def construct_courses_from_CSV(filename):
     errors = 0
 
     if DEBUG:
-      debug_limit = 2000
+      debug_limit = 50
       iteration = 0
       random.shuffle(data)
 
@@ -55,6 +66,7 @@ def construct_courses_from_CSV(filename):
     for row in data:
       try:
 
+        clean_row(headers, row)
         obj_dict = {key:val for key, val in zip(headers, row)}
         build_course(obj_dict)
 

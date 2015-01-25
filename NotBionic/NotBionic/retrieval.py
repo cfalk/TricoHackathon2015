@@ -47,9 +47,7 @@ def filter_timeframe(query, courses=None):
     courses = Course.objects.all()
 
   if "days" in query:
-    days = query["days"].replace("\"","'")
-    print days
-    print courses.first().days
+    days = json.loads(query["days"])
     courses = courses.filter(days__icontains=days)
 
   return courses
@@ -71,12 +69,16 @@ def get_expanded_user(user):
   return expanded
 
 
-def get_course_value_set(field):
+def get_course_value_set(field, courses=None):
   # Returns a set of the distinct values in a Course `field`.
+  #  Also allows values to be chosen from a subset, `courses`.
 
   from models import Course
 
-  vals = Course.objects.values_list(field, flat=True).distinct()
+  if courses is None:
+    courses = Course.objects.all()
+
+  vals = courses.values_list(field, flat=True).distinct()
 
   return set(vals)
 
