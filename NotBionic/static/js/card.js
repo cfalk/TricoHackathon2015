@@ -61,11 +61,7 @@ function createCard(courseData, container, buttons){
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
-<<<<<<< HEAD
-             "<div class='card_container' style='background-color:"+color+"'>" +
-=======
-             "<div class='card_container'>";
->>>>>>> a1d433295d4803e4180152c6c3d4cfbd31696669
+             "<div class='card_container' style='background-color:"+color+"'>";
 
   for (var i=0; i<buttons.length; i++) {
     card += buttons[i];
