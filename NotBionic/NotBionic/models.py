@@ -30,6 +30,9 @@ class Expanded_User(models.Model):
 
 
     def remove_course(self, reg_id, location):
+      # Removes the course with a given `reg_id` from the user's
+      #  "schedule" or"
+
       if location not in {"schedule", "shopping_cart"}:
         raise Exception("`location` must be 'schedule' or 'shopping_cart'!")
 
@@ -43,6 +46,8 @@ class Expanded_User(models.Model):
       setattr(self, location, json.dumps(current))
 
       self.save()
+
+
 
 
 class Course(models.Model):
@@ -71,19 +76,26 @@ class Course(models.Model):
 
 
     def clean_days(self):
-      return json.loads(self.days)
+        return self._load_json_field("days")
+
+
     def clean_start_times(self):
-      return json.loads(self.start_times)
+        return self._load_json_field("start_times")
+
+
     def clean_end_times(self):
-      return json.loads(self.end_times)
+        return self._load_json_field("end_times")
 
 
     def _load_json_field(self, field):
-      raw = getattr(self, field)
-      return json.loads(raw)
+        raw = getattr(self, field)
+        return json.loads(raw)
 
 
     def to_dict(self):
+        # Returns a Python dictionary where the key-value pairs
+        #  are {"field":"value", ...}.
+
         val_dict = {}
 
         for field in self._meta.get_all_field_names():

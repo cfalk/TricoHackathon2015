@@ -5,19 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
-def explore(request):
-    from models import Course
-    from retrieval import get_course_value_set
-
-    fields = Course._meta.get_all_field_names()
-    fields.remove(u"id")
-    
-    field_map = {field:list(get_course_value_set(field)) for field in fields}
-    return render(request, "explore.html", {"field_list":fields, "value_list":field_map})
 
 
 def profile(request):
+    # Returns the profile (schedule) page.
+
     return render(request,"profile.html")
+
 
 
 def logout_view(request):
@@ -25,6 +19,24 @@ def logout_view(request):
 
     logout(request)
     return HttpResponseRedirect("/explore/")
+
+
+
+def explore(request):
+    # Returns the search/explore page.
+
+    from models import Course
+    from retrieval import get_course_value_set
+
+    fields = Course._meta.get_all_field_names()
+    fields.remove(u"id")
+
+    field_map = {field:list(get_course_value_set(field)) for field in fields}
+
+    return render(request, "explore.html", {
+                                            "field_list":fields,
+                                            "value_list":field_map
+                                           })
 
 
 

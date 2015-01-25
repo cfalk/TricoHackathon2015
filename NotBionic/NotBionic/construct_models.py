@@ -58,7 +58,7 @@ def construct_courses_from_CSV(filename):
     errors = 0
 
     if DEBUG:
-      debug_limit = 50
+      debug_limit = 2000
       iteration = 0
       random.shuffle(data)
 

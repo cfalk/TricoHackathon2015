@@ -10,11 +10,13 @@ def pagify_courses(courses, page=1):
   return courses[start:end]
 
 
+
 def get_course_by_reg_id(reg_id):
   # Returns one course that case-insensitively matches a `reg_id`
   #  or returns `none` if no course is found.
 
   return filter_courses({"reg_id__iexact":reg_id}).first()
+
 
 
 def filter_courses(query, courses=None):
@@ -37,6 +39,7 @@ def filter_courses(query, courses=None):
   return courses.filter(**query)
 
 
+
 def filter_timeframe(query, courses=None):
   # Returns the courses that are within a certain timeframe.
 
@@ -53,6 +56,7 @@ def filter_timeframe(query, courses=None):
   return courses
 
 
+
 def get_expanded_user(user):
   # Returns the `Expanded_User` entry associated with a `user`
   #  or creates one if it does not yet exist.
@@ -67,6 +71,7 @@ def get_expanded_user(user):
     expanded.save()
 
   return expanded
+
 
 
 def get_course_value_set(field, courses=None):
