@@ -42,13 +42,15 @@ function trashButton(reg_id) {
 }
 
 
-function createCard(courseData, container, button){
+function createCard(courseData, container, buttons){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];
 
-  if (button===undefined) {
-    button = shoppingCartButton(courseData.reg_id);
+  if (buttons===undefined) {
+    buttons = [shoppingCartButton(courseData.reg_id)];
+  } else if (!buttons instanceof Array) {
+    buttons = [buttons];
   }
   
   var color = "";
@@ -59,29 +61,34 @@ function createCard(courseData, container, button){
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
+<<<<<<< HEAD
              "<div class='card_container' style='background-color:"+color+"'>" +
+=======
+             "<div class='card_container'>";
+>>>>>>> a1d433295d4803e4180152c6c3d4cfbd31696669
 
-             button +
+  for (var i=0; i<buttons.length; i++) {
+    card += buttons[i];
+  }
 
-             "<div class='card_course_id'>" +
-               courseData.reg_id.substring(0, courseData.reg_id.length-3) +
-             "</div>" +
+  card += "<div class='card_course_id'>" +
+            courseData.reg_id.substring(0, courseData.reg_id.length-3) +
+          "</div>" +
 
-             "<div class='card_icon'>" +
-              "<img src='/static/images/" + icon + "'>" +
-             "</div>" +
+          "<div class='card_icon'>" +
+          "<img src='/static/images/" + icon + "'>" +
+          "</div>" +
 
-             "<div class='card_title'>"+
-               courseData.title +
-             "</div>" +
+          "<div class='card_title'>"+
+            courseData.title +
+          "</div>" +
 
-             "<div class='card_instructor'>" +
-               courseData.instructor +
-             "</div>"+
-             "<div class='card_time'>"+
-               times(courseData) +
-             "</div>";
-
+          "<div class='card_instructor'>" +
+            courseData.instructor +
+          "</div>"+
+          "<div class='card_time'>"+
+            times(courseData) +
+          "</div>" ;
 
   $(container).append(card);
 }
