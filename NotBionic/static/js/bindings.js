@@ -7,10 +7,7 @@ NOTE: `setTimeout`s have been applied below because SQLITE3
 
 */
 
-
-$(document).on("click", ".button-card", function(event) {
   var reg_id = $(this).attr("reg_id");
-
   if ($(this).hasClass("shop")) {
     addCourse(reg_id, "shopping_cart");
 
