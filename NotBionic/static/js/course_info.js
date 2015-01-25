@@ -13,6 +13,6 @@ function arrowButton() {
           "</div>";
 }
 
-$(".big-card-arrow-button").on("click", function(){
+$(".big-card-arrow-button").click(function(){
 	$(".more_info").toggle();
 });
