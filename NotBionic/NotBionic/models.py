@@ -77,10 +77,16 @@ class Course(models.Model):
     earliest_time = models.IntegerField(null=True)
     latest_time = models.IntegerField(null=True)
 
+    def clean_college(self):
+        return " ".join(self.college.split("_"))
+
 
     def clean_days(self):
-        return self._load_json_field("days")
-
+        days=self._load_json_field("days")
+        final = ""
+        for i in days:
+          final = final + i
+        return final
 
     def clean_start_times(self):
         times = self._load_json_field("start_times")

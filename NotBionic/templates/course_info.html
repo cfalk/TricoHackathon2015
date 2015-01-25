@@ -4,7 +4,7 @@
 <body>
     <div class='big_card_container'>
         <div class='main_card'>
-            <div class='big-card-button'></div>
+            <div class='big-card-button fancy-box-image'></div>
             <div class="top_right">
                 <div class='big_card_course_id'>
                            {{cleaned_reg_id}}
@@ -34,7 +34,7 @@
                     {{course.location}}
                 </div>
                  <div class="big_card_college">
-                    {{course.college}}
+                    {{course.clean_college}}
                 </div>
             </div>
             <div class="bottom_left">
@@ -45,14 +45,21 @@
                         {{course.semester}}
                 </div>
             </div>
-            <div class="big-card-arrow-button"></div>
+            <div class="big-card-arrow-button fancy-box-image"></div>
         </div>
     <div class="more_info">
         <div class="big_card_syllabus">
              <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
         </div>
-        <li class="big_card_student_list">
-            <ul> Me </ul>
+        <ul class="big_card_student_list">
+        <h2> Current Haverford Students who have enrolled in this</h2>
+        <ol>
+            <li> Gabriel Rybeck </li>
+            <li> Brandon Smith </li>
+            <li> Jason Feinberg </li>
+            <li> Blair Rush </li>
+            <li> Casey Falk </li>
+        </ol>
         </li>
     </div>   
     </div> 
@@ -60,7 +67,6 @@
     <script>
       prepareCardImage();
       $(".big-card-button").append(shoppingCartButton("{{course.reg_id}}"));
-      $(".big-card-button").append(trashButton("{{course.reg_id}}"));
       $(".big-card-arrow-button").append(arrowButton());
     </script>
 </body>

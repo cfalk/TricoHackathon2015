@@ -80,9 +80,7 @@
 }
 
 .big-card-arrow-button {
-	bottom:0em;
-	margin-left:auto;
-	margin-right:auto;
+	text-align: center;
 }
 
 
@@ -104,13 +102,16 @@
 
 /*Big card formatting*/
 .big-card-button {
- position:absolute;
+ position: absolute;
  top:0em;
  left:0em;
  height:2em;
  width:2em;
- display:inline-block;
- opacity:0.6;
+}
+
+.fancy-box-image img {
+	width: 64px;
+	height: 64px;
 }
 
 .big-card-button:hover {
@@ -151,7 +152,8 @@
 .big_card_title {
  font-size:1.2em;
  font-weight:bold;
- text-align: center
+ text-align: center;
+ margin-top: 40px;
 }
 .big_card_time {
  margin:1em;
@@ -166,9 +168,10 @@
 
 
 .big_card_icon {
- width:100%;
+margin-top: 30px;	
+ margin-left: 30px;
+ float: left;
  height:10em;
- box-sizing:border-box;
  padding:1em;
  opacity:0.8;
 }
