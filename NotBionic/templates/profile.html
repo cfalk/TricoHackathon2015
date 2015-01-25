@@ -8,23 +8,6 @@
 
     <div id=content-container>
 
-      {% if user.is_authenticated %}
-        <form action="/logout/" method="post">
-          {% csrf_token %}
-          <input type="submit" value="Logout" />
-        </form>
-
-      {% else %}
-
-        <form action="/auth/" method="post">
-          {% csrf_token %}
-          <input type='text' name='username'/>
-          <input type='password' name='password' />
-          <input type="submit" value="Submit" />
-        </form>
-
-      {% endif %}
-
       <div id='schedule'></div>
 
       <div class='fullHeader'>Confirmed Classes</div>
@@ -34,6 +17,23 @@
       <div id='shopping-cart'></div>
 
     </div>
+      {% if user.is_authenticated %}
+        <form action="/logout/" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Logout" id='logout-user' />
+        </form>
+
+      {% else %}
+
+        <form action="/auth/" method="post" id='login-user'>
+          {% csrf_token %}
+          <input type='text' name='username'/>
+          <input type='password' name='password' />
+          <input type="submit" value="Submit" id='login-submit'/>
+        </form>
+
+      {% endif %}
+
 </body>
 
 </html>

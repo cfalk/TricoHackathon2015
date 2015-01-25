@@ -79,6 +79,12 @@
  opacity:0.8;
 }
 
+.big-card-arrow-button {
+	bottom:0em;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 
 @media (max-width:400px) {
  .card_container {
@@ -97,37 +103,55 @@
 }
 
 /*Big card formatting*/
+.big-card-button {
+ position:absolute;
+ top:0em;
+ left:0em;
+ height:2em;
+ width:2em;
+ display:inline-block;
+ opacity:0.6;
+}
+
+.big-card-button:hover {
+ opacity:0.8;
+ background-color:rgba(100,100,100,0.05);
+}
 
 .big_card_container img { height:100%; }
 
 .big_card_container {
- display:block;
- position:relative;
- margin: auto;
- width:30em;
- height:20em;
- padding:1em;
- overflow:hidden;
- text-align:center;
-
-  -webkit-box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.15);
-  -moz-box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.15);
-  box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.15);
 }
 
 
-.big_card_course_id {
- position:absolute;
+.big_card_container .top_right { position:absolute;
  top:0em;
+ right:0em;
+ margin:1em;
+ font-size:0.85em;
+}
+ 
+ .big_card_container .bottom_right { position:absolute;
+ bottom:0em;
  right:0em;
  margin:1em;
  font-size:0.85em;
  opacity:0.5;
 }
 
+ .big_card_container .bottom_left { position:absolute;
+ bottom:0em;
+ left:0em;
+ margin:1em;
+ font-size:0.85em;
+ opacity:0.5;
+}
+
+
 .big_card_title {
  font-size:1.2em;
  font-weight:bold;
+ text-align: center
 }
 .big_card_time {
  margin:1em;
@@ -137,15 +161,20 @@
 }
 .big_card_instructor {
  padding:0.5em;
+ text-align: center;
 }
 
 
 .big_card_icon {
  width:100%;
- height:6em;
+ height:10em;
  box-sizing:border-box;
  padding:1em;
  opacity:0.8;
+}
+
+.big_card_syllabus {
+font-style: italic;
 }
 
 
