@@ -13,9 +13,9 @@ def build_course(obj_dict):
               "start_times", "end_times", "semester",
               "description", "reg_id", "division",
               "instructor", "days", "title", "college",
-              "seminar", "course_num",
               "distribution", "description", "location",
               "department", "course_cap", "department_num",
+              "seminar",
             ]
 
   # If a field requires a non-string type, specify it with a key-val
@@ -41,6 +41,9 @@ def build_course(obj_dict):
       setattr(course, field, val)
 
 
+  course.course_num = strip_course_number(obj_dict["reg_id"])
+  course.level = "{}00".format(course.course_num[0])
+
   times = json.loads(obj_dict["start_times"])
   course.earliest_time = min(times)
 
@@ -48,6 +51,18 @@ def build_course(obj_dict):
   course.latest_time = max(times)
 
   course.save()
+
+
+def strip_course_number(reg_id):
+  # Strips the course course_number from the reg_id (eg, "202" from "BIOLB202001").
+
+  if "PE"==reg_id[0:2]:
+    course_number = reg_id[3:6]
+
+  else:
+    course_number = reg_id[5:8]
+
+  return course_number
 
 
 def clean_row(headers, row):
@@ -89,6 +104,7 @@ def clean_row(headers, row):
   return new_row
 
 def construct_courses_from_CSV(filename):
+  # Reads in a CSV and writes each row as a database Course object.
 
   import csv, random
 
