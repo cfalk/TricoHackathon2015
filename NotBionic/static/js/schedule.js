@@ -145,8 +145,9 @@ function drawClass(course) {
 	    block.css('background-color',color);
 	    block.css('cursor','pointer');
 	    if(counter == 0) {
-		block.text(course.reg_id);
+		block.text(course.reg_id.substring(0,course.reg_id.length-3));
 	        block.css('border-bottom','none');
+		block.css('padding','5px');
 	    }
 	    else if(!(temp_hour != end_hour || temp_minute != end_minute)){
 		block.css('border-top','none');
