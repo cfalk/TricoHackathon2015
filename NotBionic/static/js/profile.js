@@ -6,37 +6,7 @@
 //File with the logic to create a card
 
 function createCard(courseData){
-	//The image needs to be picked properly, for now, the dict is not created
-		/*<div class="cards_container">
-			<div class="card_container">
-					<div class="card_icon">
-						<img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" class="card_icon">
-					</div>
-						<div class="card_information">	
-								<div class="card_header">
-
-									<!--FANCYBOX call-->
-									<a class="various fancybox.ajax" href="/course/info.html"><h3 class="card_title">course.title</h3></a>
-									
-									<h4 class="card_subtitle">course.subtitle</h4>
-								</div>
-								<div class="card_description">course.description</div>
-								<div class="card_hours">course.hours</div>
-							<div class="card_stats">
-								<div class="card_coursenumber">			
-									<h4>course.number</h4>				
-								</div>
-							</div>
-							<div class="inactiveCardButton cardButtons add-course">
-								<button class="button button--add-course">Add Course to Shopping Cart</button>
-							</div>
-							<div class="inactiveCardButton cardButtons course-moreinfo">
-								<button class="button button--more-info">More info...</button>
-							</div>	
-						</div>
-			</div>
-		</div>*/
-	var $cardsContainer = $(".cards_container");
+	var $cardsContainer = $(".profile_cards_container");
 	var iconDict = {
 		"CHEM" : "chem.png",
 		"CMCS" : "cmsc.png",
@@ -51,38 +21,38 @@ function createCard(courseData){
 	var cartIcon = "shopping-cart.png"; 
 
 	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
-							.append($('<div class="card_container">')
-							.append($('<div class="card_header">')
-						.append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">')
-							.append($('<div class="card_shopping_cart">')
-								.append('<img src="/static/images/' + cartIcon + '" class="card_shopping_cart">')))
-						.append($('<div class="card_course_id">')
-								.append('<h4>'+ courseData.reg_id.substring(0,courseData.reg_id.length-3) + '</h4>'))
-						.append($('<div class="card_icon">')
-							.append('<img src="/static/images/' + iconDict[courseData.reg_id.substring(0,4)] + '" class="card_icon">')
-						))
-						.append($('<div class="card_information">')
-							.append($('<div class="card_title">')
-								.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
-									.append($('<h3>').html(courseData.title)))
-							)
-							.append('<div class="card_instructor">' + courseData.instructor + '</div>')
-							.append('<div class="card_hours">'+courseData.days.join("") + " at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
-							
-							)
-					));
+		    .append($('<div class="card_container">')
+			.append($('<div class="card_header">')
+			    .append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">')
+				.append($('<div class="card_shopping_cart">')
+				    .append('<img src="/static/images/' + cartIcon + '" class="card_shopping_cart">')))
+			.append($('<div class="card_course_id">')
+					.append('<h4>'+ courseData.reg_id.substring(0,courseData.reg_id.length-3) + '</h4>'))
+			.append($('<div class="card_icon">')
+				.append('<img src="/static/images/' + iconDict[courseData.reg_id.substring(0,4)] + '" class="card_icon">')
+			))
+			.append($('<div class="card_information">')
+				.append($('<div class="card_title">')
+					.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
+						.append($('<h3>').html(courseData.title)))
+				)
+				.append('<div class="card_instructor">' + courseData.instructor + '</div>')
+				.append('<div class="card_hours">'+courseData.days.join("") + " at " + courseData.start_times[0]+' - '+courseData.end_times[0]+'</div>')
+				
+				)
+		));
 }
 
 $(document).ready(function(){
-	$.get(
-				"/courses/"+(pageNum),
-				function(data){
-					if(data){
-						data.forEach(function(val,index){
-							createCard(val);
-						});
-					}
-				}
-
-	);
+    $.get("/user_courses/", function(courses) {
+	console.log(courses.shopping_cart);
+	for(var i=0;i<courses.shopping_cart.length;i++){
+	    console.log("hello")
+	    $.get("/course/"+courses.shopping_cart[i]+'/', function(data){
+		if(data){
+		    createCard(data);
+		}
+	    });
+	}
+    });
 });
