@@ -9,6 +9,8 @@ $(document).on("click", ".button-add-course", function(event) {
 
   event.cancelBubble = true;
   event.stopImmediatePropagation();
+  event.stopPropagation();
+  return false;
 });
 
 
@@ -22,6 +24,8 @@ $(document).on("click", ".button-remove-course", function(event) {
 
   event.cancelBubble = true;
   event.stopImmediatePropagation();
+  event.stopPropagation();
+  return false;
 });
 
 
