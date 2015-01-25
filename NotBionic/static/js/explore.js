@@ -28,7 +28,7 @@ function loadMoreCards() {
       if (response.length) {
         for (var i=0; i<response.length; i++) {
           var card = response[i];
-          createCard(card);
+          createCard(card, ".cards_container");
         }
       } else {
         canLoadMore = false;

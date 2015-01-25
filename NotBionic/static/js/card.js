@@ -20,7 +20,7 @@ var iconDict = {
   "PSYC"  :  "psyc.png"
   };
 
-function createCard(courseData){
+function createCard(courseData, container){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];
@@ -55,7 +55,7 @@ function createCard(courseData){
              "</div>";
 
 
-  $(".cards_container").append(card);
+  $(container).append(card);
 }
 
 function times(courseData){
