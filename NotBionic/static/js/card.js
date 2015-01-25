@@ -46,9 +46,16 @@ function createCard(courseData){
 		"PHIL" : "phil.png",
 		"PHYS" : "phys.png"
  	};
+
+ 	/*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
+	var cartIcon = "shopping-cart.png"; 
+
 	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
 							.append($('<div class="card_container">')
 							.append($('<div class="card_header">')
+						.append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">')
+							.append($('<div class="card_shopping_cart">')
+								.append('<img src="/static/images/' + cartIcon + '" class="card_shopping_cart">')))
 						.append($('<div class="card_course_id">')
 								.append('<h4>'+ courseData.reg_id.substring(0,courseData.reg_id.length-3) + '</h4>'))
 						.append($('<div class="card_icon">')
