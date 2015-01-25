@@ -127,7 +127,6 @@ def get_courses(request, page=1):
 
   # Apply any available filters and pagify the courses.
   courses = filter_courses(queries)
-  print "PAGE:{}".format(page)
   courses = pagify_courses(courses, page=page)
 
   # Construct the JSON response from the courses.
