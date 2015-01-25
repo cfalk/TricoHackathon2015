@@ -2,7 +2,7 @@
 
 iconDict = {
   "CHEM" : "chem.png",
-  "CMCS" : "cmsc.png",
+  "CMSC" : "cmsc.png",
   "ECON" : "econ.png",
   "ENGL" : "engl.png",
   "MATH" : "math.png",
