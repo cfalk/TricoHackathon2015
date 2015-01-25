@@ -63,8 +63,9 @@ def filter_timeframe(query, courses=None):
     # Remove any courses that contained any "bad" days.
     courses = courses.filter(prepared_query)
 
-  if "start_times" in query:
-    pass
+  if "start_time" in query:
+    time = datetime.datetime.strptime(str(time_str),"%I:%M%p")
+    seconds = 60*(time.hour*60+time.minute)
 
 
 

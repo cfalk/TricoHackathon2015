@@ -74,6 +74,9 @@ class Course(models.Model):
     start_times = models.TextField(default="[]")
     end_times = models.TextField(default="[]")
 
+    earliest_time = models.IntegerField(null=True)
+    latest_time = models.IntegerField(null=True)
+
 
     def clean_days(self):
         return self._load_json_field("days")
