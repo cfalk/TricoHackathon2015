@@ -1,0 +1,22 @@
+th {
+text-align:center;
+padding-right:10px;
+}
+
+#logout-user {
+position:absolute;
+right:10px;
+top:10px;
+border:none;
+padding:10px;
+width:200px;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+@media (max-width: 800px) {
+  #logout-user {
+  position:relative;
+  width:100%;
+  }
+}

@@ -8,10 +8,19 @@
 
     <div id=content-container>
 
+      <div id='schedule'></div>
+
+      <div class='fullHeader'>Confirmed Classes</div>
+      <div id='confirmed'></div>
+
+      <div class='fullHeader'>Shopping Cart</div>
+      <div id='shopping-cart'></div>
+
+    </div>
       {% if user.is_authenticated %}
         <form action="/logout/" method="post">
           {% csrf_token %}
-          <input type="submit" value="Logout" />
+          <input type="submit" value="Logout" id='logout-user' />
         </form>
 
       {% else %}
@@ -25,15 +34,6 @@
 
       {% endif %}
 
-      <div id='schedule'></div>
-
-      <div class='fullHeader'>Confirmed Classes</div>
-      <div id='confirmed'></div>
-
-      <div class='fullHeader'>Shopping Cart</div>
-      <div id='shopping-cart'></div>
-
-    </div>
 </body>
 
 </html>
