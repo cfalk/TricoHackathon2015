@@ -80,7 +80,7 @@
 }
 
 .big-card-arrow-button {
-	text-align: center;
+	/*text-align: center;*/
 }
 
 
@@ -112,6 +112,10 @@
 .fancy-box-image img {
 	width: 64px;
 	height: 64px;
+}
+
+.more_info {
+	display: none;
 }
 
 .big-card-button:hover {

@@ -9,10 +9,21 @@ function prepareCardImage() {
 
 function arrowButton() {
   return "<div class='button arrow-button'>" +
-            "<img src='/static/images/arrow.jpg'>" +
+            "<img src='/static/images/arrow.png'>" +
           "</div>";
 }
 
+var open = false;
+
 $(".big-card-arrow-button").click(function(){
 	$(".more_info").toggle();
+	if (open){
+		$(this).css("transform", "rotate(0deg)");
+		open = false;
+	} else {
+		$(this).css("transform", "rotate(180deg)");
+		
+		open = true;
+	}
 });
+
