@@ -21,6 +21,32 @@ $(document).ready(function(){
 			}
 		});
 	}
+	var global_filters = [];
+	console.log(global_filters)
+	$("input").on("click", function() {
+	    if ($(this).is(":checked")) {
+		global_filters.push(this.value);
+	     } else {
+		var index = global_filters.indexOf(this.name);
+		if (index) {
+		    global_filters.splice(index, 1);
+		}
+	    }
+	    console.log(global_filters);
+	});
+	
+	$("input").on("keyup", function() {
+	    if (!($("input").is(":empty"))) {
+		global_filters.push(this.value);
+	    } else {
+		var index = global_filters.indexOf(this.value);
+		if (index) {
+		    global_filters.splice(index, 1);
+		}
+	    }
+	    console.log(global_filters);
+	});
+
 	bindFilterOpen();
 	var pageNum = 1;
 
@@ -35,4 +61,6 @@ $(document).ready(function(){
 				}
 
 	);
+
+
 });
