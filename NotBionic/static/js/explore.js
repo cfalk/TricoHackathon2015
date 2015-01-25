@@ -82,6 +82,10 @@ $(document).on("ready", function() {
   });
 
 
+  $(document).on("click", "#suggestionButton", function() {
+    applyFilter("suggestions", "on");
+    delete currentQueries["suggestions"];
+  });
 
 
   $(document).on("click", ".checkbox", function() {

@@ -1,6 +1,7 @@
 
 #filters {
  text-align:justify;
+ position:relative;
 }
 
 .disabledFilterOptions {
@@ -29,6 +30,21 @@
  background-color:rgba(0,0,0,0.01);
  padding:0.25em 1em;
  box-sizing:border-box;
+}
+
+
+#suggestionButton {
+ display:inline-block;
+ height:2em;
+ cursor:pointer;
+ vertical-align:middle;
+ opacity:0.6;
+}
+#suggestionButton img {
+ height:100%;
+}
+#suggestionButton:hover {
+ opacity:0.8;
 }
 
 
