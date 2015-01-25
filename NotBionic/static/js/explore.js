@@ -136,18 +136,24 @@ $(document).on("ready", function() {
 	    active_list.push(i);
 	}
     }
-    if (active_list.indexOf(0) != -1) {
-	applyFilter("starts", "before_"+start);
-    }else {
-	applyFilter("starts", "after_"+start); 
+    start = start.replace(/ /g,"");
+    end = end.replace(/ /g,"");
+    if (start!=""){
+      if (active_list.indexOf(0) != -1) {
+          applyFilter("starts", "before_"+start);
+      }else {
+          applyFilter("starts", "after_"+start);
+      }
     }
-    if (active_list.indexOf(2) != -1) {
-	applyFilter("ends", "before_"+end);
-    }else {
-	applyFilter("ends", "after_"+end);
+    if (end!="") {
+      if (active_list.indexOf(2) != -1) {
+          applyFilter("ends", "before_"+end);
+      }else {
+          applyFilter("ends", "after_"+end);
+      }
     }
   });
-    
+
   $(document).on("click",".time-toggle", function() {
     $("#ptTimeSelectSetButton").trigger("click");
   });
