@@ -1,10 +1,10 @@
 $(document).ready(function() {
     var schedule = $('#schedule');
     // Create the header information for the table
-    schedule.append('<table id=schedule>');
+    schedule.append('<table>');
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     schedule.append('<tr>')
-    schedule.append('<th>Times</th>')
+    schedule.append('<th></th>')
     for(var i=0;i<days.length;i++){
 	schedule.append('<th>'+days[i]+'</th>');
     }
@@ -23,7 +23,7 @@ $(document).ready(function() {
 	    }
 	    else {
 		if(i%2 == 0){
-		    schedule.append('<td id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>');
+		    schedule.append('<td class="visualBlock" id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>');
 		}
 		else if(time_counter-1==0){
 		    schedule.append('<td id="'+days[j-1].toString()+'-1230"></td>');
@@ -60,11 +60,12 @@ $(document).ready(function() {
 	    });
 	}
     });
-    $('#schedule').on('click', '.hasClass', function(){
+
+    $('#schedule').on('click', '.occupiedSlot', function(){
 	var classes = $(this)[0].className;
 	var split = classes.split(" ");
 	var reg_id = split[0];
-	if (split[0] == 'hasClass'){
+	if (split[0] == 'occupiedSlot'){
 	    reg_id = split[1];
 	}
 	$.get('/course/'+reg_id+'/', function( data ){
@@ -145,8 +146,9 @@ function drawClass(course) {
 	    block.css('background-color',color);
 	    block.css('cursor','pointer');
 	    if(counter == 0) {
-		block.text(course.reg_id);
+		block.text(course.reg_id.substring(0,course.reg_id.length-3));
 	        block.css('border-bottom','none');
+		block.css('padding','5px');
 	    }
 	    else if(!(temp_hour != end_hour || temp_minute != end_minute)){
 		block.css('border-top','none');

@@ -8,8 +8,9 @@ function loadUserCards() {
       $.get(url, function(data){
         var thumbs = thumbsUpButton(data["reg_id"])
         var trash = trashButton(data["reg_id"])
+        var toggle = toggleVisButton(data["reg_id"])
 
-        createCard(data,"#shopping-cart", [thumbs, trash]);
+        createCard(data,"#shopping-cart", [thumbs, trash, toggle]);
       });
     }
 
@@ -17,8 +18,9 @@ function loadUserCards() {
       var url = "/course/"+courses.schedule[i];
       $.get(url, function(data){
         var trash = trashButton(data["reg_id"])
+        var toggle = toggleVisButton(data["reg_id"])
 
-        createCard(data,"#confirmed", trash)
+        createCard(data,"#confirmed", [trash, toggle])
       });
     }
 
