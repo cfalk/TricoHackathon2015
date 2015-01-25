@@ -35,7 +35,7 @@ $(document).ready(function(){
 	    console.log(global_filters);
 	});
 	
-	$("input").on("keyup", function() {
+	$(".filter-text").on("click", function() {
 	    if (!($("input").is(":empty"))) {
 		global_filters.push(this.value);
 	    } else {
