@@ -42,10 +42,15 @@ def construct_courses_from_CSV(filename):
     list_fields = {"days","end_times","start_times"}
 
     for i, tup in enumerate(zip(headers, row)):
-      headers = tup[0]
+      header = tup[0]
       val = tup[1]
-      if headers in list_fields:
-        row[i] = val.replace("'","\"")
+      if header in list_fields:
+        val = val.replace("'","\"")
+
+      if header=="days":
+        val = val.replace("\"T\"","\"Tu\"")
+
+      row[i] = val
 
 
   import csv, random

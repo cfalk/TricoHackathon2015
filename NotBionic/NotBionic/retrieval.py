@@ -44,14 +44,24 @@ def filter_timeframe(query, courses=None):
   # Returns the courses that are within a certain timeframe.
 
   from models import Course
-  import json
+  from django.db.models import Q
+  import json, operator
 
   if courses is None:
     courses = Course.objects.all()
 
   if "days" in query:
-    days = json.loads(query["days"])
-    courses = courses.filter(days__icontains=days)
+    # Calculate the days that are to be removed.
+    all_days = ["M","Tu","W","Th","F"]
+    allowed_days = set(json.loads(query["days"]))
+    bad_days = [day for day in all_days if day not in allowed_days]
+
+    # Construct a Q-sequence that will apply the filter.
+    day_query = [~Q(days__icontains=day) for day in bad_days]
+    prepared_query = reduce(operator.and_, day_query)
+
+    # Remove any courses that contained any "bad" days.
+    courses = courses.filter(prepared_query)
 
   return courses
 
