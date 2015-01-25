@@ -13,14 +13,6 @@ function arrowButton() {
           "</div>";
 }
 
-function hide() {
-	$(".more_info").hide()
-}
-
-function show() {
-	$(".more_info").show()
-}
-
 $(".big-card-arrow-button").on("click", function(){
-	show();
+	$(".more_info").toggle();
 });
