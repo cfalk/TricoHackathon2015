@@ -1,24 +1,26 @@
 //File with the logic to create a card.
 
+var iconDict = {
+  "CHEM" : "chem.png",
+  "CMCS" : "cmsc.png",
+  "ECON" : "econ.png",
+  "ENGL" : "engl.png",
+  "MATH" : "math.png",
+  "PHIL" : "phil.png",
+  "PHYS" : "phys.png",
+  "ENGR" : "engr.png",
+  "ARCH" : "arch.jpg",
+  "ANTH" : "anthro.png",
+  "ARTW" : "artw.jpg",
+  "HIST" : "hist.jpg",
+  "BIOL"  : "biol.jpg",
+  "PEAC"  :  "peac.jpg",
+  "CITY"  :  "city.jpg",
+  "RELG"  :   "relg.jpg",
+  "PSYC"  :  "psyc.png"
+  };
+
 function createCard(courseData){
-  var iconDict = {
-    "CHEM" : "chem.png",
-    "CMCS" : "cmsc.png",
-    "ECON" : "econ.png",
-    "ENGL" : "engl.png",
-    "MATH" : "math.png",
-    "PHIL" : "phil.png",
-    "PHYS" : "phys.png",
-    "ENGR" : "engr.png",
-    "ARCH" : "arch.jpg",
-    "ARTW" : "artw.jpg",
-    "HIST" : "hist.jpg",
-    "BIOL"  : "biol.jpg",
-    "PEAC"  :  "peac.jpg",
-    "CITY"  :  "city.jpg",
-    "RELG"  :   "relg.jpg",
-    "PSYC"  :  "psyc.png"
-   };
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];

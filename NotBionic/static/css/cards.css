@@ -1,3 +1,6 @@
+.button {
+ z-index:5;
+}
 
 .cards_container {
  position:relative;

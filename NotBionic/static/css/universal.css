@@ -52,6 +52,7 @@ label.checkbox.activated:before {
 }
 
 
+input[type="password"],
 input[type="text"] {
  outline:none;
  border:0px;

@@ -1,37 +1,44 @@
 {% include "head.html" %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"> </script>
+
 <body>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"> </script>
+
     {% include 'menu.html' %}
-    <div class='main'>
-    {% if user.is_authenticated %}
-    <h1>Welcome {{ user.username }}</h1>
-    <form action="/logout/" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Logout" />
-    </form>
-    {% else %}
-    <h1>Welcome</h1>
-    <form action="/auth/" method="post">
-    {% csrf_token %}
-    <input type='text' name='username'/>
-    <input type='password' name='password' />
-    <input type="submit" value="Submit" />
-    </form>
-    {% endif %}
-    <h2>Schedule</h2>
-    <div id='schedule'>
+
+    <div id=content-container>
+
+      {% if user.is_authenticated %}
+        <form action="/logout/" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Logout" />
+        </form>
+
+      {% else %}
+
+        <form action="/auth/" method="post">
+          {% csrf_token %}
+          <input type='text' name='username'/>
+          <input type='password' name='password' />
+          <input type="submit" value="Submit" />
+        </form>
+
+      {% endif %}
+
+      <div id='schedule'></div>
+
+      <div id='confirmed-classes'>
+        <h2>Confirmed Classes</h2>
+          <div class="profile_schedule_cards_container"></div>
+      </div>
+
+      <h2>Shopping Cart</h2>
+      <div id='shopping-cart'>
+          <div class="profile_shopping_cards_container"></div>
+      </div>
 
     </div>
-    <h2>Confirmed Classes</h2>
-    <div id='confirmed-classes'>
-         <div class="profile_schedule_cards_container">
-        </div>
-    </div>
-    <h2>Shopping Cart</h2>
-    <div id='shopping-cart'>
-         <div class="profile_shopping_cards_container">
-        </div>
-    </div>
-    </div>
 </body>
+
 </html>
