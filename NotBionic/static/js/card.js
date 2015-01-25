@@ -40,39 +40,43 @@ function trashButton(reg_id) {
 }
 
 
-function createCard(courseData, container, button){
+function createCard(courseData, container, buttons){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
   var icon = iconDict[courseData.reg_id.substring(0,4)];
 
-  if (button===undefined) {
-    button = shoppingCartButton(courseData.reg_id);
+  if (buttons===undefined) {
+    buttons = [shoppingCartButton(courseData.reg_id)];
+  } else if (!buttons instanceof Array) {
+    buttons = [buttons];
   }
 
   var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
-             "<div class='card_container'>" +
+             "<div class='card_container'>";
 
-             button +
+  for (var i=0; i<buttons.length; i++) {
+    card += buttons[i];
+  }
 
-             "<div class='card_course_id'>" +
-               courseData.reg_id.substring(0, courseData.reg_id.length-3) +
-             "</div>" +
+  card += "<div class='card_course_id'>" +
+            courseData.reg_id.substring(0, courseData.reg_id.length-3) +
+          "</div>" +
 
-             "<div class='card_icon'>" +
-              "<img src='/static/images/" + icon + "'>" +
-             "</div>" +
+          "<div class='card_icon'>" +
+          "<img src='/static/images/" + icon + "'>" +
+          "</div>" +
 
-             "<div class='card_title'>"+
-               courseData.title +
-             "</div>" +
+          "<div class='card_title'>"+
+            courseData.title +
+          "</div>" +
 
-             "<div class='card_instructor'>" +
-               courseData.instructor +
-             "</div>"+
-             "<div class='card_time'>"+
-               times(courseData) +
-             "</div>";
+          "<div class='card_instructor'>" +
+            courseData.instructor +
+          "</div>"+
+          "<div class='card_time'>"+
+            times(courseData) +
+          "</div>";
 
 
   $(container).append(card);
