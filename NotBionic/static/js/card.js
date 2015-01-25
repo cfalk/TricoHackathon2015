@@ -20,8 +20,18 @@ var iconDict = {
   "PSYC"  :  "psyc.png"
   };
 
+var colorDict = {};
 var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
 var color_counter = 0;
+
+function getColor(reg_id) {
+  var color = colorDict[reg_id];
+  if (color===undefined) {
+    color = colors[color_counter++];
+    colorDict[reg_id] = color;
+  }
+  return color;
+}
 
 function shoppingCartButton(reg_id) {
   return "<div reg_id='"+reg_id+"' class='button button-card shop'>" +
