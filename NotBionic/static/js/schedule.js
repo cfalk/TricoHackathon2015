@@ -44,13 +44,10 @@ $(document).ready(function() {
     }
     // need this to change the given day information into the same form as the one used for the class labeling
     var days_key = {'M':'Monday','Tu':'Tuesday','W':'Wednesday','Th':'Thursday','F':'Friday'};
-    var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
-    var color_counter = 0;
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
 	    $.get( "/course/"+data.schedule[i]+"/", function( course ) {
-		var color = colors[color_counter]
-		color_counter++;
+		var color = getColor(course.reg_id);
 		var start_time = course.start_times[0];
 		var end_time = course.end_times[0];
 		var days = course.days;
@@ -115,8 +112,6 @@ $(document).ready(function() {
 			else {
 			    temp_minute = '30'
 			}
-			console.log("i:",i)
-			console.log(color)
 			block.css('background-color',color);
 			block.css('cursor','pointer');
 			if(counter == 0) {
