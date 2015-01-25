@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 
 // Define global variables to keep track of the filters.
 var currentQueries = {};
@@ -103,78 +102,6 @@ $(document).on("ready", function() {
       applyFilter(field, text);
     }
   })
-=======
-$(document).ready(function(){
-	//Click binds
-	function bindFilterOpen(){
-		$(".filter").off("click").on("click", function(){
-			console.log("init");
-			var $this = $(this); //Used to speed to up calls to this $(this)
-			var dataDiv = $this.data("filter");
-			var $correspondingFilterOptionsDiv = $("#"+dataDiv+"-filterOptions"); //Similarly use to speed up calls
-			if ($correspondingFilterOptionsDiv.hasClass("activeFilterOptions")){
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-			else{
-				var $currentActive = $(".activeFilterOptions");
-				if ($currentActive){
-					$currentActive.toggleClass("activeFilterOptions");
-					$currentActive.toggleClass("disabledFilterOptions");
-				}
-				$correspondingFilterOptionsDiv.toggleClass("activeFilterOptions");
-				$correspondingFilterOptionsDiv.toggleClass("disabledFilterOptions");
-			}
-		});
-	}
-	var global_filters = [];
-	console.log(global_filters)
-	$("label:not(.filter-input)").on("click", function() {
-	    //console.log($(this).find("input").prop("checked"));
-	    if (!($(this).hasClass("activated"))) {
-		//console.log($(this).children("input").prop("value"))
-		global_filters.push($(this).children("input").attr("value"));
-	     } else {
-		var index = global_filters.indexOf($(this).children("input").attr("value"));
-		if (index) {
-		    global_filters.splice(index, 1);
-		}else {
-		    global_filters = [];   
-		}
-	    }
-	    console.log(global_filters);
-	});
-	
-	$(".filter-text").off("click").on("click", function() {
-	    var my_input = ($(this).parent().find("input"))
-	    console.log(my_input.val());
-	    if (my_input.val() != "" && (global_filters.indexOf(my_input.val()) == -1)) {
-		global_filters.push(my_input.val());
-		$("#department-tags").append(my_input.val() + " x ")
-	    } else {
-		var index = global_filters.indexOf(my_input.val());
-		if (index) {
-		    global_filters.splice(index, 1);
-		}
-	    }
-	    console.log(global_filters);
-	});
-
-	bindFilterOpen();
-	var pageNum = 1;
-
-			$.get(
-				"/courses/"+(pageNum),
-				function(data){
-					if(data){
-						data.forEach(function(val,index){
-							createCard(val);
-						});
-					}
-				}
-
-	);
->>>>>>> Stashed changes
 
 
 });
