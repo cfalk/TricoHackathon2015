@@ -14,6 +14,22 @@ cursor:pointer;
 margin-bottom:10px;
 }
 
+#login-user {
+position:absolute;
+right:20px;
+top:10px;
+width:300px;
+font-size:.75em;
+}
+
+#login-submit {
+border:none;
+padding:10px;
+width:200px;
+cursor:pointer;
+margin-bottom:10px;
+}
+
 @media (max-width: 800px) {
   #logout-user {
   position:relative;
