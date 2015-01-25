@@ -29,7 +29,7 @@ def filter_courses(query, courses=None):
     courses = Course.objects.all()
 
   # Separately parse the time-related searches from the query.
-  time_fields = ["start", "end", "days"]
+  time_fields = ["starts", "ends", "days"]
   time_query = {f:query[f] for f in time_fields if f in query}
   query = {f:val for f, val in query.items() if f in f not in time_fields}
 
@@ -45,7 +45,7 @@ def filter_timeframe(query, courses=None):
 
   from models import Course
   from django.db.models import Q
-  import json, operator
+  import json, operator, datetime
 
   if courses is None:
     courses = Course.objects.all()
@@ -63,10 +63,54 @@ def filter_timeframe(query, courses=None):
     # Remove any courses that contained any "bad" days.
     courses = courses.filter(prepared_query)
 
-  if "start_time" in query:
-    time = datetime.datetime.strptime(str(time_str),"%I:%M%p")
+
+  if "starts" in query:
+    # Expects input in the form: {"starts":"direction_04:00PM"} where
+    #  direction may be "before", "after", or "at".
+    if "_" in query["starts"]:
+      direction, time_str = query["starts"].split("_")
+    else:
+      direction = "at"
+      time_str = query["starts"]
+
+    time = datetime.datetime.strptime(time_str.strip(),"%I:%M%p")
     seconds = 60*(time.hour*60+time.minute)
 
+    if direction=="before":
+      suffix = "__lt"
+    elif direction=="after":
+      suffix = "__gte"
+    elif direction=="at":
+      suffix = ""
+    else:
+      raise Exception("Unknown `direction` specified: '{}'".format(direction))
+
+    prepared_query = {"earliest_time{}".format(suffix):seconds}
+    courses = courses.filter(**prepared_query)
+
+  if "ends" in query:
+    # Expects input in the form: {"ends":"direction_04:00PM"} where
+    #  direction may be "before", "after", or "at".
+    if "_" in query["ends"]:
+      direction, time_str = query["ends"].split("_")
+    else:
+      direction = "at"
+      time_str = query["ends"]
+
+    time = datetime.datetime.strptime(time_str.strip(),"%I:%M%p")
+    seconds = 60*(time.hour*60+time.minute)
+
+    if direction=="before":
+      suffix = "__lt"
+    elif direction=="after":
+      suffix = "__gte"
+    elif direction=="at":
+      suffix = ""
+    else:
+      raise Exception("Unknown `direction` specified: '{}'".format(direction))
+
+    prepared_query = {"latest_time{}".format(suffix):seconds}
+    courses = courses.filter(**prepared_query)
 
 
   return courses

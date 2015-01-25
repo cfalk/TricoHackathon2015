@@ -83,16 +83,40 @@ class Course(models.Model):
 
 
     def clean_start_times(self):
-        return self._load_json_field("start_times")
+        times = self._load_json_field("start_times")
+        return [self._load_time(time) for time in times]
 
 
     def clean_end_times(self):
-        return self._load_json_field("end_times")
+        times = self._load_json_field("end_times")
+        return [self._load_time(time) for time in times]
 
 
     def _load_json_field(self, field):
         raw = getattr(self, field)
         return json.loads(raw)
+
+
+    def _load_time(self, seconds):
+        # Convert a number of seconds into the corresponding time-of-day
+        #  which is then returned as a string.
+
+        minutes = int((seconds/60.0)%60)
+        hours = int((seconds/60.0)/60)
+        period = "am"
+
+        if hours>=12:
+          period = "pm"
+          if hours>12:
+            hours -= 12
+        elif hours==0:
+          hours = 12
+
+        if minutes<10:
+          minutes = "0{}".format(minutes)
+
+        return "{}:{}{}".format(hours, minutes, period)
+
 
 
     def to_dict(self):
@@ -111,6 +135,10 @@ class Course(models.Model):
             pass
 
           val_dict[field] = val
+
+        # Make the times human-readable.
+        val_dict["start_times"] = self.clean_start_times()
+        val_dict["end_times"] = self.clean_end_times()
 
         return val_dict
 
