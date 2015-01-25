@@ -1,5 +1,6 @@
 
 {% include 'head.html' %}
+
 <body>
     <div class='big_card_container'>
     <div class='big_card_course_id'>
@@ -7,7 +8,7 @@
     </div>
 
     <div class='big_card_icon'>
-        <img src='/static/images/artw.jpg'>
+        <img src=""></img>
     </div>
 
     <div class='big_card_title'>
@@ -18,11 +19,24 @@
         {{course.instructor}}
     </div>
     <div class='big_card_time'>
-        {{course.days}}
     </div>
     <div class='big_card_semester'>
+        {{course.semester}}
     </div>
     <div class="big_card_description">
+        {{course.description}}
+    </div>
+    <div class="big_card_location">
+        {{course.location}}
+    </div>
+    <div class="big_card_college">
+        {{course.college}}
+    </div>
+    <div class="big_card_college">
+        {{course.course_cap}}
+    </div>
+    <div class="big_card_college">
+        {{course.distribution}}
     </div>
     <div class="big_card_syllabus">
          <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
@@ -31,5 +45,8 @@
         <!--from href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>-->
         <img src="{{ STATIC_URL }}images/down-button.png">
     </button>   
-    </div>            
+    </div>    
+    <script src="{{ STATIC_URL }}js/course_info.js"></script>        
 </body>
+
+
