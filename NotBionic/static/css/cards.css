@@ -38,9 +38,8 @@
  display:inline-block;
  opacity:0.6;
 }
-.button-card:nth-child(2) {
- left:2em;
-}
+.button-card:nth-child(2) { left:2em; }
+.button-card:nth-child(3) { left:4em; }
 
 .card_container .button-card:hover {
  opacity:0.8;
