@@ -3,50 +3,67 @@
 
 <body>
     <div class='big_card_container'>
-    <div class='big_card_course_id'>
-               {{cleaned_reg_id}}
-    </div>
+        <div class='main_card'>
+            <div class='big-card-button'></div>
+            <div class="top_right">
+                <div class='big_card_course_id'>
+                           {{cleaned_reg_id}}
+                </div>
+                 <div class="big_card_distribution">
+                    {{course.distribution}}
+                </div>
+                <div class="big_card_course_cap">
+                    {{course.course_cap}}
+                </div>
+            </div>
+            <div class='big_card_icon'>
+                <img src=""></img>
+            </div>
+            <div class='big_card_title'>
+                {{course.title}}
+            </div>
+             <div class="big_card_description">
+                {{course.description}}
+            </div>
 
-    <div class='big_card_icon'>
-        <img src=""></img>
-    </div>
-
-    <div class='big_card_title'>
-        {{course.title}}
-    </div>
-
-    <div class='big_card_instructor'>
-        {{course.instructor}}
-    </div>
-    <div class='big_card_time'>
-    </div>
-    <div class='big_card_semester'>
-        {{course.semester}}
-    </div>
-    <div class="big_card_description">
-        {{course.description}}
-    </div>
-    <div class="big_card_location">
-        {{course.location}}
-    </div>
-    <div class="big_card_college">
-        {{course.college}}
-    </div>
-    <div class="big_card_college">
-        {{course.course_cap}}
-    </div>
-    <div class="big_card_college">
-        {{course.distribution}}
-    </div>
-    <div class="big_card_syllabus">
-         <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
-    </div>
-    <button class="button">
-        <!--from href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>-->
-        <img src="{{ STATIC_URL }}images/down-button.png">
-    </button>   
-    </div>    
+            <div class='big_card_instructor'>
+                {{course.instructor}}
+            </div>
+            <div class='bottom_right'>
+                 <div class="big_card_location">
+                    {{course.location}}
+                </div>
+                 <div class="big_card_college">
+                    {{course.college}}
+                </div>
+            </div>
+            <div class="bottom_left">
+                <div class='big_card_time'>
+                    {{course.clean_days}} @ {{course.clean_start_times.0}} to {{course.clean_end_times.0}} 
+                </div>
+                 <div class='big_card_semester'>
+                        {{course.semester}}
+                </div>
+            </div>
+            <div class="big-card-arrow-button"></div>
+        </div>
+    <div class="more_info">
+        <div class="big_card_syllabus">
+             <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
+        </div>
+        <li class="big_card_student_list">
+            <ul> Me </ul>
+        </li>
+    </div>   
+    </div> 
     <script src="{{ STATIC_URL }}js/course_info.js"></script>        
+    <script>
+      prepareCardImage();
+      $(".big-card-button").append(shoppingCartButton("{{course.reg_id}}"));
+      $(".big-card-button").append(trashButton("{{course.reg_id}}"));
+      $(".big-card-arrow-button").append(arrowButton());
+      hide();
+    </script>
 </body>
 
 
