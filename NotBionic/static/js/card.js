@@ -53,7 +53,7 @@ function createCard(courseData){
 	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
 							.append($('<div class="card_container">')
 							.append($('<div class="card_header">')
-						.append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">')
+						.append($('<button reg_id="'+courseData.reg_id+'" class="button button-shop-course">')
 							.append($('<div class="card_shopping_cart">')
 								.append('<img src="/static/images/' + cartIcon + '" class="card_shopping_cart">')))
 						.append($('<div class="card_course_id">')

@@ -5,8 +5,8 @@
   */
 //File with the logic to create a card
 
-function createCard(courseData){
-	var $cardsContainer = $(".profile_cards_container");
+function createCard(courseData, container){
+	var $cardsContainer = $(container);
 	var iconDict = {
 		"CHEM" : "chem.png",
 		"CMCS" : "cmsc.png",
@@ -20,12 +20,11 @@ function createCard(courseData){
  	/*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
 	var cartIcon = "shopping-cart.png"; 
 
-	$cardsContainer.append($('<a class="various fancybox.ajax" href="/render_course/' + courseData.reg_id + '">')
+	$cardsContainer.append($('<a class="various fancybox.ajax" id="'+courseData.reg_id+'_top" href="/render_course/' + courseData.reg_id + '">')
 		    .append($('<div class="card_container">')
 			.append($('<div class="card_header">')
-			    .append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">')
-				.append($('<div class="card_shopping_cart">')
-				    .append('<img src="/static/images/' + cartIcon + '" class="card_shopping_cart">')))
+			    .append($('<button reg_id="'+courseData.reg_id+'" class="button button-add-course">'+confirmIcon+'</button>'))
+			    .append($('<button reg_id="'+courseData.reg_id+'" class="button button-remove-course">'+rejectIcon+'</button>'))
 			.append($('<div class="card_course_id">')
 					.append('<h4>'+ courseData.reg_id.substring(0,courseData.reg_id.length-3) + '</h4>'))
 			.append($('<div class="card_icon">')
@@ -47,10 +46,16 @@ $(document).ready(function(){
     $.get("/user_courses/", function(courses) {
 	console.log(courses.shopping_cart);
 	for(var i=0;i<courses.shopping_cart.length;i++){
-	    console.log("hello")
 	    $.get("/course/"+courses.shopping_cart[i]+'/', function(data){
 		if(data){
-		    createCard(data);
+		    createCard(data,".profile_shopping_cards_container");
+		}
+	    });
+	}
+	for(var i=0;i<courses.schedule.length;i++){
+	    $.get("/course/"+courses.schedule[i]+'/', function(data){
+		if(data){
+		    createCard(data,".profile_schedule_cards_container");
 		}
 	    });
 	}
