@@ -43,14 +43,14 @@ $(document).ready(function() {
 	schedule.append('</tr>');
     }
     // need this to change the given day information into the same form as the one used for the class labeling
-    var days_key = {'M':'Monday','T':'Tuesday','W':'Wednesday','Th':'Thursday','F':'Friday'};
+    var days_key = {'M':'Monday','Tu':'Tuesday','W':'Wednesday','Th':'Thursday','F':'Friday'};
     var colors = ['aliceblue','antiquewhite','aquamarine','cadetblue','darkseagreen','indianred'];
+    var color_counter = 0;
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
-	  setTimeout(function(data, i) { 
-		console.log("i_top: ",i)
-		console.log("class: ",data.schedule[i])
 	    $.get( "/course/"+data.schedule[i]+"/", function( course ) {
+		var color = colors[color_counter]
+		color_counter++;
 		var start_time = course.start_times[0];
 		var end_time = course.end_times[0];
 		var days = course.days;
@@ -95,6 +95,7 @@ $(document).ready(function() {
 		catch(err) {
 		    error=true;
 		}
+		console.log("i_bottom: ",i)
 		for(var j=0;j<days.length;j++) {
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
@@ -115,8 +116,8 @@ $(document).ready(function() {
 			    temp_minute = '30'
 			}
 			console.log("i:",i)
-			console.log(colors[i])
-			block.css('background-color',colors[i]);
+			console.log(color)
+			block.css('background-color',color);
 			block.css('cursor','pointer');
 			if(counter == 0) {
 			    block.text(course.reg_id);
@@ -137,7 +138,6 @@ $(document).ready(function() {
 
 		}
 	    });
-	  },50);
 	}
     });
     $('#schedule').on('click', '.hasClass', function(){
