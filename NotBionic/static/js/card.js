@@ -69,7 +69,6 @@ function trashButton(reg_id) {
           "</div>";
 }
 
-
 function createCard(courseData, container, buttons){
 
   /*from http://yellowicons.com/wp-content/uploads/Shopping-Cart-Icon-1.png*/
