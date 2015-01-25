@@ -9,14 +9,14 @@ iconDict = {
   "PHIL" : "phil.png",
   "PHYS" : "phys.png",
   "ENGR" : "engr.png",
-  "ARCH" : "arch.jpg",
+  "ARCH" : "arch.png",
   "ANTH" : "anthro.png",
-  "ARTW" : "artw.jpg",
-  "HIST" : "hist.jpg",
-  "BIOL"  : "biol.jpg",
-  "PEAC"  :  "peac.jpg",
-  "CITY"  :  "city.jpg",
-  "RELG"  :   "relg.jpg",
+  "ARTW" : "artw.png",
+  "HIST" : "hist.png",
+  "BIOL"  : "biol.png",
+  "PEAC"  :  "peac.png",
+  "CITY"  :  "city.png",
+  "RELG"  :   "relg.png",
   "PSYC"  :  "psyc.png"
   };
 
