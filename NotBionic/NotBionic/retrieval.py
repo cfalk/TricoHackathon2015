@@ -30,8 +30,6 @@ def filter_courses(query, courses=None):
   if courses is None:
     courses = Course.objects.all()
 
-  print query
-
 
   # Separately parse the time-related searches from the query.
   time_fields = ["starts", "ends", "day"]
@@ -175,6 +173,19 @@ def get_course_value_set(field, courses=None):
   vals = courses.values_list(field, flat=True).distinct()
 
   return set(vals)
+
+
+
+
+def get_free_times(user):
+  try:
+    expanded = get_expanded_user(user)
+    reg_ids = expanded.get_courses()["schedule"]
+    courses = [get_course_by_reg_id(reg_id) for reg_id in reg_ids]
+    print courses
+  except Exception as e:
+    print e
+
 
 
 

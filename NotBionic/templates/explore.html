@@ -14,6 +14,10 @@
     <div id=page-title> explore. </div>
     <div class=filter-bar style="display: table;">
 	<ul id=filters>
+            <li id="suggestionButton" title='Suggest me courses.'>
+              <img src="{{STATIC_URL}}images/suggestion.png" />
+            </li>
+
 	    <li data-filter="semester" class="filter"> Semester </li>
 	    <li data-filter="college" class="filter"> Campus </li>
 	    <li data-filter="department" class="filter"> Department </li>
@@ -141,6 +145,7 @@
 
     </div>
 
+    <!-- "Everything" -->
     <div id="everything-filterOptions" class="disabledFilterOptions">
 	<label for="everything">
 	    <input type=text  id="everything" class="autocomplete-everything">
@@ -154,6 +159,7 @@
     </div>
 
     </div>
+
 
 </body>
 

@@ -1,36 +1,41 @@
 $(document).ready(function() {
-    var schedule = $('#schedule');
+    var schedule_box = $('#schedule');
+    var schedule = ""
+
+    // Don't show the table if the user isn't logged in.
+    if ($("#login-user").length) { return false; }
+
     // Create the header information for the table
-    schedule.append('<table>');
+    schedule = schedule + '<table>';
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    schedule.append('<tr>')
-    schedule.append('<th></th>')
+    schedule = schedule + '<tr>'
+    schedule = schedule + '<th></th>'
     for(var i=0;i<days.length;i++){
-	schedule.append('<th>'+days[i]+'</th>');
+	schedule = schedule + '<th>'+days[i]+'</th>';
     }
-    schedule.append('</tr>');
+    schedule = schedule + '</tr>';
     var time_counter = 8;
     for(var i=0;i<17;i++) {
-	schedule.append('<tr>')
+	schedule = schedule + '<tr>'
 	for(var j=0;j<8;j++) {
 	    if (j==0){
 		if (i%2 == 0) {
-		    schedule.append('<td>'+time_counter.toString()+':00</td>');
+		    schedule = schedule + '<td>'+time_counter.toString()+':00</td>';
 		}
 		else {
-		    schedule.append('<td>'+time_counter.toString()+':30</td>');
+		    schedule = schedule + '<td>'+time_counter.toString()+':30</td>';
 		}
 	    }
 	    else {
 		if(i%2 == 0){
-		    schedule.append('<td class="visualBlock" id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>');
+		    schedule = schedule + '<td class="visualBlock" id="'+days[j-1].toString()+'-'+time_counter.toString()+'00"></td>';
 		}
 		else if(time_counter-1==0){
-		    schedule.append('<td id="'+days[j-1].toString()+'-1230"></td>');
+		    schedule = schedule + '<td id="'+days[j-1].toString()+'-1230"></td>';
 		}
 		else {
 		    // need to subtract 1 from time counter because it is incremented prematurely above
-		    schedule.append('<td id="'+days[j-1].toString()+'-'+(time_counter-1).toString()+'30"></td>');
+		    schedule = schedule + '<td id="'+days[j-1].toString()+'-'+(time_counter-1).toString()+'30"></td>';
 		}
 	    }
 	    if (time_counter == 12 && i%2 != 0 && j==0) {
@@ -40,18 +45,20 @@ $(document).ready(function() {
 		time_counter++;
 	    }
 	}
-	schedule.append('</tr>');
+	schedule = schedule + '</tr>';
     }
-    schedule.append('<tr>');
+    schedule = schedule + '<tr>';
     for(var i=0;i<8;i++) {
 	if (i==0) {
-	    schedule.append('<td>7:00</td>');
+	    schedule = schedule + '<td>7:00</td>';
 	}
 	else {
-	    schedule.append('<td></td>');
+	    schedule = schedule + '<td></td>';
 	}
     }
-    schedule.append('</tr>')
+    schedule = schedule + '</tr>'
+    schedule = schedule +'</table>'
+    schedule_box.append(schedule)
     // need this to change the given day information into the same form as the one used for the class labeling
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
@@ -62,12 +69,7 @@ $(document).ready(function() {
     });
 
     $('#schedule').on('click', '.occupiedSlot', function(){
-	var classes = $(this)[0].className;
-	var split = classes.split(" ");
-	var reg_id = split[0];
-	if (split[0] == 'occupiedSlot'){
-	    reg_id = split[1];
-	}
+        var reg_id = $(this).attr("reg_id");
 	$.get('/course/'+reg_id+'/', function( data ){
 	    var string = "<h1>"+data.title+"</h1>";
 	    string = string + "<p style='width:400px;'>"+data.description+"</p>";
@@ -101,7 +103,7 @@ function drawClass(course) {
     else{
 	start_minute = '30';
     }
-    try{ 
+    try{
 	if(end_time.charAt(0) == "0") {
 	    end_hour = parseInt(end_time.charAt(1));
 	}
@@ -158,7 +160,7 @@ function drawClass(course) {
 		block.css('border-top','none');
 	    }
 	    block.attr("reg_id",course.reg_id);
-	    block.addClass("hasClass");
+	    block.addClass("occupiedSlot");
 	    counter++;
 	}
     }
