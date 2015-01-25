@@ -42,6 +42,16 @@ $(document).ready(function() {
 	}
 	schedule.append('</tr>');
     }
+    schedule.append('<tr>');
+    for(var i=0;i<8;i++) {
+	if (i==0) {
+	    schedule.append('<td>7:00</td>');
+	}
+	else {
+	    schedule.append('<td></td>');
+	}
+    }
+    schedule.append('</tr>')
     // need this to change the given day information into the same form as the one used for the class labeling
     $.get( "/user_courses/", function( data ) {
 	for(var i=0;i<data.schedule.length;i++) {
@@ -145,7 +155,7 @@ function drawClass(course) {
 		block.css('border-bottom','none')
 		block.css('border-top','none');
 	    }
-	    block.addClass(course.reg_id);
+	    block.attr("reg_id",course.reg_id);
 	    block.addClass("hasClass");
 	    counter++;
 	}
