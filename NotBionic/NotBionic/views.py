@@ -125,6 +125,9 @@ def get_courses(request, page=1):
   else:
     page = int(page)
 
+
+  print page
+
   # Apply any available filters and pagify the courses.
   courses = filter_courses(queries)
   courses = pagify_courses(courses, page=page)
@@ -169,7 +172,6 @@ def edit_course(request, operation="add"):
     return HttpResponse("Success!")
 
   except Exception as e:
-    print e
     return HttpResponse("Failed!")
 
 

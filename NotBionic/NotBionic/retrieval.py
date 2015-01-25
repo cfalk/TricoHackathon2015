@@ -30,6 +30,9 @@ def filter_courses(query, courses=None):
   if courses is None:
     courses = Course.objects.all()
 
+  print query
+
+
   # Separately parse the time-related searches from the query.
   time_fields = ["starts", "ends", "day"]
   time_query = {f:query[f] for f in time_fields if f in query}
