@@ -85,6 +85,19 @@ input[type="text"] {
  background-color:rgba(0,0,0,0.05);
 }
 
+.time-toggle {
+background-color: gray;
+cursor:pointer;
+padding:0.5em;
+display:inline-block;
+position:relative;
+font-size:1.25em;
+opacity:0.5em;
+}
+
+.time-toggle.activated {
+background-color: green;
+}
 
 @media (max-width: 400px) {
   #content-container {
