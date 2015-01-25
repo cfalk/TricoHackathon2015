@@ -4,7 +4,7 @@
                 <div class="big_card_icon">
                     <img src="http://icons.iconarchive.com/icons/yellowicon/game-stars/256/Mario-icon.png" class="card_icon">
                 </div>
-                <div class="big_card_information">    
+                <div class="big_card_information">
                     <div class="big_card_header">
                         <h3 class="big_card_title"> {{course.title}} </h3>
                         <div class="card_days"> {{course.clean_days}} </div>
@@ -16,13 +16,16 @@
                     </div>
                         <div class="big_card_instructor"> </div>
                         <div class="card_description"> {{course.description}} </div>
-                        
+
                         <div class="card_stats">
                         <div class="inactiveCardButton cardButtons add-course">
-                            <button class="button button--add-course">Add Course to Shopping Cart</button>
+                            <button reg_id="{{ course.reg_id }}"
+                                    class="button button-add-course">
+                                Add Course to Shopping Cart
+                            </button>
                         </div>
                     </div>
-		    <h3>Syllabus</h3>	
+		    <h3>Syllabus</h3>
                     <a class="syllabus" href="http://www.haverford.edu/psychology/files/psy100_jpl.pdf"> {{course.title}} Syllabus </a>
         </div>
     </div>
