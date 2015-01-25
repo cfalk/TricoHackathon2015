@@ -42,7 +42,7 @@
 	    <input type=text id="department" class="autocomplete-department">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id="department-filter-container"class=filter-container></div>
     </div>
 
     <!-- College -->
@@ -60,13 +60,13 @@
 
     <!-- Level -->
     <div id="level-filterOptions" class="disabledFilterOptions">
-	<label for="100"class=checkbox>
+	<label for="100"class="checkbox activated">
 	    <input type=checkbox name=100 id=100 value="100">100s
 	</label>
-	<label for="200"class=checkbox>
+	<label for="200"class="checkbox activated">
 	    <input type=checkbox name=200 id=200 value="200">200s
 	</label>
-	<label for="300"class=checkbox>
+	<label for="300"class="checkbox activated">
 	    <input type=checkbox name=300 id=300 value="300">300s
 	</label>
     </div>
@@ -74,19 +74,19 @@
     <!-- Days -->
     <div id="day-filterOptions" class="disabledFilterOptions">
 	<ul id="day-list" style="list-style-type: None;">
-	    <label for=monday class=checkbox>
+	    <label for=monday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=M>Mon</li>
 	    </label>
-	    <label for=tuesday class=checkbox>
+	    <label for=tuesday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=Tu>Tue</li>
 	    </label>
-	    <label for=wednesday class=checkbox>
+	    <label for=wednesday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=W>Wed</li>
 	    </label>
-	    <label for=thursday class=checkbox>
+	    <label for=thursday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=Th>Thu</li>
 	    </label>
-	    <label for=firday class=checkbox>
+	    <label for=firday class="checkbox activated">
 		<li class=day-filter><input type=checkbox value=F>Fri</li>
 	    </label>
 	</ul>
@@ -98,12 +98,11 @@
 	    <input type=text  id="instructor" class="autocomplete-instructor">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id=instructor-filter-container class=filter-container></div>
     </div>
 
     <!-- Time -->
     <div id="time-filterOptions" class="disabledFilterOptions">
-	    <div>
 	    <label for="start-before"class=checkbox>
 		<input type=checkbox id="start-before" value=start-before>
                 start before
@@ -112,10 +111,8 @@
 		<input type=checkbox id="start-after" value=start-after>
                 start after
 	    </label>
-	    </div>
 	    <div id="start-slider" label="Start Time"></div>
 
-	    <div>
 	    <label for="end-before"class=checkbox>
 		<input type=checkbox id="end-before" value=end-before>
                 end before
@@ -124,7 +121,6 @@
 		<input type=checkbox id="end-after" value=end-after>
                 end after
 	    </label>
-	    </div>
 	    <div id="end-slider"></div>
 
             <script>
@@ -142,7 +138,7 @@
 	    <input type=text  id="everything" class="autocomplete-everything">
 	</label>
 	<button type=button class=filter-text>+</button>
-	<div class=filter-container></div>
+	<div id=everything-filter-container class=filter-container></div>
     </div>
 
     <div id="explore-results">

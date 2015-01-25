@@ -1,7 +1,7 @@
 
 // Define global variables to keep track of the filters.
 var currentQueries = {};
-var page = 1;
+var page = 0;
 var canLoadMore = true;
 
 
@@ -47,7 +47,6 @@ function applyFilter(field, val) {
 
   clearCards();
   loadMoreCards();
-  console.log(currentQueries);
 }
 
 
@@ -99,10 +98,18 @@ $(document).on("ready", function() {
     var text = $input.val();
     if (text) {
       var field = $input.attr("id");
-      applyFilter(field, text);
+      var container = $(this).siblings(".filter-container");
+      var checkbox = $("<label class='checkbox input-filter' for="+text+" > <input type=checkbox id='"+field+"-"+text+"' value="+text+ " name="+text+ " >"+text+ " </label>")
+      container.append(checkbox);
+      checkbox.trigger("click");
+
     }
   })
 
-
+  $(document).on("click", ".input-filter", function() {
+    var $input = $(this).siblings("label").children();
+    var text = $input.val();
+    var field = $(this).parent().find("input").attr("id");
+  });
 });
 
