@@ -6,17 +6,19 @@ function loadUserCards() {
     for(var i=0; i<courses.shopping_cart.length; i++){
       var url = "/course/"+courses.shopping_cart[i];
       $.get(url, function(data){
-        var button = thumbsUpButton(data["reg_id"])
-        createCard(data,"#shopping-cart", button);
+        var thumbs = thumbsUpButton(data["reg_id"])
+        var trash = trashButton(data["reg_id"])
+
+        createCard(data,"#shopping-cart", [thumbs, trash]);
       });
     }
 
     for(var i=0; i<courses.schedule.length; i++){
       var url = "/course/"+courses.schedule[i];
       $.get(url, function(data){
-        var button = trashButton(data["reg_id"])
-        console.log(button);
-        createCard(data,"#confirmed", button)
+        var trash = trashButton(data["reg_id"])
+
+        createCard(data,"#confirmed", trash)
       });
     }
 

@@ -38,6 +38,9 @@
  display:inline-block;
  opacity:0.6;
 }
+.button-card:nth-child(2) {
+ left:2em;
+}
 
 .card_container .button-card:hover {
  opacity:0.8;
