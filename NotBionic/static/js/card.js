@@ -72,7 +72,7 @@ function createCard(courseData, container, button){
              "</div>"+
              "<div class='card_time'>"+
                times(courseData) +
-             "</div>";
+             "</div>" ;
 
 
   $(container).append(card);
