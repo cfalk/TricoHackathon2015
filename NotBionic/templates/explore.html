@@ -1,13 +1,16 @@
 {% include 'head.html' %}
+
 <body>
-    <script src="{{ STATIC_URL }}js/explore.js"></script>
-{% include 'menu.html' %}
-    <div class=main>
     <script type="text/javascript" src="{{ STATIC_URL }}js/card.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/explore.js"></script>
-     <script src="{{ STATIC_URL }}js/fancybox.js"></script>
-    <h1> Explore some Courses </h1>
-    <div class=filter-bar style="display: table;"> 
+    <script src="{{ STATIC_URL }}js/fancybox.js"></script>
+
+    {% include 'menu.html' %}
+
+    <div id=content-container>
+
+    <div id=page-title> explore. </div>
+    <div class=filter-bar style="display: table;">
 	<ul id=filters>
 	    <li data-filter="semester" class="filter"> Semester </li>
 	    <li data-filter="campus" class="filter"> Campus </li>
@@ -17,22 +20,10 @@
 	    <li data-filter="level" class="filter"> Level </li>
 	    <li data-filter="time" class="filter"> Time </li>
 	    <li data-filter="everything" class="filter"> Everything </li>
-	    
+
 	</ul>
     </div>
-    <!--
-	{% for key, value in value_list.items %}
-	{% if key == "days" or key == "department" or key == "college" or key == "semester" %}
-	    <div id="{{ key }}-filterOptions" class="disabledFilterOptions">
-		<ul style="list-style-type: None;">
-		{% for each in value %}
-		<li><input type=checkbox>{{ each }}</li>
-		{% endfor %}
-		</ul>
-	    </div>
-	{% endif %}
-	{% endfor %} 
-    -->
+
     <div id="semester-filterOptions" class="disabledFilterOptions">
 	<label for="fall" class=checkbox>
 	    <input type=checkbox id=fall name=fall value=fall>Fall
@@ -42,17 +33,7 @@
 	</label>
     </div>
     <div id="department-filterOptions" class="disabledFilterOptions">
-	<!--<ul>
-	{% for key, value in value_list.items %}
-	{% if key == "department" %}
-	{% for each in value %}
-	    <label for="{{ each }}">	
-		<li><input type=checkbox id="{{ each }}">{{ each }}</li>
-	    </label>
-	{% endfor %}
-	{% endif %}
-	{% endfor %}
-	</ul>-->
+
 	<label for="department"> Department
 	    <input id="department" class="autocomplete-department">
 	</label>
