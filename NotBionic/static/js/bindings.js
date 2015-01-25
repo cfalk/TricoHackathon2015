@@ -8,7 +8,7 @@ NOTE: `setTimeout`s have been applied below because SQLITE3
 */
 $(document).on("click",".button-card", function() {
   var reg_id = $(this).attr("reg_id");
-  console.log("here!")
+
   if ($(this).hasClass("shop")) {
     addCourse(reg_id, "shopping_cart");
     $(this).toggleClass("shop",false)
@@ -24,21 +24,44 @@ $(document).on("click",".button-card", function() {
       location.reload();
     },50);//TODO: DELETE WHEN MYSQL
 
+
   } else if ($(this).hasClass("trash")) {
     removeCourse(reg_id, "schedule");
 
     setTimeout(function() { //TODO: DELETE WHEN MYSQL
       removeCourse(reg_id, "shopping_cart");
     },50);//TODO: DELETE WHEN MYSQL
-    console.log('explore container:',$('#explore-results')[0]);
-    if ($('#explore-results')[0]===undefined) {
-	location.reload();
+
+    if ($('#schedule').length) {
+      $(this).closest(".card_container").remove();
+
+    } else {
+
+      $(this).toggleClass("trash",false)
+            .toggleClass("shop",true);
+
+      var img = $(this).children()[0];
+      $(img).attr("src","/static/images/shopping-cart.png");
     }
-    $(this).toggleClass("trash",false)
-	   .toggleClass("shop",true);
-    var img = $(this).children()[0];
-    $(img).attr("src","/static/images/shopping-cart.png");
+
+  } else if ($(this).hasClass("toggleVis")) {
+    var blocks = $(".occupiedSlot[reg_id='"+reg_id+"']");
+    $container = $(this).closest(".card_container");
+
+    if (blocks.length) {
+      blocks.attr("reg_id",""); // Clear the `reg_id` attribute.
+      blocks.css("background-color","initial");
+      $container.css("background-color","initial");
+
+    } else {
+      var courseData = $(this).closest(".card_container").data("course-obj");
+      drawClass(courseData);
+      $container.css("background-color",colorDict[reg_id]);
+
+    }
+
   }
+
 
   return false;
 });

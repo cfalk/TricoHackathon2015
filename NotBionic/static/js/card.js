@@ -23,9 +23,8 @@ iconDict = {
 var colorDict = {};
 var colors = [
   "#8dd3c7",
-  "#ffffb3",
-  "#bebada",
   "#fb8072",
+  "#bebada",
   "#80b1d3",
   "#fdb462",
   "#b3de69",
@@ -69,6 +68,12 @@ function trashButton(reg_id) {
           "</div>";
 }
 
+function toggleVisButton(reg_id) {
+  return "<div reg_id='"+reg_id+"' class='button button-card toggleVis'>" +
+            "<img src='/static/images/schedule.png'>" +
+          "</div>";
+}
+
 
 function createCard(courseData, container, buttons){
 
@@ -86,9 +91,10 @@ function createCard(courseData, container, buttons){
     color = getColor(courseData.reg_id);
   }
 
-  var card = "<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
+  var card ="<a class='fancyboxClass fancybox.ajax' href='/render_course/" +
              courseData.reg_id + "'>" +
              "<div class='card_container' style='background-color:"+color+"'>";
+
 
   for (var i=0; i<buttons.length; i++) {
     card += buttons[i];
@@ -99,7 +105,7 @@ function createCard(courseData, container, buttons){
           "</div>" +
 
           "<div class='card_icon'>" +
-          "<img src='/static/images/" + icon + "'>" +
+            "<img src='/static/images/" + icon + "'>" +
           "</div>" +
 
           "<div class='card_title'>"+
@@ -111,9 +117,14 @@ function createCard(courseData, container, buttons){
           "</div>"+
           "<div class='card_time'>"+
             times(courseData) +
-          "</div>" ;
+          "</div>" +
 
-  $(container).append(card);
+          "</div></a>";
+
+  $card = $(card);
+  $card.find(".card_container").data("course-obj", courseData);
+  $(container).append($card);
+
 }
 
 function times(courseData){
