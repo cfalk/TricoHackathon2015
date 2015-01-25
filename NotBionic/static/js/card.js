@@ -1,6 +1,6 @@
 //File with the logic to create a card.
 
-var iconDict = {
+iconDict = {
   "CHEM" : "chem.png",
   "CMCS" : "cmsc.png",
   "ECON" : "econ.png",
