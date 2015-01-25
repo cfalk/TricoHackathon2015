@@ -123,5 +123,33 @@ $(document).on("ready", function() {
     var text = $input.val();
     var field = $(this).parent().find("input").attr("id");
   });
+
+  $(document).on("click", "#ptTimeSelectSetButton", function() {
+    var big_div = $("#time-filters");
+    var tog_list = big_div.find(".time-toggle");
+    var time_list = big_div.find(".time-input");
+    var start = time_list[0].value;
+    var end = time_list[1].value;
+    var active_list = []
+    for (var i=0; i<4; i++) {
+	if ($(tog_list[i]).hasClass("activated")) {
+	    active_list.push(i);
+	}
+    }
+    if (active_list.indexOf(0) != -1) {
+	applyFilter("starts", "before_"+start);
+    }else {
+	applyFilter("starts", "after_"+start); 
+    }
+    if (active_list.indexOf(2) != -1) {
+	applyFilter("ends", "before_"+end);
+    }else {
+	applyFilter("ends", "after_"+end);
+    }
+  });
+    
+  $(document).on("click",".time-toggle", function() {
+    $("#ptTimeSelectSetButton").trigger("click");
+  });
 });
 

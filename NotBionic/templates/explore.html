@@ -113,60 +113,29 @@
 
     <!-- Time -->
     <div id="time-filterOptions" class="disabledFilterOptions">
-	    <label for="start-before"class=checkbox>
+	<div id=time-filters>
+	    <label for="start-before"class="time-toggle activated">
 		<input type=checkbox id="start-before" value=start-before>
                 start before
 	    </label>
-	    <label for="start-after"class=checkbox>
+	    <label for="start-after"class=time-toggle>
 		<input type=checkbox id="start-after" value=start-after>
                 start after
 	    </label>
-	    <div id="start-slider" label="Start Time"></div>
-
-	    <label for="end-before"class=checkbox>
+	    <input id="start-slider" class=time-input value="">
+	    <label for="end-before"class="time-toggle activated">
 		<input type=checkbox id="end-before" value=end-before>
                 end before
 	    </label>
-	    <label for="end-after"class=checkbox>
+	    <label for="end-after"class=time-toggle>
 		<input type=checkbox id="end-after" value=end-after>
                 end after
 	    </label>
-	    <div id="end-slider"></div>
-
+	    <input id="end-slider" class=time-input value="">
+	</div>
             <script>
-	    $(function() {
-	    $("#start-slider").slider({
-		range: false,
-		min: 0,
-		max: 1440,
-		step: 15,
-		value: [600],
-		slide: function (e, ui) {
-		    var hours1 = Math.floor(ui.values[0] / 60);
-		    var minutes1 = ui.values[0] - (hours1 * 60);
-
-		    if (hours1.length == 1) hours1 = '0' + hours1;
-		    if (minutes1.length == 1) minutes1 = '0' + minutes1;
-		    if (minutes1 == 0) minutes1 = '00';
-		    if (hours1 >= 12) {
-			if (hours1 == 12) {
-			    hours1 = hours1;
-			    minutes1 = minutes1 + " PM";
-			}else {
-			    hours1 = hours1 - 12;
-			    minutes1 = minutes1 + " PM";
-			}
-		}else {
-		    hours1 = hours1;
-		    minutes1 = minutes1 + " AM";
-		}
-		if (hours1 == 0) {
-		    hours1 = 12;
-		    minutes1 = minutes1;
-		}
-	      }
-	      });
-	      });
+	      $('#start-slider').ptTimeSelect();
+	      $('#end-slider').ptTimeSelect(); 
               // Apply jQuery's slider functionality to the time inputs.
               /*$(function() {
                   $( "#start-slider" ).slider();
