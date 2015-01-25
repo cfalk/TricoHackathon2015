@@ -54,6 +54,7 @@ $(document).ready(function() {
 		var start_minute = 0;
 		var end_hour = 0;
 		var end_minute = 0;
+		var error = false;
 		if(start_time.charAt(0) == "0") {
 		    start_hour = parseInt(start_time.charAt(1));
 		}
@@ -67,25 +68,35 @@ $(document).ready(function() {
 		else{
 		    start_minute = '30';
 		}
-		if(end_time.charAt(0) == "0") {
-		    end_hour = parseInt(end_time.charAt(1));
+		try{ 
+		    if(end_time.charAt(0) == "0") {
+			end_hour = parseInt(end_time.charAt(1));
+		    }
+		    else {
+			end_hour = parseInt(end_time.substring(0,2));
+		    }
 		}
-		else {
-		    end_hour = parseInt(end_time.substring(0,2));
+		catch(err) {
+		    error = true;
 		}
-		var min = parseInt(end_time.charAt(3));
-		if(min < 3) {
-		    end_minute = "00";
+		try{
+		    var min = parseInt(end_time.charAt(3));
+		    if(min < 3) {
+			end_minute = "00";
+		    }
+		    else{
+			end_minute = '30';
+		    }
 		}
-		else{
-		    end_minute = '30';
+		catch(err) {
+		    error=true;
 		}
 		for(var j=0;j<days.length;j++) {
 		    var temp_hour = start_hour;
 		    var temp_minute = start_minute;
 		    var counter = 0;	
 		    var last = false;
-		    while(temp_hour != end_hour || temp_minute != end_minute) {
+		    while((temp_hour != end_hour || temp_minute != end_minute) && !(error)) {
 			var block = $('#'+days_key[days[j]]+'-'+temp_hour+temp_minute);
 			if(temp_hour == 12 && temp_minute == '30') {
 			    temp_hour = 1;
