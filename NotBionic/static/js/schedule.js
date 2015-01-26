@@ -1,5 +1,9 @@
 $(document).ready(function() {
     var schedule = $('#schedule');
+
+    // Don't show the table if the user isn't logged in.
+    if ($("#login-user").length) { return false; }
+
     // Create the header information for the table
     schedule.append('<table>');
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
