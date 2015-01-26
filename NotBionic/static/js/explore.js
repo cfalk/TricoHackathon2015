@@ -49,11 +49,14 @@ function applyFilter(field, val) {
   loadMoreCards();
 }
 
+function closeActiveFilters() {
+  $(".activeFilterOptions").removeClass("activeFilterOptions")
+                           .addClass("disabledFilterOptions");
+}
 
 function openFilter(name) {
   // Open the specified filter and close any others that are open.
-  $(".activeFilterOptions").removeClass("activeFilterOptions")
-                           .addClass("disabledFilterOptions");
+  closeActiveFilters();
   $("#"+name+"-filterOptions").removeClass("disabledFilterOptions")
                               .addClass("activeFilterOptions");
 }
@@ -78,7 +81,12 @@ $(document).on("ready", function() {
 
   $(document).on("click", ".filter", function() {
     var name = $(this).data("filter");
-    openFilter(name);
+    var options = $("#"+name+"-filterOptions")
+    if ($(options).hasClass("activeFilterOptions")) {
+      closeActiveFilters();
+    } else {
+      openFilter(name);
+    }
   });
 
 
