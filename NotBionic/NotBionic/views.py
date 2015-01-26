@@ -119,20 +119,12 @@ def get_courses(request, page=1):
     queries[key] = val
 
   if "suggestions" in queries and queries["suggestions"]=="on":
-    randomize = True
-
-    if request.user.is_authenticated():
-      time_queries = get_free_times(request.user)
-      for q in time_queries:
-        print q
-        courses = filter_courses(q)
-        print courses.count()
-
-
+    suggest = True
     del queries["suggestions"]
   else:
-    randomize = False
+    suggest = False
 
+  print queries
 
   # Clean and integerize the `page`.
   if not page:
@@ -143,6 +135,16 @@ def get_courses(request, page=1):
 
   # Apply any available filters and pagify the courses.
   courses = filter_courses(queries)
+
+
+  if suggest and request.user.is_authenticated():
+    time_queries = get_free_times(request.user)
+    print time_queries
+    for q in time_queries:
+      courses = filter_courses(q)
+
+
+
   courses = pagify_courses(courses, page=page)
 
 
