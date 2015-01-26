@@ -106,7 +106,7 @@ def get_courses(request, page=1):
   #  of courses. Also allows filtering of data.
 
   import json
-  from retrieval import pagify_courses, filter_courses
+  from retrieval import pagify_courses, filter_courses, get_free_times
 
   request.GET.items()
 
@@ -118,6 +118,17 @@ def get_courses(request, page=1):
       val = request.GET.getlist(key+"[]")
     queries[key] = val
 
+  if "suggestions" in queries and queries["suggestions"]=="on":
+    randomize = True
+
+    if request.user.is_authenticated():
+      slots = get_free_times(request.user)
+      print slots
+
+    del queries["suggestions"]
+  else:
+    randomize = False
+
 
   # Clean and integerize the `page`.
   if not page:
@@ -125,8 +136,6 @@ def get_courses(request, page=1):
   else:
     page = int(page)
 
-
-  print page
 
   # Apply any available filters and pagify the courses.
   courses = filter_courses(queries)
