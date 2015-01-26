@@ -86,8 +86,8 @@ class Course(models.Model):
     def clean_days(self):
         days=self._load_json_field("days")
         final = ""
-        for i in days:
-          final = final + i
+        for day in days:
+          final = final + day
         return final
 
     def clean_start_times(self):

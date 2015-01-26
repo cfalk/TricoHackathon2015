@@ -122,8 +122,12 @@ def get_courses(request, page=1):
     randomize = True
 
     if request.user.is_authenticated():
-      slots = get_free_times(request.user)
-      print slots
+      time_queries = get_free_times(request.user)
+      for q in time_queries:
+        print q
+        courses = filter_courses(q)
+        print courses.count()
+
 
     del queries["suggestions"]
   else:
@@ -140,6 +144,7 @@ def get_courses(request, page=1):
   # Apply any available filters and pagify the courses.
   courses = filter_courses(queries)
   courses = pagify_courses(courses, page=page)
+
 
   # Construct the JSON response from the courses.
   data = [course.to_dict() for course in courses]

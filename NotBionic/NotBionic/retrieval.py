@@ -178,15 +178,17 @@ def get_course_value_set(field, courses=None):
 
 
 def get_free_times(user):
-  try:
-    expanded = get_expanded_user(user)
-    reg_ids = expanded.get_courses()["schedule"]
-    courses = [get_course_by_reg_id(reg_id) for reg_id in reg_ids]
-    print courses
-  except Exception as e:
-    print e
+  def _get_time_queries(course):
+    return {
+           "day":course._load_json_field("days"),
+           "ends": "before_"+course._load_time(course.earliest_time),
+           "starts": "after_"+course._load_time(course.earliest_time),
+    }
 
+  expanded = get_expanded_user(user)
+  reg_ids = expanded.get_courses()["schedule"]
+  courses = [get_course_by_reg_id(reg_id) for reg_id in reg_ids]
+  queries = [_get_time_queries(course) for course in courses]
 
-
-
+  return queries
 
